@@ -35,7 +35,7 @@ const Demo = (props) => {
   return (
     <div className={clsx("Demo", container)}>
       <TypographyDemo />
-      <SemanticElementsDemo />
+      {/*<SemanticElementsDemo />*/}
     </div>
   );
 };

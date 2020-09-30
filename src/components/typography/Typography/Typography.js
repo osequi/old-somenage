@@ -2,6 +2,7 @@ import React, { createElement } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
+import ms from "modularscale-js";
 
 /**
  * Imports other components and hooks
@@ -32,9 +33,9 @@ const propTypes = {
   /**
    * In which container element to display.
    * Preferably inside a Semantic Element
-   * @type {element}
+   * @type {func}
    */
-  component: PropTypes.element,
+  component: PropTypes.func,
   /**
    * What to display
    * @type {any}
@@ -72,15 +73,15 @@ const defaultProps = {
  */
 const useStyles = makeStyles(() => ({
   default: {
-    fontSize: "1em",
+    fontSize: (props) => `${ms(0, props.scale)}em`,
   },
 
   body: {
-    fontSize: "1em",
+    fontSize: (props) => `${ms(0, props.scale)}em`,
   },
 
   title: {
-    fontSize: "1.25em",
+    fontSize: (props) => `${ms(1, props.scale)}em`,
   },
 }));
 
@@ -88,12 +89,14 @@ const useStyles = makeStyles(() => ({
  * Displays the component
  */
 const Typography = (props) => {
-  const { variant, component, children } = props;
+  const { variant, component, children, scale } = props;
   const { default: defaultKlass, body, title } = useStyles(props);
 
   const klasses = [defaultKlass, body, title];
   const index = variants.findIndex((item) => item === variant);
   const props2 = { className: clsx(klasses[index]) };
+
+  console.log("ms:", ms(1, scale));
 
   return createElement(component, props2, children);
 };
