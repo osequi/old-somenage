@@ -10,6 +10,9 @@ import Setup from "../Setup";
 import Grid from "../Grid";
 import Typography from "../Typography";
 import { H1 } from "../../semantic-elements/SemanticElements";
+import useMarkdown from "../../../hooks/use-markdown";
+
+import markdown from "./Demo.md";
 
 /**
  * Defines the prop types
@@ -33,15 +36,14 @@ const useStyles = makeStyles(() => ({
  */
 const Demo = (props) => {
   const { container } = useStyles(props);
+  const { html } = useMarkdown(markdown);
 
   return (
     <>
       <Setup />
       <div className={clsx("TypographyDemo", container)}>
-        <Grid displayVerticalRhytm={false} displayHorizontalRhytm={true} />
-        <Typography variant="title" component={H1}>
-          Demo
-        </Typography>
+        <Grid displayVerticalRhytm={true} displayHorizontalRhytm={true} />
+        {html}
       </div>
     </>
   );
