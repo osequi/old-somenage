@@ -10,13 +10,11 @@ import "normalize.css";
 
 /**
  * Adds further normalization on top of `normalize.css`.
+ * It resets all styles. No element should be distinctive from another.
+ * Put `Setup.testpage.md` contents on the `<Grid/>` to see if everything is uniform and fits perfectly to the grid.
  * @type {Object}
  */
 import "./Setup.css";
-
-/**
- * Imports other components and hooks
- */
 
 /**
  * Defines the prop types
@@ -45,7 +43,7 @@ const defaultProps = {
 };
 
 /**
- * Sets up the typographic grid in `<body>`
+ * Sets up the typographic grid in `<body>`.
  */
 const Setup = (props) => {
   const { fontSize, lineHeight } = props;

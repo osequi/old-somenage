@@ -43,8 +43,8 @@ const defaultProps = {
   lineHeight: "1.25",
   displayHorizontalRhytm: false,
   displayVerticalRhytm: false,
-  numberOfHorizontalLines: 100,
-  numberOfVerticalLines: 180,
+  numberOfHorizontalLines: 350,
+  numberOfVerticalLines: 700,
   lineColor: "lightgrey",
 };
 

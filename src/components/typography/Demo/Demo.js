@@ -13,6 +13,7 @@ import { H1 } from "../../semantic-elements/SemanticElements";
 import useMarkdown from "../../../hooks/use-markdown";
 
 import markdown from "./Demo.md";
+import markdown2 from "../Setup/Setup.testpage.md";
 
 /**
  * Defines the prop types
@@ -36,7 +37,7 @@ const useStyles = makeStyles(() => ({
  */
 const Demo = (props) => {
   const { container } = useStyles(props);
-  const { html } = useMarkdown(markdown);
+  const { html } = useMarkdown(markdown2);
 
   return (
     <>
