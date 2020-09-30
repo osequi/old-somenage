@@ -57,11 +57,11 @@ const propTypes = {
  */
 const defaultProps = {
   variant: "default",
+  component: "div",
+  children: null,
   /**
    * Perfect fourth
    */
-  elemnt: "div",
-  children: null,
   scale: {
     base: [1],
     ratio: 1.333,
@@ -95,8 +95,6 @@ const Typography = (props) => {
   const klasses = [defaultKlass, body, title];
   const index = variants.findIndex((item) => item === variant);
   const props2 = { className: clsx(klasses[index]) };
-
-  console.log("ms:", ms(1, scale));
 
   return createElement(component, props2, children);
 };

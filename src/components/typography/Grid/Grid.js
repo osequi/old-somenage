@@ -44,7 +44,7 @@ const defaultProps = {
   displayHorizontalRhytm: false,
   displayVerticalRhytm: false,
   numberOfHorizontalLines: 100,
-  numberOfVerticalLines: 100,
+  numberOfVerticalLines: 180,
   lineColor: "lightgrey",
 };
 

@@ -43,7 +43,7 @@ const Demo = (props) => {
       <Setup />
       <div className={clsx("TypographyDemo", container)}>
         <Grid displayVerticalRhytm={true} displayHorizontalRhytm={true} />
-        {html}
+        <Typography variant="body">{html}</Typography>
       </div>
     </>
   );
