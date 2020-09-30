@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
-import Helmet from "react-helmet";
+
 import shortid from "shortid";
 
 /**
@@ -13,8 +13,6 @@ import shortid from "shortid";
  * Defines the prop types
  */
 const propTypes = {
-  fontSize: PropTypes.string,
-  lineHeight: PropTypes.string,
   /**
    * Display horizontal lines?
    */
@@ -92,23 +90,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 /**
- * Sets up the typographic grid globally on the `<body>` tag.
- * A bug in Helmet doesn't let setting up the `<body>` with object notation.
- * @see https://github.com/nfl/react-helmet/issues/344
- */
-const globalSettings = (props) => {
-  const { fontSize, lineHeight } = props;
-
-  return (
-    <Helmet>
-      <body
-        style={`font-size: ${fontSize}; line-height: ${lineHeight}; --lem: 1.25em`}
-      />
-    </Helmet>
-  );
-};
-
-/**
  * Draws a set of lines
  */
 const drawLines = (props) => {
@@ -181,9 +162,8 @@ const Grid = (props) => {
 
   return (
     <>
-      {globalSettings(props)}
-      {horizontalLines}
-      {verticalLines}
+      {displayHorizontalRhytm && horizontalLines}
+      {displayVerticalRhytm && verticalLines}
       {children}
     </>
   );

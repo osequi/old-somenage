@@ -6,6 +6,7 @@ import clsx from "clsx";
 /**
  * Imports other components and hooks
  */
+import Setup from "../Setup";
 import Grid from "../Grid";
 import Typography from "../Typography";
 import { H1 } from "../../semantic-elements/SemanticElements";
@@ -34,12 +35,15 @@ const Demo = (props) => {
   const { container } = useStyles(props);
 
   return (
-    <div className={clsx("Demo", container)}>
-      <Grid displayVerticalRhytm={true} displayHorizontalRhytm={true} />
-      <Typography variant="title" component={H1}>
-        Demo
-      </Typography>
-    </div>
+    <>
+      <Setup />
+      <div className={clsx("TypographyDemo", container)}>
+        <Grid displayVerticalRhytm={false} displayHorizontalRhytm={true} />
+        <Typography variant="title" component={H1}>
+          Demo
+        </Typography>
+      </div>
+    </>
   );
 };
 
