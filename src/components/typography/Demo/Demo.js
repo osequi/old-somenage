@@ -45,9 +45,13 @@ const Demo = (props) => {
       <div className={clsx("TypographyDemo", container)}>
         <Grid displayVerticalRhytm={true} displayHorizontalRhytm={true} />
         <Typography variant="body">
+          <div>
+            0123456789 0123456789 0123456789 0123456789 0123456789 0123456789
+            ***60chars*** 0123456789 0123456789 0123456789 0123456789 0123456789
+          </div>
           {html}
           <section>
-            <h1>Notes:</h1>
+            <h1>FORMS AND INPUTS TESTS</h1>
             <p>
               All tested on OSX 10.6.1. Obviously I've left out most of the
               standard, and therefore boring, inputs.

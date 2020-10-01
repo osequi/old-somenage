@@ -7,6 +7,7 @@ import ms from "modularscale-js";
 /**
  * Imports other components and hooks
  */
+import { FontDefaultProps, FontPropTypes, getFontFamily } from "../Font";
 
 /**
  * Defines the text types.
@@ -42,7 +43,12 @@ const propTypes = {
    */
   children: PropTypes.any,
   /**
-   * Setting up the Modular Scale
+   * The font
+   * @type {object}
+   */
+  font: PropTypes.shape(FontPropTypes),
+  /**
+   * The Modular Scale
    * @type {object}
    * @see https://github.com/modularscale/modularscale-js
    */
@@ -59,6 +65,7 @@ const defaultProps = {
   variant: "default",
   component: "div",
   children: null,
+  font: FontDefaultProps,
   /**
    * Perfect fourth
    */
@@ -78,6 +85,11 @@ const useStyles = makeStyles(() => ({
 
   body: {
     fontSize: (props) => `${ms(0, props.scale)}em`,
+    fontFamily: (props) => getFontFamily(props.font),
+    maxWidth: `calc(35*var(--lem))`,
+    ["& * + *"]: {
+      marginTop: `var(--lem)`,
+    },
   },
 
   title: {
