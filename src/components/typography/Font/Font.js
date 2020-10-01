@@ -45,6 +45,10 @@ const defaultProps = {
       name: "Galapagos B Trial Black",
       familyName: "GalapagosBTrial-Black",
     },
+    {
+      name: "Nimbus Sans Regular",
+      familyName: "nimbus-sans",
+    },
   ],
 };
 

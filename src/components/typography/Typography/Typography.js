@@ -65,7 +65,7 @@ const defaultProps = {
   variant: "default",
   component: "div",
   children: null,
-  font: { ...FontDefaultProps, name: "Galapagos B Trial Black" },
+  font: { ...FontDefaultProps, name: "Nimbus Sans Regular" },
   /**
    * Perfect fourth
    */
