@@ -11,6 +11,7 @@ import { font } from "../Fonts";
 import { scale } from "../Scale";
 import { spacingMarginTop } from "../Spacing";
 import { maxWidth } from "../MaxWidth";
+import { headings } from "../Headings";
 import { textElements } from "../TextElements";
 
 /**
@@ -71,10 +72,7 @@ const useStyles = makeStyles(() => ({
     ...font("Nimbus Sans Regular"),
     ...maxWidth({ fontName: "Nimbus Sans Regular" }),
     ...spacingMarginTop,
-
-    ["& h1, h2, h3, h4, h5, h6"]: {
-      ...font("Nimbus Sans Medium"),
-    },
+    ...headings({ fontName: "Nimbus Sans Medium", scale: 0 }),
   }),
 
   longform: (props) => ({
@@ -82,10 +80,7 @@ const useStyles = makeStyles(() => ({
     ...font("Nimbus Sans Regular"),
     ...maxWidth({ fontName: "Nimbus Sans Regular" }),
     ...spacingMarginTop,
-
-    ["& h1, h2, h3, h4, h5, h6"]: {
-      ...font("Nimbus Sans Medium"),
-    },
+    ...headings({ fontName: "Nimbus Sans Regular", modularScale: {} }),
     ...textElements,
   }),
 

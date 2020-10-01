@@ -25,7 +25,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  fontName: null,
+  fontName: "Default",
   htmlElement: "p",
 };
 

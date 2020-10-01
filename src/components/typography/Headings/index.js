@@ -1,1 +1,6 @@
-export { default, HeadingsPropTypes, HeadingsDefaultProps } from "./Headings";
+export {
+  default,
+  HeadingsPropTypes,
+  HeadingsDefaultProps,
+  headings,
+} from "./Headings";
