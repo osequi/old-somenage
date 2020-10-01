@@ -50,7 +50,7 @@ const defaultProps = {
 };
 
 /**
- * Returns the font object (family, weight, style) for a font
+ * Returns the font object for a font identified by name.
  * @param  {string} props The font name
  * @return {object}       The font style object
  */
@@ -70,9 +70,23 @@ const getFont = (name) => {
   return font;
 };
 
+/**
+ * Returns the style object for a font.
+ * @param  {object} props The font object
+ * @return {object}       The font style object
+ */
 const getFontCss = (font) => {
   const { family, weight, style } = font;
   return { fontFamily: family, fontWeight: weight, fontStyle: style };
+};
+
+/**
+ * Returns the style object for a font identified by name.
+ * @param  {string} name The font name
+ * @return {object}      The font style object
+ */
+const font = (name) => {
+  return getFontCss(getFont(name));
 };
 
 /**
@@ -95,4 +109,5 @@ export {
   defaultProps as FontsDefaultProps,
   getFont,
   getFontCss,
+  font,
 };

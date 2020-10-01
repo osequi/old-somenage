@@ -4,4 +4,5 @@ export {
   FontsDefaultProps,
   getFont,
   getFontCss,
+  font,
 } from "./Fonts";

@@ -7,7 +7,7 @@ import ms from "modularscale-js";
 /**
  * Imports other components and hooks
  */
-import { getFont, getFontCss } from "../Fonts";
+import { font } from "../Fonts";
 
 /**
  * Sets up the Modular Scale
@@ -66,12 +66,12 @@ const defaultProps = {
 const useStyles = makeStyles(() => ({
   default: (props) => ({
     fontSize: `${ms(0, props.scale)}em`,
-    ...getFontCss(getFont("Nimbus Sans Light")),
+    ...font("Nimbus Sans Light"),
   }),
 
   body: (props) => ({
     fontSize: `${ms(0, props.scale)}em`,
-    ...getFontCss(getFont("Nimbus Sans Light")),
+    ...font("Nimbus Sans Regular"),
     maxWidth: `calc(35*var(--lem))`,
     ["& * + *"]: {
       marginTop: `var(--lem)`,
