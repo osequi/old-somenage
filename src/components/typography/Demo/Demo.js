@@ -44,7 +44,7 @@ const Demo = (props) => {
       <Setup />
       <div className={clsx("TypographyDemo", container)}>
         <Grid displayVerticalRhytm={true} displayHorizontalRhytm={true} />
-        <Typography variant="body">
+        <Typography variant="longform">
           <div>
             0123456789 0123456789 0123456789 0123456789 0123456789 0123456789
             ***60chars*** 0123456789 0123456789 0123456789 0123456789 0123456789

@@ -2,12 +2,14 @@ import React, { createElement } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
+import { startCase } from "lodash";
 
 /**
  * Imports other components and hooks
  */
 import { font } from "../Fonts";
 import { scale } from "../Scale";
+import { textElements } from "../TextElements";
 
 /**
  * Defines the text types.
@@ -16,7 +18,7 @@ import { scale } from "../Scale";
  * Accessing and styling directly standard tags like '<H1>' is not recommended.
  * @type {Array}
  */
-const variants = ["default", "body", "title"];
+const variants = ["default", "body", "longform", "title"];
 
 /**
  * Defines the prop types
@@ -69,6 +71,28 @@ const useStyles = makeStyles(() => ({
     ["& * + *"]: {
       marginTop: `var(--lem)`,
     },
+    ["& li"]: {
+      marginTop: 0,
+    },
+    ["& h1, h2, h3, h4, h5, h6"]: {
+      ...font("Nimbus Sans Medium"),
+    },
+  }),
+
+  longform: (props) => ({
+    ...scale(0),
+    ...font("Nimbus Sans Regular"),
+    maxWidth: `calc(35*var(--lem))`,
+    ["& * + *"]: {
+      marginTop: `var(--lem)`,
+    },
+    ["& li"]: {
+      marginTop: 0,
+    },
+    ["& h1, h2, h3, h4, h5, h6"]: {
+      ...font("Nimbus Sans Medium"),
+    },
+    ...textElements,
   }),
 
   title: {
@@ -81,14 +105,16 @@ const useStyles = makeStyles(() => ({
  */
 const Typography = (props) => {
   const { variant, component, children } = props;
-  const { default: defaultKlass, body, title } = useStyles({
+  const { default: defaultKlass, body, title, longform } = useStyles({
     ...props,
     scale: scale,
   });
 
-  const klasses = [defaultKlass, body, title];
+  const klasses = [defaultKlass, body, longform, title];
   const index = variants.findIndex((item) => item === variant);
-  const props2 = { className: clsx(klasses[index]) };
+  const props2 = {
+    className: clsx(klasses[index], `Typography${startCase(variant)}`),
+  };
 
   return createElement(component, props2, children);
 };

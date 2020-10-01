@@ -46,6 +46,12 @@ const defaultProps = {
       weight: 400,
       style: "normal",
     },
+    {
+      name: "Nimbus Sans Medium",
+      family: "nimbus-sans",
+      weight: 500,
+      style: "normal",
+    },
   ],
 };
 
