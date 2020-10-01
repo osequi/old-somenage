@@ -2,19 +2,12 @@ import React, { createElement } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
-import ms from "modularscale-js";
 
 /**
  * Imports other components and hooks
  */
 import { font } from "../Fonts";
-
-/**
- * Sets up the Modular Scale
- * @type {object}
- * @see https://github.com/modularscale/modularscale-js
- */
-const scale = { base: [1], ratio: 1.333 };
+import { scale } from "../Scale";
 
 /**
  * Defines the text types.
@@ -65,12 +58,12 @@ const defaultProps = {
  */
 const useStyles = makeStyles(() => ({
   default: (props) => ({
-    fontSize: `${ms(0, props.scale)}em`,
+    ...scale(0),
     ...font("Nimbus Sans Light"),
   }),
 
   body: (props) => ({
-    fontSize: `${ms(0, props.scale)}em`,
+    ...scale(0),
     ...font("Nimbus Sans Regular"),
     maxWidth: `calc(35*var(--lem))`,
     ["& * + *"]: {
@@ -79,7 +72,7 @@ const useStyles = makeStyles(() => ({
   }),
 
   title: {
-    fontSize: (props) => `${ms(1, props.scale)}em`,
+    ...scale(1),
   },
 }));
 
