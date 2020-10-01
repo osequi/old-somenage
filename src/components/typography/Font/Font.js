@@ -3,10 +3,21 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 
+import "./Font.css";
+
 /**
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The name of the font to be used.
+   * @type {string}
+   */
+  name: PropTypes.string,
+  /**
+   * The list of available fonts
+   * @type {array}
+   */
   fonts: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
@@ -20,15 +31,19 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
+  name: "Default",
   fonts: [
     {
       /**
        * The default font.
        * Monospace is not suitable for the default font. It breaks the grid because it's smaller than a regular font.
        */
-      name: "Inherit",
+      name: "Default",
       familyName: "inherit",
-      children: null,
+    },
+    {
+      name: "Galapagos B Trial Black",
+      familyName: "GalapagosBTrial-Black",
     },
   ],
 };
@@ -62,9 +77,10 @@ const useStyles = makeStyles(() => ({
  */
 const Font = (props) => {
   const { children } = props;
-
   const fontFamily = getFontFamily(props);
   const { container } = useStyles({ fontFamily: fontFamily });
+
+  if (!children) return null;
 
   return <div className={clsx("Font", container)}>{children}</div>;
 };
