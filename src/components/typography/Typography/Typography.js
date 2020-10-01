@@ -7,7 +7,14 @@ import ms from "modularscale-js";
 /**
  * Imports other components and hooks
  */
-import { FontDefaultProps, FontPropTypes, getFontFamily } from "../Font";
+import { getFont, getFontCss } from "../Fonts";
+
+/**
+ * Sets up the Modular Scale
+ * @type {object}
+ * @see https://github.com/modularscale/modularscale-js
+ */
+const scale = { base: [1], ratio: 1.333 };
 
 /**
  * Defines the text types.
@@ -42,20 +49,6 @@ const propTypes = {
    * @type {any}
    */
   children: PropTypes.any,
-  /**
-   * The font
-   * @type {object}
-   */
-  font: PropTypes.shape(FontPropTypes),
-  /**
-   * The Modular Scale
-   * @type {object}
-   * @see https://github.com/modularscale/modularscale-js
-   */
-  scale: PropTypes.shape({
-    base: PropTypes.arrayOf(PropTypes.number),
-    ratio: PropTypes.number,
-  }),
 };
 
 /**
@@ -65,32 +58,25 @@ const defaultProps = {
   variant: "default",
   component: "div",
   children: null,
-  font: { ...FontDefaultProps, name: "Nimbus Sans Regular" },
-  /**
-   * Perfect fourth
-   */
-  scale: {
-    base: [1],
-    ratio: 1.333,
-  },
 };
 
 /**
  * Defines the styles
  */
 const useStyles = makeStyles(() => ({
-  default: {
-    fontSize: (props) => `${ms(0, props.scale)}em`,
-  },
+  default: (props) => ({
+    fontSize: `${ms(0, props.scale)}em`,
+    ...getFontCss(getFont("Nimbus Sans Light")),
+  }),
 
-  body: {
-    fontSize: (props) => `${ms(0, props.scale)}em`,
-    fontFamily: (props) => getFontFamily(props.font),
+  body: (props) => ({
+    fontSize: `${ms(0, props.scale)}em`,
+    ...getFontCss(getFont("Nimbus Sans Light")),
     maxWidth: `calc(35*var(--lem))`,
     ["& * + *"]: {
       marginTop: `var(--lem)`,
     },
-  },
+  }),
 
   title: {
     fontSize: (props) => `${ms(1, props.scale)}em`,
@@ -101,8 +87,11 @@ const useStyles = makeStyles(() => ({
  * Displays the component
  */
 const Typography = (props) => {
-  const { variant, component, children, scale } = props;
-  const { default: defaultKlass, body, title } = useStyles(props);
+  const { variant, component, children } = props;
+  const { default: defaultKlass, body, title } = useStyles({
+    ...props,
+    scale: scale,
+  });
 
   const klasses = [defaultKlass, body, title];
   const index = variants.findIndex((item) => item === variant);

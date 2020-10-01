@@ -1,6 +1,1 @@
-export {
-  default,
-  FontPropTypes,
-  FontDefaultProps,
-  getFontFamily,
-} from "./Font";
+export { default, FontPropTypes, FontDefaultProps } from "./Font";

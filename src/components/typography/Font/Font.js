@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 
-import "./Font.css";
+/**
+ * Imports other components and hooks
+ */
+import { getFont } from "../Fonts";
 
 /**
  * Defines the prop types
@@ -15,16 +18,20 @@ const propTypes = {
    */
   name: PropTypes.string,
   /**
-   * The list of available fonts
+   * The font family name as defined in the font css
+   * @type {string}
+   */
+  family: PropTypes.string,
+  /**
+   * The weight of the font
    * @type {array}
    */
-  fonts: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      familyName: PropTypes.string,
-      children: PropTypes.any,
-    })
-  ),
+  weight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The font style
+   * @type {string}
+   */
+  style: PropTypes.string,
 };
 
 /**
@@ -32,47 +39,20 @@ const propTypes = {
  */
 const defaultProps = {
   name: "Default",
-  fonts: [
-    {
-      /**
-       * The default font.
-       * Monospace is not suitable for the default font. It breaks the grid because it's smaller than a regular font.
-       */
-      name: "Default",
-      familyName: "inherit",
-    },
-    {
-      name: "Galapagos B Trial Black",
-      familyName: "GalapagosBTrial-Black",
-    },
-    {
-      name: "Nimbus Sans Regular",
-      familyName: "nimbus-sans",
-    },
-  ],
-};
-
-/**
- * Returns the `familyName` CSS value for a font
- * @param  {object} props The props identifying a font familyName
- * @return {string}       The font familyName
- */
-const getFontFamily = (props) => {
-  const { name } = props;
-  const { fonts } = defaultProps;
-
-  const font = fonts.find((item) => item.name === name);
-
-  return font?.familyName ? font.familyName : "inherit";
+  family: "inherit",
+  weight: "normal",
+  style: "normal",
 };
 
 /**
  * Defines the styles
  */
 const useStyles = makeStyles(() => ({
-  container: {
-    fontFamily: (props) => props.fontFamily,
-  },
+  fontStyle: (props) => ({
+    fontFamily: props.family,
+    fontWeight: props.weight,
+    fontStyle: props.style,
+  }),
 }));
 
 /**
@@ -80,21 +60,18 @@ const useStyles = makeStyles(() => ({
  * Don't use this component directly. Instead use `<Typography>`.
  */
 const Font = (props) => {
-  const { children } = props;
-  const fontFamily = getFontFamily(props);
-  const { container } = useStyles({ fontFamily: fontFamily });
+  const { children, name } = props;
+  const { fontStyle } = useStyles(props);
 
   if (!children) return null;
 
-  return <div className={clsx("Font", container)}>{children}</div>;
+  return (
+    <div className={clsx("Font", `Font${name}`, fontStyle)}>{children}</div>
+  );
 };
 
 Font.propTypes = propTypes;
 Font.defaultProps = defaultProps;
 
 export default Font;
-export {
-  propTypes as FontPropTypes,
-  defaultProps as FontDefaultProps,
-  getFontFamily,
-};
+export { propTypes as FontPropTypes, defaultProps as FontDefaultProps };
