@@ -10,6 +10,7 @@ import { startCase } from "lodash";
 import { font } from "../Fonts";
 import { scale } from "../Scale";
 import { spacingMarginTop } from "../Spacing";
+import { maxWidth } from "../MaxWidth";
 import { textElements } from "../TextElements";
 
 /**
@@ -68,8 +69,8 @@ const useStyles = makeStyles(() => ({
   body: (props) => ({
     ...scale(0),
     ...font("Nimbus Sans Regular"),
+    ...maxWidth({ fontName: "Nimbus Sans Regular" }),
     ...spacingMarginTop,
-    maxWidth: `calc(35*var(--lem))`,
 
     ["& h1, h2, h3, h4, h5, h6"]: {
       ...font("Nimbus Sans Medium"),
@@ -79,8 +80,9 @@ const useStyles = makeStyles(() => ({
   longform: (props) => ({
     ...scale(0),
     ...font("Nimbus Sans Regular"),
+    ...maxWidth({ fontName: "Nimbus Sans Regular" }),
     ...spacingMarginTop,
-    maxWidth: `calc(35*var(--lem))`,
+
     ["& h1, h2, h3, h4, h5, h6"]: {
       ...font("Nimbus Sans Medium"),
     },
