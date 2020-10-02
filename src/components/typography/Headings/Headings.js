@@ -62,30 +62,29 @@ const margin = (props) => {
   const { fontSize, lineHeight: setupLineHeight } = defaultProps.setup;
 
   /**
-   * The deafult line height in px.
-   * Ex.: (100, 1.25) => 20
+   * The deafult line height in em.
+   * Ex.: 100 * 1.25 => 1.25
    */
-  const lineHeightInPx = ((fontSize * 16) / 100) * setupLineHeight;
+  const lineHeightInEm = (fontSize / 100) * setupLineHeight;
 
   /**
-   * The heading's line height in px
-   * Ex.: (6, 1) => 89.76372759879813
+   * The heading's line height in em
+   * Ex.: (ms(6), 1) => 5.61
    */
-  const headingLineHeightInPx = scaleValue(scale) * 16 * lineHeight;
+  const headingLineHeightInEm = scaleValue(scale) * lineHeight;
 
   /**
-   * The nearest multiply of the default line height for the heading's line height, in pixels.
-   * Ex.: (20, 89.76) => 100
-   * Ex.: (20, 67.3396) = 80
+   * The nearest multiply of the default line height for the heading's line height, in em.
+   * Ex.: default: 1.25, heading: 5.61 => (4+1)*1.25 = 6.25
    */
-  const nearestInPx =
-    (Math.floor(headingLineHeightInPx / lineHeightInPx) + 1) * lineHeightInPx;
+  const nearestInEm =
+    (Math.floor(headingLineHeightInEm / lineHeightInEm) + 1) * lineHeightInEm;
 
   /**
-   * The margin we should add to match the grid, in pixels.
+   * The margin we should add to match the grid, in em.
+   * Ex.: 6.25 - 5.61 = 0.64
    */
-  const differenceInPx = nearestInPx - headingLineHeightInPx;
-  const differenceInEm = differenceInPx / headingLineHeightInPx;
+  const differenceInEm = nearestInEm - headingLineHeightInEm;
 
   /**
    * This shit is very tricky
