@@ -44,6 +44,13 @@ const scale = (number) => {
 };
 
 /**
+ * Returns the scale value in Em
+ * @param  {[type]} number [description]
+ * @return {[type]}        [description]
+ */
+const scaleValue = (number) => ms(number, defaultProps.config);
+
+/**
  * Defines the styles
  */
 const useStyles = makeStyles(() => ({
@@ -71,4 +78,5 @@ export {
   propTypes as ScalePropTypes,
   defaultProps as ScaleDefaultProps,
   scale,
+  scaleValue,
 };

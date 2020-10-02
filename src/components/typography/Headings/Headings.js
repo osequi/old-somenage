@@ -8,14 +8,15 @@ import { isNil } from "lodash";
  * Imports other components and hooks
  */
 import { font } from "../Fonts";
-import { scale } from "../Scale";
+import { scale, scaleValue } from "../Scale";
+import { SetupPropTypes, SetupDefaultProps } from "../Setup";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
   /**
-   * The font name of the headings
+   * The font name of the headings.
    * @type {string}
    */
   fontName: PropTypes.string,
@@ -25,10 +26,21 @@ const propTypes = {
    */
   scale: PropTypes.number,
   /**
-   * The scale of the headings in case when a modular scale is applied
+   * The modular scale of the headings in case when headings are different.
    * @type {object}
    */
   modularScale: PropTypes.shape({}),
+  /**
+   * The new line height.
+   * Headings have a reduced line height while body text has a larger one. For better readabaility.
+   * @type {number}
+   */
+  lineHeight: PropTypes.number,
+  /**
+   * The global grid setup.
+   * @type {object}
+   */
+  setup: PropTypes.shape(SetupPropTypes),
 };
 
 /**
@@ -38,73 +50,130 @@ const defaultProps = {
   fontName: "Default",
   scale: null,
   modularScale: null,
+  lineHeight: 1,
+  setup: SetupDefaultProps,
+};
+
+/**
+ * Calculates the new margins.
+ */
+const margin = (props) => {
+  const { scale, lineHeight } = props;
+  const { fontSize, lineHeight: setupLineHeight } = defaultProps.setup;
+
+  /**
+   * The deafult line height in px.
+   * Ex.: (100, 1.25) => 20
+   */
+  const lineHeightInPx = ((fontSize * 16) / 100) * setupLineHeight;
+
+  /**
+   * The heading's line height in px
+   * Ex.: (6, 1) => 89.76372759879813
+   */
+  const headingLineHeightInPx = scaleValue(scale) * 16 * lineHeight;
+
+  /**
+   * The nearest multiply of the default line height for the heading's line height, in pixels.
+   * Ex.: (20, 89.76) => 100
+   */
+  const nearestInPx =
+    (Math.floor(headingLineHeightInPx, lineHeightInPx) + 1) * lineHeightInPx;
+
+  /**
+   * The margin we should add to match the grid, in pixels.
+   */
+  const differenceInPx = 100 - headingLineHeightInPx;
+
+  const differenceInEm = differenceInPx / 16;
+
+  return {
+    marginTop: `${differenceInEm / 2}em`,
+    marginBottom: `${differenceInEm / 2}em`,
+  };
+};
+
+/**
+ * Returns headings with the same size.
+ */
+const sameSize = (props) => {
+  const { fontName, scale: scaleValue, lineHeight } = props;
+
+  return {
+    ["& h1, h2, h3, h4, h5, h6"]: {
+      ...font(fontName),
+      ...scale(scaleValue),
+      ...margin({ scale: scaleValue, lineHeight: lineHeight }),
+      lineHeight: lineHeight,
+    },
+  };
+};
+
+/**
+ * Returns headings with different sizes
+ */
+const differentSizes = (props) => {
+  const { fontName, modularScale, lineHeight } = props;
+
+  return {
+    ["& h1, h2, h3, h4, h5, h6"]: {
+      ...font(fontName),
+      lineHeight: lineHeight,
+    },
+    ["& h6"]: {
+      ...scale(1),
+      ...margin({ scale: 1, lineHeight: lineHeight }),
+    },
+    ["& h5"]: {
+      ...scale(2),
+      ...margin({ scale: 2, lineHeight: lineHeight }),
+    },
+    ["& h4"]: {
+      ...scale(3),
+      ...margin({ scale: 3, lineHeight: lineHeight }),
+    },
+    ["& h3"]: {
+      ...scale(4),
+      ...margin({ scale: 4, lineHeight: lineHeight }),
+    },
+    ["& h2"]: {
+      ...scale(5),
+      ...margin({ scale: 5, lineHeight: lineHeight }),
+    },
+    ["& h1"]: {
+      ...scale(6),
+      ...margin({ scale: 6, lineHeight: lineHeight }),
+    },
+  };
+};
+
+/**
+ * Returns headings
+ */
+const headings = (props) => {
+  const { scale } = props;
+
+  return isNil(scale) ? differentSizes(props) : sameSize(props);
 };
 
 /**
  * Defines the styles
  */
 const useStyles = makeStyles(() => ({
-  container: {},
+  container: (props) => ({
+    ...headings(props),
+  }),
 }));
 
-const sameSize = (props) => {
-  const { fontName, scale: scaleValue } = props;
-
-  return {
-    ["& h1, h2, h3, h4, h5, h6"]: {
-      ...font(fontName),
-      ...scale(scaleValue),
-    },
-  };
-};
-
-const headings = (props) => {
-  const { fontName, scale: scaleValue, modularScale } = props;
-
-  if (!isNil(scaleValue)) return sameSize(props);
-
-  return {
-    ["& h1, h2, h3, h4, h5, h6"]: {
-      ...font(fontName),
-      /**
-       * Better readability best practice
-       */
-      lineHeight: 1,
-      /**
-       * Overwrite spacing where perhaps the marginTop technique was used.
-       * `marginTop: var(--lem)` grows imense when the scale increase.
-       */
-      marginTop: 0,
-      // TODO: Add Iain Lambs' typograph padding calculator here
-    },
-    ["& h6"]: {
-      ...scale(1),
-    },
-    ["& h5"]: {
-      ...scale(2),
-    },
-    ["& h4"]: {
-      ...scale(3),
-    },
-    ["& h3"]: {
-      ...scale(4),
-    },
-    ["& h2"]: {
-      ...scale(5),
-    },
-    ["& h1"]: {
-      ...scale(6),
-    },
-  };
-};
-
 /**
- * Displays the component
+ * Displays children inside a headings container.
+ * Don't use this component directly. Instead use `<Typography>`.
  */
 const Headings = (props) => {
+  const { children } = props;
   const { container } = useStyles(props);
 
-  return <div className={clsx("Headings", container)}>Headings</div>;
+  return <div className={clsx("Headings", container)}>{children}</div>;
 };
 
 Headings.propTypes = propTypes;

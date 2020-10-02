@@ -24,9 +24,9 @@ const propTypes = {
    * Font size, in percentage.
    *
    * @see http://metamn.io/mr-ui/?selectedKind=Basics%2FTypography%20%E2%9C%93%2FClassic&selectedStory=Overview&full=0&addons=1&stories=1&panelRight=0&addonPanel=storybook-addon-background%2Fbackground-panel&background=beige
-   * @type {string}
+   * @type {number}
    */
-  fontSize: PropTypes.string,
+  fontSize: PropTypes.number,
   /**
    * Line height, unitless.
    * @type {number}
@@ -38,8 +38,8 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  fontSize: "100%",
-  lineHeight: "1.25",
+  fontSize: 100,
+  lineHeight: 1.25,
 };
 
 /**
@@ -51,7 +51,7 @@ const Setup = (props) => {
   return (
     <Helmet>
       <body
-        style={`font-size: ${fontSize}; line-height: ${lineHeight}; --lem: 1.25em`}
+        style={`font-size: ${fontSize}%; line-height: ${lineHeight}; --lem: 1.25em`}
       />
     </Helmet>
   );

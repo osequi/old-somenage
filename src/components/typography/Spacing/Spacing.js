@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 
 /**
- * Every consecutive element has a top margin
+ * Every consecutive element has a top margin.
  */
 const spacingMarginTop = {
   ["& * + *"]: {

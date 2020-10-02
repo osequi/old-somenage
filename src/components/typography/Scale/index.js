@@ -1,1 +1,7 @@
-export { default, ScalePropTypes, ScaleDefaultProps, scale } from "./Scale";
+export {
+  default,
+  ScalePropTypes,
+  ScaleDefaultProps,
+  scale,
+  scaleValue,
+} from "./Scale";

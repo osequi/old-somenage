@@ -72,7 +72,10 @@ const useStyles = makeStyles(() => ({
     ...font("Nimbus Sans Regular"),
     ...maxWidth({ fontName: "Nimbus Sans Regular" }),
     ...spacingMarginTop,
-    ...headings({ fontName: "Nimbus Sans Medium", scale: 0 }),
+    ...headings({
+      fontName: "Nimbus Sans Medium",
+      scale: 0,
+    }),
   }),
 
   longform: (props) => ({
@@ -80,7 +83,10 @@ const useStyles = makeStyles(() => ({
     ...font("Nimbus Sans Regular"),
     ...maxWidth({ fontName: "Nimbus Sans Regular" }),
     ...spacingMarginTop,
-    ...headings({ fontName: "Nimbus Sans Regular", modularScale: {} }),
+    ...headings({
+      fontName: "Nimbus Sans Regular",
+      lineHeight: 1,
+    }),
     ...textElements,
   }),
 
