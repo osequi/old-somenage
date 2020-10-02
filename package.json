@@ -6,7 +6,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "capsize": "^1.1.0",
     "marked": "^1.2.0",
     "modularscale-js": "^3.0.1",
     "normalize.css": "^8.0.1",
