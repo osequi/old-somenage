@@ -67,14 +67,12 @@ const margin = (props) => {
    * Ex.: 100 * 1.25 => 1.25
    */
   const lineHeightInEm = (fontSize / 100) * setupLineHeight;
-  console.log("lineHeightInEm:", lineHeightInEm);
 
   /**
    * The heading's line height in em
    * Ex.: (ms(6), 1) => 5.61
    */
   const headingLineHeightInEm = scaleValue(scale) * lineHeight;
-  console.log("headingLineHeightInEm:", headingLineHeightInEm);
 
   /**
    * The nearest multiply of the default line height for the heading's line height, in em.
@@ -82,27 +80,28 @@ const margin = (props) => {
    */
   const nearestInEm =
     (Math.floor(headingLineHeightInEm / lineHeightInEm) + 1) * lineHeightInEm;
-  console.log("nearestInEm:", nearestInEm);
 
   /**
    * The margin we should add to match the grid, in em.
    * Ex.: 6.25 - 5.61 = 0.64
    */
   const differenceInEm = nearestInEm - headingLineHeightInEm;
-  console.log("differenceInEm:", differenceInEm);
 
   /**
    * This shit is very tricky
-   * - `em` cannot be used since margins calculate somehow different em to px conversion than font size does. In Inspector / Computed we have correctly 89.7637px but in Inspector / Layout / Box Model we have 89.7667px incorrectly.
-   * - if both margin top and bottom is set, the first h1 is ok, the immediate next h1 gets distorted.
-   * - if only margin top is set they both work fine
-   * - see https://seek-oss.github.io/capsize/
    *
-   * Tested with:
+   * - If both margin top and bottom is set, the first h1 is ok, the immediate next h1 gets distorted.
+   * - If only margin top is set they both work fine.
+   *
+   * Tested with, px:
    * - Nimbus sans, default fonts combined in all possible ways. Worked fine all the time.
-   * - Scales well when the user cales the font size of the browser.
-   * - It gets broken in Chrome. It seems margin top in px won't work.
-   * - So px need to be converted somehow to em with another formula based on Layout / Box Model.
+   * - Scales well when the user scales the font size of the browser.
+   * - It gets broken in Chrome when margins are set in px.
+   *
+   * Tested with, em:
+   * - When margins are set in em they are both broken in FF and Chrome, in the same way.
+   *
+   * See Headings.md for more details.
    */
 
   return {
@@ -121,7 +120,7 @@ const sameSize = (props) => {
     ["& h1, h2, h3, h4, h5, h6"]: {
       ...font(fontName),
       ...scale(scaleValue),
-      //...margin({ scale: scaleValue, lineHeight: lineHeight }),
+      ...margin({ scale: scaleValue, lineHeight: lineHeight }),
       lineHeight: lineHeight,
     },
   };
@@ -140,23 +139,23 @@ const differentSizes = (props) => {
     },
     ["& h6"]: {
       ...scale(1),
-      //...margin({ scale: 1, lineHeight: lineHeight }),
+      ...margin({ scale: 1, lineHeight: lineHeight }),
     },
     ["& h5"]: {
       ...scale(2),
-      //...margin({ scale: 2, lineHeight: lineHeight }),
+      ...margin({ scale: 2, lineHeight: lineHeight }),
     },
     ["& h4"]: {
       ...scale(3),
-      //...margin({ scale: 3, lineHeight: lineHeight }),
+      ...margin({ scale: 3, lineHeight: lineHeight }),
     },
     ["& h3"]: {
       ...scale(4),
-      //...margin({ scale: 4, lineHeight: lineHeight }),
+      ...margin({ scale: 4, lineHeight: lineHeight }),
     },
     ["& h2"]: {
       ...scale(5),
-      //...margin({ scale: 5, lineHeight: lineHeight }),
+      ...margin({ scale: 5, lineHeight: lineHeight }),
     },
     ["& h1"]: {
       ...scale(6),
