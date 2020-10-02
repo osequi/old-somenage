@@ -89,10 +89,16 @@ const margin = (props) => {
 
   /**
    * This shit is very tricky
-   * - `em` cannot be used since margins calculate somehow different em to px convesrion than font size does
+   * - `em` cannot be used since margins calculate somehow different em to px conversion than font size does. In Inspector / Computed we have correctly 89.7637px but in Inspector / Layout / Box Model we have 89.7667px incorrectly.
    * - if both margin top and bottom is set, the first h1 is ok, the immediate next h1 gets distorted.
    * - if only margin top is set they both work fine
    * - see https://seek-oss.github.io/capsize/
+   *
+   * Tested with:
+   * - Nimbus sans, default fonts combined in all possible ways. Worked fine all the time.
+   * - Scales well when the user cales the font size of the browser.
+   * - It gets broken in Chrome. It seems margin top in px won't work.
+   * - So px need to be converted somehow to em with another formula based on Layout / Box Model.
    */
 
   return {
