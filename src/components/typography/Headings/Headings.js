@@ -85,7 +85,7 @@ const margin = (props) => {
    * The margin we should add to match the grid, in pixels.
    */
   const differenceInPx = nearestInPx - headingLineHeightInPx;
-  const differenceInEm = differenceInPx / 16;
+  const differenceInEm = differenceInPx / headingLineHeightInPx;
 
   /**
    * This shit is very tricky
@@ -102,7 +102,7 @@ const margin = (props) => {
    */
 
   return {
-    marginTop: `${differenceInPx}px`,
+    marginTop: `${differenceInEm}em`,
     marginBottom: 0,
   };
 };
