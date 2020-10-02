@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 import { isNil } from "lodash";
+import capsize from "capsize";
 
 /**
  * Imports other components and hooks
@@ -66,12 +67,14 @@ const margin = (props) => {
    * Ex.: 100 * 1.25 => 1.25
    */
   const lineHeightInEm = (fontSize / 100) * setupLineHeight;
+  console.log("lineHeightInEm:", lineHeightInEm);
 
   /**
    * The heading's line height in em
    * Ex.: (ms(6), 1) => 5.61
    */
   const headingLineHeightInEm = scaleValue(scale) * lineHeight;
+  console.log("headingLineHeightInEm:", headingLineHeightInEm);
 
   /**
    * The nearest multiply of the default line height for the heading's line height, in em.
@@ -79,12 +82,14 @@ const margin = (props) => {
    */
   const nearestInEm =
     (Math.floor(headingLineHeightInEm / lineHeightInEm) + 1) * lineHeightInEm;
+  console.log("nearestInEm:", nearestInEm);
 
   /**
    * The margin we should add to match the grid, in em.
    * Ex.: 6.25 - 5.61 = 0.64
    */
   const differenceInEm = nearestInEm - headingLineHeightInEm;
+  console.log("differenceInEm:", differenceInEm);
 
   /**
    * This shit is very tricky
@@ -135,23 +140,23 @@ const differentSizes = (props) => {
     },
     ["& h6"]: {
       ...scale(1),
-      ...margin({ scale: 1, lineHeight: lineHeight }),
+      //...margin({ scale: 1, lineHeight: lineHeight }),
     },
     ["& h5"]: {
       ...scale(2),
-      ...margin({ scale: 2, lineHeight: lineHeight }),
+      //...margin({ scale: 2, lineHeight: lineHeight }),
     },
     ["& h4"]: {
       ...scale(3),
-      ...margin({ scale: 3, lineHeight: lineHeight }),
+      //...margin({ scale: 3, lineHeight: lineHeight }),
     },
     ["& h3"]: {
       ...scale(4),
-      ...margin({ scale: 4, lineHeight: lineHeight }),
+      //...margin({ scale: 4, lineHeight: lineHeight }),
     },
     ["& h2"]: {
       ...scale(5),
-      ...margin({ scale: 5, lineHeight: lineHeight }),
+      //...margin({ scale: 5, lineHeight: lineHeight }),
     },
     ["& h1"]: {
       ...scale(6),
