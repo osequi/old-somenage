@@ -76,20 +76,28 @@ const margin = (props) => {
   /**
    * The nearest multiply of the default line height for the heading's line height, in pixels.
    * Ex.: (20, 89.76) => 100
+   * Ex.: (20, 67.3396) = 80
    */
   const nearestInPx =
-    (Math.floor(headingLineHeightInPx, lineHeightInPx) + 1) * lineHeightInPx;
+    (Math.floor(headingLineHeightInPx / lineHeightInPx) + 1) * lineHeightInPx;
 
   /**
    * The margin we should add to match the grid, in pixels.
    */
-  const differenceInPx = 100 - headingLineHeightInPx;
-
+  const differenceInPx = nearestInPx - headingLineHeightInPx;
   const differenceInEm = differenceInPx / 16;
 
+  /**
+   * This shit is very tricky
+   * - `em` cannot be used since margins calculate somehow different em to px convesrion than font size does
+   * - if both margin top and bottom is set, the first h1 is ok, the immediate next h1 gets distorted.
+   * - if only margin top is set they both work fine
+   * - see https://seek-oss.github.io/capsize/
+   */
+
   return {
-    marginTop: `${differenceInEm / 2}em`,
-    marginBottom: `${differenceInEm / 2}em`,
+    marginTop: `${differenceInPx}px`,
+    marginBottom: 0,
   };
 };
 
@@ -103,7 +111,7 @@ const sameSize = (props) => {
     ["& h1, h2, h3, h4, h5, h6"]: {
       ...font(fontName),
       ...scale(scaleValue),
-      ...margin({ scale: scaleValue, lineHeight: lineHeight }),
+      //...margin({ scale: scaleValue, lineHeight: lineHeight }),
       lineHeight: lineHeight,
     },
   };
