@@ -1,5 +1,12 @@
 ## Headings
 
+### TLDR;
+
+Chrome and Firefox calculates differently the Layout / Box model.
+Therefore if the grid is perfect in Firefox (as is now) it gets broken in Chrome.
+
+The algorithm used is not browser specific; it's just pure math. This means Chrome does something wrong on its calculations.
+
 ### Re-align to grid
 
 - Changing the font size and line height of an element makes the typographic grid broken.
