@@ -23,3 +23,7 @@
 4. Then 'capsize' can be used to set up new sizes and line heights.
 
 Tried out in `osequi/test-capsize` local repo, works, but it doesn'r fit the grid.
+
+#### My solution
+
+- Solved, with font sizes in em: https://glitch.com/~leading-trim

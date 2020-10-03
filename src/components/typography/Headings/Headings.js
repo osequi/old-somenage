@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 import { isNil } from "lodash";
-import capsize from "capsize";
 
 /**
  * Imports other components and hooks
@@ -105,8 +104,21 @@ const margin = (props) => {
    */
 
   return {
-    marginTop: `${differenceInEm}em`,
-    marginBottom: 0,
+    //marginTop: `${differenceInEm}em`,
+    //marginBottom: 0,
+    marginTop: 0,
+    ["&::after"]: {
+      content: "''",
+      display: "block",
+      height: 0,
+      marginTop: `${differenceInEm}em`,
+    },
+    ["&::before"]: {
+      content: "''",
+      display: "block",
+      height: 0,
+      marginTop: 0,
+    },
   };
 };
 
