@@ -97,6 +97,7 @@ const margin = (props) => {
    * - Nimbus sans, default fonts combined in all possible ways. Worked fine all the time.
    * - Scales well when the user scales the font size of the browser.
    * - It gets broken in Chrome on certain, unknown h elements.
+   * - It turns out FF and Chrome compute differently the layout / line height. In FF a h1 is 700×179.533 in Chrome the same h1 is 700x178. No matter if the font size is set in px or em.
    *
    * Tested with, em:
    * - When margins are set in em they are both broken in FF and Chrome, in the same way.

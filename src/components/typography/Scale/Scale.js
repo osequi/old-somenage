@@ -40,7 +40,11 @@ const defaultProps = {
  * @return {object}        The style object
  */
 const scale = (number) => {
-  return { fontSize: `${ms(number, defaultProps.config)}em` };
+  const scaled = ms(number, defaultProps.config);
+  const em = `${scaled}em`;
+  //const px = `${scaled * 16}px`;
+
+  return { fontSize: `${em}` };
 };
 
 /**
