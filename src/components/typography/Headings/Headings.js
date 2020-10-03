@@ -55,7 +55,7 @@ const defaultProps = {
 };
 
 /**
- * Calculates the new margins.
+ * Sets the new margins
  */
 const margin = (props) => {
   const { scale, lineHeight } = props;
@@ -85,6 +85,7 @@ const margin = (props) => {
    * Ex.: 6.25 - 5.61 = 0.64
    */
   const differenceInEm = nearestInEm - headingLineHeightInEm;
+  const differenceInPx = differenceInEm * 16;
 
   /**
    * This shit is very tricky
@@ -95,7 +96,7 @@ const margin = (props) => {
    * Tested with, px:
    * - Nimbus sans, default fonts combined in all possible ways. Worked fine all the time.
    * - Scales well when the user scales the font size of the browser.
-   * - It gets broken in Chrome when margins are set in px.
+   * - It gets broken in Chrome on certain, unknown h elements.
    *
    * Tested with, em:
    * - When margins are set in em they are both broken in FF and Chrome, in the same way.
@@ -104,21 +105,8 @@ const margin = (props) => {
    */
 
   return {
-    //marginTop: `${differenceInEm}em`,
-    //marginBottom: 0,
-    marginTop: 0,
-    ["&::after"]: {
-      content: "''",
-      display: "block",
-      height: 0,
-      marginTop: `${differenceInEm}em`,
-    },
-    ["&::before"]: {
-      content: "''",
-      display: "block",
-      height: 0,
-      marginTop: 0,
-    },
+    marginTop: `${differenceInPx}px`,
+    marginBottom: 0,
   };
 };
 

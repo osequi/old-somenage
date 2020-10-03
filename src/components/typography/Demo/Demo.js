@@ -49,7 +49,7 @@ const Demo = (props) => {
             0123456789 0123456789 0123456789 0123456789 0123456789 0123456789
             ***60chars*** 0123456789 0123456789 0123456789 0123456789 0123456789
           </div>
-          {html}
+
           <section>
             <h1>FORMS AND INPUTS TESTS</h1>
             <p>
@@ -97,6 +97,7 @@ const Demo = (props) => {
               </a>
             </p>
           </section>
+          {html}
           <section>
             <h1>Demo:</h1>
             <form>
