@@ -6,9 +6,7 @@ import clsx from "clsx";
 /**
  * Imports other components and hooks
  */
-import { default as SemanticElementsDemo } from "../semantic-elements/Demo";
-import { default as TypographyDemo } from "../typography/Demo";
-import ThemeDemo from "../theme/ThemeDemo";
+import { default as MediaQueriesDemo } from "../MediaQueries/MediaQueries.demo";
 
 /**
  * Defines the prop types
@@ -30,20 +28,22 @@ const useStyles = makeStyles(() => ({
 /**
  * Displays the component
  */
-const Demo = (props) => {
+const ThemeDemo = (props) => {
   const { container } = useStyles(props);
 
   return (
-    <div className={clsx("Demo", container)}>
-      <ThemeDemo />
-      {/*<TypographyDemo />*/}
-      {/*<SemanticElementsDemo />*/}
+    <div className={clsx("ThemeDemo", container)}>
+      <h1>Theme Demo</h1>
+      <MediaQueriesDemo />
     </div>
   );
 };
 
-Demo.propTypes = propTypes;
-Demo.defaultProps = defaultProps;
+ThemeDemo.propTypes = propTypes;
+ThemeDemo.defaultProps = defaultProps;
 
-export default Demo;
-export { propTypes as DemoPropTypes, defaultProps as DemoDefaultProps };
+export default ThemeDemo;
+export {
+  propTypes as ThemeDemoPropTypes,
+  defaultProps as ThemeDemoDefaultProps,
+};
