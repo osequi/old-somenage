@@ -84,6 +84,11 @@ const useStyles = makeStyles(() => ({
   container: {},
 }));
 
+const breakpoint = (name) => {
+  const bp = defaultProps.breakpoints.find((item) => item.name === name);
+  return bp?.value ? `(min-width: ${bp.value}px)` : null;
+};
+
 /**
  * Displays the content for the specified breakpoints.
  */
@@ -94,8 +99,7 @@ const Breakpoints = (props) => {
   const queries =
     values &&
     values.map((value) => {
-      const breakpoint = breakpoints.find((item) => item.name === value);
-      return breakpoint?.value ? `(max-width: ${breakpoint.value}px)` : null;
+      return breakpoint(value);
     });
 
   return <MediaQueries values={queries} children={children} />;
@@ -108,4 +112,5 @@ export default Breakpoints;
 export {
   propTypes as BreakpointsPropTypes,
   defaultProps as BreakpointsDefaultProps,
+  breakpoint,
 };

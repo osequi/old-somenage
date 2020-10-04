@@ -8,6 +8,7 @@ import clsx from "clsx";
  */
 import { default as MediaQueriesDemo } from "../MediaQueries/MediaQueries.demo";
 import { default as BreakpointsDemo } from "../Breakpoints/Breakpoints.demo";
+import Theme from "../Theme";
 
 /**
  * Defines the prop types
@@ -35,6 +36,7 @@ const ThemeDemo = (props) => {
   return (
     <div className={clsx("ThemeDemo", container)}>
       <h1>Theme Demo</h1>
+      <Theme />
       <h2>Media Queries Demo</h2>
       <MediaQueriesDemo />
       <h2>Breakpoints Demo</h2>

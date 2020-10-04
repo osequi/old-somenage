@@ -1,5 +1,6 @@
 export {
   default,
   BreakpointsPropTypes,
-  BreakpointsDefaultProps
+  BreakpointsDefaultProps,
+  breakpoint,
 } from "./Breakpoints";
