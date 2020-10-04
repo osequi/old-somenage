@@ -28,6 +28,11 @@ const propTypes = {
    */
   fontSize: PropTypes.number,
   /**
+   * Responsive font sizes for different breakpoints
+   * @type {array}
+   */
+  fontSizes: PropTypes.arrayOf(PropTypes.number),
+  /**
    * Line height, unitless.
    * @type {number}
    */
@@ -39,6 +44,7 @@ const propTypes = {
  */
 const defaultProps = {
   fontSize: 100,
+  fontSizes: null,
   lineHeight: 1.25,
 };
 
