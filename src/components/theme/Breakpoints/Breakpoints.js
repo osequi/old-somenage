@@ -7,6 +7,7 @@ import { useMediaQuery } from "react-responsive";
 /**
  * Imports other components and hooks
  */
+import MediaQueries from "../MediaQueries";
 
 /**
  * Defines the constants
@@ -90,21 +91,14 @@ const Breakpoints = (props) => {
   const { breakpoints, values, children } = props;
   const { container } = useStyles(props);
 
-  const visible =
+  const queries =
     values &&
-    values.reduce((result, value) => {
+    values.map((value) => {
       const breakpoint = breakpoints.find((item) => item.name === value);
+      return breakpoint?.value ? `(max-width: ${breakpoint.value}px)` : null;
+    });
 
-      /**
-       * If no breakpoint found we return true, or result
-       */
-      if (!(breakpoint && breakpoint.value)) return result;
-
-      const query = { query: `(max-width: ${breakpoint.value}px)` };
-      return result && useMediaQuery(query);
-    }, true);
-
-  return <>{visible && children}</>;
+  return <MediaQueries values={queries} />;
 };
 
 Breakpoints.propTypes = propTypes;
