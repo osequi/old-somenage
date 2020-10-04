@@ -98,7 +98,7 @@ const Breakpoints = (props) => {
       return breakpoint?.value ? `(max-width: ${breakpoint.value}px)` : null;
     });
 
-  return <MediaQueries values={queries} />;
+  return <MediaQueries values={queries} children={children} />;
 };
 
 Breakpoints.propTypes = propTypes;

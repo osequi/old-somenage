@@ -49,7 +49,7 @@ const MediaQueries = (props) => {
   const { container } = useStyles(props);
 
   const queries = values && values.join(" and ");
-  const visible = useMediaQuery({ query: queries });
+  const visible = useMediaQuery({ query: `${queries}` });
 
   return <>{visible && children}</>;
 };
