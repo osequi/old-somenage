@@ -45,7 +45,7 @@ const defaultProps = {
 };
 
 /**
- * Defines the styles
+ * Defines the styles.
  */
 const useStyles = makeStyles(() => ({
   fontStyle: (props) => ({
