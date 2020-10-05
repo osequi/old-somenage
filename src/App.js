@@ -1,12 +1,12 @@
 import React from "react";
 
 import { ThemeProvider } from "@material-ui/styles";
-import { ThemeDefaultProps } from "./components/theme/Theme";
+import theme from "./theme";
 
-import Demo from "./components/Demo";
+import Demo from "./App.demo";
 
 const App = () => (
-  <ThemeProvider theme={ThemeDefaultProps}>
+  <ThemeProvider theme={theme}>
     <Demo />
   </ThemeProvider>
 );

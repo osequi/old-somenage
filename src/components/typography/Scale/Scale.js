@@ -35,7 +35,7 @@ const defaultProps = {
 };
 
 /**
- * Returns the style object to size a font `em` following to the Modular Scale.
+ * Returns the style object to size a font in `em` following to the Modular Scale.
  * @param  {number} number The modular scale value
  * @return {object}        The style object
  */

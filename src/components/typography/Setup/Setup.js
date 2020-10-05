@@ -14,7 +14,6 @@ import "normalize.css";
  * Adds further normalization on top of `normalize.css`.
  * It resets all styles. No element should be distinctive from another.
  * Put `Setup.testpage.md` contents on the `<Grid/>` to see if everything is uniform and fits perfectly to the grid.
- * @type {Object}
  */
 import "./Setup.css";
 
@@ -30,7 +29,12 @@ const propTypes = {
    */
   fontSize: PropTypes.number,
   /**
-   * Responsive font sizes for different breakpoints
+   * Line height, unitless.
+   * @type {number}
+   */
+  lineHeight: PropTypes.number,
+  /**
+   * Responsive font sizes for different breakpoints.
    * @type {array}
    */
   fontSizes: PropTypes.arrayOf(
@@ -49,11 +53,6 @@ const propTypes = {
       fontSize: PropTypes.number,
     })
   ),
-  /**
-   * Line height, unitless.
-   * @type {number}
-   */
-  lineHeight: PropTypes.number,
 };
 
 /**
@@ -61,6 +60,7 @@ const propTypes = {
  */
 const defaultProps = {
   fontSize: 100,
+  lineHeight: 1.25,
   fontSizes: [
     {
       breakpoint: "tablet",
@@ -75,7 +75,6 @@ const defaultProps = {
       fontSize: 130,
     },
   ],
-  lineHeight: 1.25,
 };
 
 /**
