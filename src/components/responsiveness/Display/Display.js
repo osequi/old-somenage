@@ -1,36 +1,47 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/styles";
-import clsx from "clsx";
+import { useTheme } from "@material-ui/styles";
 
 /**
  * Imports other components and hooks
  */
+import MediaQueries from "../MediaQueries";
 
 /**
  * Defines the prop types
  */
-const propTypes = {};
+const propTypes = {
+  /**
+   * The breakpoint name above the content will be visible.
+   * Example: 'mobile'
+   * @type {string}
+   */
+  above: PropTypes.string,
+  /**
+   * The content to be displayed.
+   * @type {any}
+   */
+  children: PropTypes.any,
+};
 
 /**
  * Defines the default props
  */
-const defaultProps = {};
-
-/**
- * Defines the styles
- */
-const useStyles = makeStyles(() => ({
-  container: {}
-}));
+const defaultProps = {
+  above: null,
+  children: null,
+};
 
 /**
  * Displays the component
  */
-const Display = props => {
-  const { container } = useStyles(props);
+const Display = (props) => {
+  const { above, children } = props;
+  const theme = useTheme();
 
-  return <div className={clsx("Display", container)}>Display</div>;
+  const query = theme.breakpointQuery(above);
+
+  return <MediaQueries values={[query]}>{children}</MediaQueries>;
 };
 
 Display.propTypes = propTypes;

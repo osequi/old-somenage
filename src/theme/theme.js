@@ -106,6 +106,7 @@ const breakpoint = (name) => {
 const theme = {
   typography: typography,
   breakpoints: breakpoints,
+  breakpointQuery: (name) => breakpoint(name),
   breakpoint: (name) => {
     const query = breakpoint(name);
     return query ? `@media screen and ${query})` : null;
