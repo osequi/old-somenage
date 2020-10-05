@@ -74,6 +74,11 @@ const useStyles = makeStyles(() => ({
   container: {},
 }));
 
+/**
+ * Returns a media query for a breakpoint name.
+ * @param  {string} name The breakpoint name.
+ * @return {string}      A media query.
+ */
 const breakpoint = (name) => {
   const bp = defaultProps.breakpoints.find((item) => item.name === name);
   return bp?.value ? `(min-width: ${bp.value}px)` : null;
@@ -81,6 +86,8 @@ const breakpoint = (name) => {
 
 /**
  * Displays the content for the specified breakpoints.
+ *
+ * @see Breakpoints.md for details
  */
 const Breakpoints = (props) => {
   const { breakpoints, values, children } = props;

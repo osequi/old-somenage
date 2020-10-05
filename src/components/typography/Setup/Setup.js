@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
+import { makeStyles, useTheme } from "@material-ui/styles";
+import clsx from "clsx";
 
 /**
  * Adds a CSS Reset with `normalize.css`.
@@ -31,7 +33,22 @@ const propTypes = {
    * Responsive font sizes for different breakpoints
    * @type {array}
    */
-  fontSizes: PropTypes.arrayOf(PropTypes.number),
+  fontSizes: PropTypes.arrayOf(
+    PropTypes.shape({
+      /**
+       * The breakpoint name.
+       * Example: 'tablet'.
+       * @type {string}
+       */
+      breakpoint: PropTypes.string,
+      /**
+       * The font size for the breakpoint, in percentage.
+       * Example: 120
+       * @type {number}
+       */
+      fontSize: PropTypes.number,
+    })
+  ),
   /**
    * Line height, unitless.
    * @type {number}
@@ -44,21 +61,71 @@ const propTypes = {
  */
 const defaultProps = {
   fontSize: 100,
-  fontSizes: null,
+  fontSizes: [
+    {
+      breakpoint: "tablet",
+      fontSize: 110,
+    },
+    {
+      breakpoint: "laptop",
+      fontSize: 120,
+    },
+    {
+      breakpoint: "desktop",
+      fontSize: 130,
+    },
+  ],
   lineHeight: 1.25,
 };
+
+/**
+ * Defines the styles
+ */
+const useStyles = makeStyles((theme) => ({
+  container: (props) => ({
+    fontSize: `${props.fontSize}%`,
+    lineHeight: props.lineHeight,
+    "--lem": props.lem,
+    ...props.responsiveFontSizes,
+  }),
+}));
 
 /**
  * Sets up the typographic grid in `<body>`.
  */
 const Setup = (props) => {
-  const { fontSize, lineHeight } = props;
+  const { fontSize, fontSizes, lineHeight } = props;
+  const theme = useTheme();
+
+  /**
+   * Calculates the basic spacing unit, the grid size, in `em`
+   * Example: {fontSize: 100%, lineHeight: 1.25} => (100 * 1.25) / 100 = 1.25
+   */
+  const lem = `${(fontSize * lineHeight) / 100}em`;
+
+  /**
+   * Prepares the responsive font sizes.
+   */
+  let responsiveFontSizes = [];
+  fontSizes &&
+    fontSizes.map((item) => {
+      const { breakpoint, fontSize } = item;
+      const query = theme.breakpoint(breakpoint);
+      responsiveFontSizes[`${query}`] = { fontSize: `${fontSize}%` };
+    });
+
+  /**
+   * Loads the styles
+   */
+  const { container } = useStyles({
+    ...props,
+    lem: lem,
+    responsiveFontSizes: responsiveFontSizes,
+  });
 
   return (
     <Helmet>
-      <body
-        style={`font-size: ${fontSize}%; line-height: ${lineHeight}; --lem: 1.25em`}
-      />
+      <body className={clsx(container)} />
     </Helmet>
   );
 };

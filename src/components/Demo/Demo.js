@@ -35,8 +35,8 @@ const Demo = (props) => {
 
   return (
     <div className={clsx("Demo", container)}>
-      <ThemeDemo />
-      {/*<TypographyDemo />*/}
+      {/*<ThemeDemo />*/}
+      <TypographyDemo />
       {/*<SemanticElementsDemo />*/}
     </div>
   );

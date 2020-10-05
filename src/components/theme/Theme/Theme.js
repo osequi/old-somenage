@@ -38,17 +38,15 @@ const defaultProps = {
 const useStyles = makeStyles((theme) => ({
   container: {
     background: "lightblue",
+
     [theme.breakpoint("mobile")]: {
       background: "red",
     },
     [theme.breakpoint("tablet")]: {
       background: "green",
     },
-    [theme.breakpoint("tabletPortrait")]: {
-      background: "blue",
-    },
     [theme.breakpoint("laptop")]: {
-      background: "yellow",
+      background: "blue",
     },
     [theme.breakpoint("desktop")]: {
       background: "orange",
