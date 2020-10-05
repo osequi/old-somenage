@@ -10,15 +10,9 @@ import { useMediaQuery } from "react-responsive";
 import MediaQueries from "../MediaQueries";
 
 /**
- * Defines the constants
+ * Defines the breakpoint names.
  */
-const breakpointNames = [
-  "mobile",
-  "tablet",
-  "tabletPortrait",
-  "laptop",
-  "desktop",
-];
+const breakpointNames = ["mobile", "tablet", "laptop", "desktop"];
 
 /**
  * Defines the prop types
@@ -54,23 +48,19 @@ const defaultProps = {
   breakpoints: [
     {
       name: "mobile",
-      value: "767",
+      value: "320",
     },
     {
       name: "tablet",
-      value: "1023",
-    },
-    {
-      name: "tabletPortrait",
-      value: "1365",
+      value: "768",
     },
     {
       name: "laptop",
-      value: "1599",
+      value: "1024",
     },
     {
       name: "desktop",
-      value: "1920",
+      value: "1600",
     },
   ],
   values: null,

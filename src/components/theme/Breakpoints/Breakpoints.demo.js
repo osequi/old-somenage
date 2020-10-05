@@ -11,24 +11,21 @@ import Breakpoints from ".";
 const BreakpointsDemo = (props) => {
   return (
     <>
+      <p>0. This text is always visible.</p>
       <Breakpoints values={["mobile"]}>
-        1. This text is visibe only on mobiles.
+        1. This text is visibe from mobile up.
       </Breakpoints>
       <br />
       <Breakpoints values={["tablet"]}>
-        2. This text is visibe only on mobiles and tablets.
-      </Breakpoints>
-      <br />
-      <Breakpoints values={["tabletPortrait"]}>
-        3. This text is visibe only on mobiles, tablets and tablet portrait.
+        2. This text is visibe from tablet up.
       </Breakpoints>
       <br />
       <Breakpoints values={["laptop"]}>
-        4. This text is visibe only below laptop.
+        3. This text is visibe from laptop up.
       </Breakpoints>
       <br />
       <Breakpoints values={["desktop"]}>
-        5. This text is visibe only below desktop.
+        4. This text is visibe from desktop up.
       </Breakpoints>
     </>
   );
