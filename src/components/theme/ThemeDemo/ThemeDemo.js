@@ -38,7 +38,7 @@ const ThemeDemo = (props) => {
       <h1>Theme Demo</h1>
       <Theme />
       <h2>Media Queries Demo</h2>
-      {/*<MediaQueriesDemo />*/}
+      <MediaQueriesDemo />
       <h2>Breakpoints Demo</h2>
       <BreakpointsDemo />
     </div>
