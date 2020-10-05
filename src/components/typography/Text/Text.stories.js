@@ -1,12 +1,12 @@
 import React from "react";
-import Demo from "./Demo";
+import Text from "./Text";
 
 export default {
-  component: Demo,
-  title: "Demo"
+  component: Text,
+  title: "Text"
 };
 
-const Template = args => <Demo {...args} />;
+const Template = args => <Text {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

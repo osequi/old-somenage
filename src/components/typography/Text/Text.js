@@ -16,7 +16,7 @@ import { textElements } from "../TextElements";
 
 /**
  * Defines the text types.
- * Each text type is standalone an unique, defined by a font face, scale, colors etc.
+ * Each text type is standalone and unique, defined by a font face, scale, colors etc.
  * Onlye these text types will be accessible from the app.
  * Accessing and styling directly standard tags like '<H1>' is not recommended.
  * @type {Array}
@@ -38,12 +38,12 @@ const propTypes = {
   variant: PropTypes.oneOf(variants),
   /**
    * In which container element to display.
-   * Preferably inside a Semantic Element
+   * Preferably inside a Semantic Element.
    * @type {func}
    */
-  component: PropTypes.func,
+  as: PropTypes.func,
   /**
-   * What to display
+   * The content to be displayed.
    * @type {any}
    */
   children: PropTypes.any,
@@ -54,7 +54,7 @@ const propTypes = {
  */
 const defaultProps = {
   variant: "default",
-  component: "div",
+  as: "div",
   children: null,
 };
 
@@ -98,27 +98,33 @@ const useStyles = makeStyles(() => ({
 /**
  * Displays the component
  */
-const Typography = (props) => {
-  const { variant, component, children } = props;
-  const { default: defaultKlass, body, title, longform } = useStyles({
+const Text = (props) => {
+  const { variant, as, children } = props;
+
+  const {
+    default: defaultKlass,
+    body: bodyKlass,
+    title: titleKlass,
+    longform: longformKlass,
+  } = useStyles({
     ...props,
     scale: scale,
   });
 
-  const klasses = [defaultKlass, body, longform, title];
+  /**
+   * Finds the required class.
+   */
+  const klasses = [defaultKlass, bodyKlass, longformKlass, titleKlass];
   const index = variants.findIndex((item) => item === variant);
   const props2 = {
-    className: clsx(klasses[index], `Typography${startCase(variant)}`),
+    className: clsx(klasses[index], `Text${startCase(variant)}`),
   };
 
-  return createElement(component, props2, children);
+  return createElement(as, props2, children);
 };
 
-Typography.propTypes = propTypes;
-Typography.defaultProps = defaultProps;
+Text.propTypes = propTypes;
+Text.defaultProps = defaultProps;
 
-export default Typography;
-export {
-  propTypes as TypographyPropTypes,
-  defaultProps as TypographyDefaultProps,
-};
+export default Text;
+export { propTypes as TextPropTypes, defaultProps as TextDefaultProps };
