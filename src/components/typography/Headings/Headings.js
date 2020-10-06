@@ -3,11 +3,7 @@ import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import clsx from "clsx";
 import { isNil } from "lodash";
-
-/**
- * Imports other components and hooks
- */
-import { scale, scaleValue } from "../Scale";
+import ms from "modularscale-js";
 
 /**
  * Defines the prop types
@@ -58,7 +54,7 @@ const defaultProps = {
 const margin = (props) => {
   const { scale, lineHeight, theme } = props;
   const { typography } = theme;
-  const { setup } = typography;
+  const { setup, scale: scaleSetup } = typography;
   const { fontSize, lineHeight: setupLineHeight } = setup;
 
   /**
@@ -71,7 +67,7 @@ const margin = (props) => {
    * The heading's line height in em
    * Ex.: (ms(6), 1) => 5.61
    */
-  const headingLineHeightInEm = scaleValue(scale) * lineHeight;
+  const headingLineHeightInEm = ms(scale, scaleSetup) * lineHeight;
 
   /**
    * The nearest multiply of the default line height for the heading's line height, in em.
@@ -116,12 +112,12 @@ const margin = (props) => {
  * Returns headings with the same size.
  */
 const sameSize = (props) => {
-  const { font, lineHeight, scale: scaleValue, theme } = props;
+  const { font, lineHeight, scale, theme } = props;
 
   return {
     ["& h1, h2, h3, h4, h5, h6"]: {
       ...theme.typography.font(font),
-      ...scale(scaleValue),
+      ...theme.typography.scale(scale),
       ...margin(props),
       lineHeight: lineHeight,
     },
@@ -140,27 +136,27 @@ const differentSizes = (props) => {
       lineHeight: lineHeight,
     },
     ["& h6"]: {
-      ...scale(1),
+      ...theme.typography.scale(1),
       ...margin({ ...props, scale: 1 }),
     },
     ["& h5"]: {
-      ...scale(2),
+      ...theme.typography.scale(2),
       ...margin({ ...props, scale: 2 }),
     },
     ["& h4"]: {
-      ...scale(3),
+      ...theme.typography.scale(3),
       ...margin({ ...props, scale: 3 }),
     },
     ["& h3"]: {
-      ...scale(4),
+      ...theme.typography.scale(4),
       ...margin({ ...props, scale: 4 }),
     },
     ["& h2"]: {
-      ...scale(5),
+      ...theme.typography.scale(5),
       ...margin({ ...props, scale: 5 }),
     },
     ["& h1"]: {
-      ...scale(6),
+      ...theme.typography.scale(6),
       ...margin({ ...props, scale: 6 }),
     },
   };

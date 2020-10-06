@@ -1,7 +1,7 @@
 /**
  * Imports other components and hooks
  */
-import { typography, font, maxWidth } from "./typography";
+import { typography, font, maxWidth, scale } from "./typography";
 import { breakpoints, breakpoint } from "./responsiveness";
 
 /**
@@ -12,6 +12,7 @@ const theme = {
     ...typography,
     font: (name) => font(name),
     maxWidth: (name) => maxWidth(name),
+    scale: (number) => scale(number),
   },
   breakpoints: breakpoints,
   breakpointQuery: (name) => breakpoint(name),

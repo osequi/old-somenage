@@ -7,9 +7,8 @@ import { startCase } from "lodash";
 /**
  * Imports other components and hooks
  */
-import { scale } from "../Scale";
-import { spacingMarginTop } from "../Spacing";
 import { headings } from "../Headings";
+import { spacingMarginTop } from "../Spacing";
 import { textElements } from "../TextElements";
 
 /**
@@ -61,12 +60,12 @@ const defaultProps = {
  */
 const useStyles = makeStyles((theme) => ({
   default: (props) => ({
-    ...scale(0),
+    ...theme.typography.scale(0),
     ...theme.typography.font("Nimbus Sans Light"),
   }),
 
   body: (props) => ({
-    ...scale(0),
+    ...theme.typography.scale(0),
     ...theme.typography.font("Nimbus Sans Regular"),
     ...theme.typography.maxWidth("Nimbus Sans Regular"),
     ...spacingMarginTop,
@@ -78,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 
   longform: (props) => ({
-    ...scale(0),
+    ...theme.typography.scale(0),
     ...theme.typography.font("Nimbus Sans Regular"),
     ...theme.typography.maxWidth("Nimbus Sans Regular"),
     ...spacingMarginTop,
@@ -91,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 
   title: {
-    ...scale(1),
+    ...theme.typography.scale(1),
   },
 }));
 
@@ -106,10 +105,7 @@ const Text = (props) => {
     body: bodyKlass,
     title: titleKlass,
     longform: longformKlass,
-  } = useStyles({
-    ...props,
-    scale: scale,
-  });
+  } = useStyles(props);
 
   /**
    * Finds the required class.
