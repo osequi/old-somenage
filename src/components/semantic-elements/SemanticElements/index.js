@@ -1,9 +1,10 @@
 export {
   default,
   SemanticElementsPropTypes,
-  SemanticElementsDefaultProps
+  SemanticElementsDefaultProps,
 } from "./SemanticElements";
 
+export { default as SemanticElementsDemo } from "./SemanticElements.demo";
 
 export {
   default as Article,

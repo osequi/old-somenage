@@ -47,17 +47,10 @@ const propTypes = {
    */
   display: PropTypes.bool,
   /**
-   * The content of the element.
+   * The content to be displayed.
    * @type {any}
    */
   children: PropTypes.any,
-  /**
-   * The class name of the element.
-   * When the element has `className` set it can be styled by the parent
-   * @see https://styled-components.com/docs/basics#styling-any-component
-   * @type {string}
-   */
-  className: PropTypes.string,
 };
 
 /**
@@ -69,14 +62,12 @@ const defaultProps = {
   title: null,
   display: false,
   children: null,
-  className: null,
 };
 
 /**
- * Checks for all required props to be set
+ * Checks if all required props are provided.
  * @param  {object} props The props object
  * @return {boolean}      true, when all required props are set
- * // NOTE: This can be moved later to logic.js
  */
 const requiredPropsAreSet = (props) => {
   const { children } = props;
@@ -85,39 +76,17 @@ const requiredPropsAreSet = (props) => {
 };
 
 /**
- * Sets the className to `startCase(type)` when className is empty
- * @param  {object} props The props object
- * @return {string}       The className
- */
-const nonEmptyClassname = (props) => {
-  const { className, type } = props;
-
-  /**
-   * Returns `ClassName` when `className` and `type` is not defined
-   */
-  if (!className && !type) return "ClassName";
-
-  return className ? className : startCase(type);
-};
-
-/**
  * Displays a semantic element.
- * This is a factory component. It's better to use specific components instead like `<Article>` which has their props properly set up.
+ * This is a factory component.
+ * It's better to use specific components like `<Article>` which has their props properly set up.
  */
-const SemanticElements = props => {
+const SemanticElements = (props) => {
   const { type, heading, title, children, display } = props;
 
   /**
    * Displays nothing if the mandatory props are not defined.
    */
   if (!requiredPropsAreSet(props)) return null;
-
-  /**
-   * Always displays a className.
-   * When `className` is not specified it will become the tag name.
-   * Like `Section` for `<section>`.
-   */
-  const className = nonEmptyClassname(props);
 
   /**
    * Overwrites the `heading` props.
@@ -127,7 +96,6 @@ const SemanticElements = props => {
   /**
    * Prepares props for createElement
    */
-  const props2 = { className: className };
   const children2 = (
     <>
       {<Headings {...heading2} />}
@@ -135,7 +103,7 @@ const SemanticElements = props => {
     </>
   );
 
-  return createElement(type, props2, children2);
+  return createElement(type, null, children2);
 };
 
 SemanticElements.propTypes = propTypes;
@@ -144,5 +112,5 @@ SemanticElements.defaultProps = defaultProps;
 export default SemanticElements;
 export {
   propTypes as SemanticElementsPropTypes,
-  defaultProps as SemanticElementsDefaultProps
+  defaultProps as SemanticElementsDefaultProps,
 };

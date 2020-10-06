@@ -16,17 +16,10 @@ const propTypes = {
    */
   display: PropTypes.bool,
   /**
-   * The children of the element.
+   * The content to be displayed.
    * @type {any}
    */
   children: PropTypes.any,
-  /**
-   * The class name of the element.
-   * When the element has `className` set it can be styled by the parent
-   * @see https://styled-components.com/docs/basics#styling-any-component
-   * @type {string}
-   */
-  className: PropTypes.string,
 };
 
 /**
@@ -36,17 +29,17 @@ const defaultProps = {
   level: 3,
   display: true,
   children: null,
-  className: null,
 };
 
 /**
- * Displays the `<h1>` ... `<h6>` SemanticElements.
- * This is a factory component. It's better to use specific components instead like `<H1>` which has their props properly set up.
+ * Displays the `<h1>` ... `<h6>` Semantic Elements.
+ * This is a factory component.
+ * It's better to use specific components instead like `<H1>` which has their props properly set up.
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_SemanticElements
  */
 
 const Headings = (props) => {
-  const { level, display, children, className } = props;
+  const { level, display, children } = props;
 
   /**
    * Displays nothing if there is no `children` prop defined
@@ -64,22 +57,14 @@ const Headings = (props) => {
 
   /**
    * Converts level to string.
-   * Like `1` to `h1`
+   * Example:`1` => `h1`
    */
   const levelAsString = `h${level}`;
 
   /**
-   * When `className` is not specified it will take the value of `levelAsString`
-   */
-  const className2 = className ? className : levelAsString;
-
-  /**
    * Prepares props for createElement
    */
-  const props2 = {
-    className: className,
-    style: style,
-  };
+  const props2 = { style: style };
 
   return createElement(levelAsString, props2, children);
 };

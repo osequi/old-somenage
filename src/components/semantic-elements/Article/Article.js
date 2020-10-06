@@ -1,8 +1,12 @@
 import React from "react";
+
 /**
  * Imports other components and hooks
  */
-import SemanticElements, { SemanticElementsPropTypes, SemanticElementsDefaultProps } from "../SemanticElements";
+import SemanticElements, {
+  SemanticElementsPropTypes,
+  SemanticElementsDefaultProps,
+} from "../SemanticElements";
 
 /**
  * Defines the prop types
