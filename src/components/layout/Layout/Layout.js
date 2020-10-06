@@ -32,8 +32,8 @@ const propTypes = {
    */
   height: PropTypes.string,
   /**
-   * The dimensions of the columns following the CSS Grid `grid-template-columns` syntax.
-   * To see why Grid is used instead of Flexbox please read https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Relationship_of_Grid_Layout
+   * The number of columns, unitless.
+   * The columns will be calculated useing `grid-template-columns: repeat(x, 1fr)`
    * @type {string}
    */
   columns: PropTypes.string,
@@ -44,7 +44,7 @@ const propTypes = {
   rows: PropTypes.string,
   /**
    * The gap between the cells, unitless.
-   * In fact the gap will be a multiply of `var(--lem)`
+   * The gap will be a multiply of `var(--lem)`
    * Sets the gaps both horizontally with `column-gap` and vertically with `row-gap`.
    * @type {string}
    */
@@ -69,7 +69,7 @@ const defaultProps = {
   as: "div",
   width: "100%",
   height: "100%",
-  columns: "1fr",
+  columns: 1,
   rows: null,
   gap: 1,
   lines: null,
@@ -84,7 +84,7 @@ const useStyles = makeStyles(() => ({
     display: "grid",
     width: `${props.width}`,
     height: `${props.height}`,
-    gridTemplateColumns: `${props.columns}`,
+    gridTemplateColumns: `repeat(${props.columns}, 1fr)`,
     gridTemplateRows: `${props.rows}`,
     columnGap: `calc(${props.gap} * var(--lem))`,
     rowGap: `calc(${props.gap} * var(--lem))`,
