@@ -4,11 +4,6 @@ import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 
 /**
- * Imports other components and hooks
- */
-import { getFont } from "../Fonts";
-
-/**
  * Defines the prop types
  */
 const propTypes = {
@@ -32,6 +27,11 @@ const propTypes = {
    * @type {string}
    */
   style: PropTypes.string,
+  /**
+   * The content to be displayed.
+   * @type {any}
+   */
+  children: PropTypes.any,
 };
 
 /**
@@ -42,6 +42,7 @@ const defaultProps = {
   family: "inherit",
   weight: "normal",
   style: "normal",
+  children: null,
 };
 
 /**
@@ -56,8 +57,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 /**
- * Displays children inside a font container.
- * Don't use this component directly. Instead use `<Typography>`.
+ * Displays content inside a font container.
+ * Don't use this component directly. Instead use `<Text>`.
  */
 const Font = (props) => {
   const { children, name } = props;
