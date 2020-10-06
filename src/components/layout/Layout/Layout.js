@@ -46,6 +46,8 @@ const propTypes = {
   gap: PropTypes.number,
   /**
    * The gap faux lines, aka the grid borders.
+   * The grid borders look good only when there is no gap in the grid.
+   * Therefore when fauxLines is set instead of grid gap we'll set a margin on the grid elements.
    * @type {string}
    */
   fauxLines: PropTypes.oneOf(["none", "horizontal", "vertical", "both"]),
@@ -79,11 +81,18 @@ const useStyles = makeStyles((theme) => ({
     width: `${props.width}`,
     height: `${props.height}`,
     gridTemplateColumns: `repeat(${props.columns}, 1fr)`,
-    columnGap: `calc(${props.gap} * var(--lem))`,
-    rowGap: `calc(${props.gap} * var(--lem))`,
+    columnGap: theme.custom.fauxLinesBorderLeftSelector
+      ? 0
+      : `calc(${props.gap} * var(--lem))`,
+    rowGap: theme.custom.fauxLinesBorderLeftSelector
+      ? 0
+      : `calc(${props.gap} * var(--lem))`,
 
     ["& > *"]: {
       background: "lightgrey",
+      padding: theme.custom.fauxLinesBorderLeftSelector
+        ? `calc(${props.gap} * var(--lem))`
+        : "inherit",
     },
   }),
 
@@ -110,7 +119,7 @@ const calculateFauxLines = (props) => {
 
   if (fauxLines === "none") return null;
 
-  const rows = Math.floor(children.length / columns);
+  const rows = Math.floor(children.length / columns) + 1;
 
   const lastRow = columns * rows - columns + 1;
   const firstRow = columns - 1;
