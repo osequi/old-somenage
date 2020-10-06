@@ -8,7 +8,6 @@ import { startCase } from "lodash";
  * Imports other components and hooks
  */
 import { headings } from "../Headings";
-import { spacingMarginTop } from "../Spacing";
 import { textElements } from "../TextElements";
 
 /**
@@ -68,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.scale(0),
     ...theme.typography.font("Nimbus Sans Regular"),
     ...theme.typography.maxWidth("Nimbus Sans Regular"),
-    ...spacingMarginTop,
+    ...theme.typography.spacing("Adjacent siblings margin top"),
     ...headings({
       font: "Nimbus Sans Medium",
       scale: 0,
@@ -80,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.scale(0),
     ...theme.typography.font("Nimbus Sans Regular"),
     ...theme.typography.maxWidth("Nimbus Sans Regular"),
-    ...spacingMarginTop,
+    ...theme.typography.spacing("Adjacent siblings margin top"),
     ...headings({
       font: "Nimbus Sans Regular",
       lineHeight: 1,
