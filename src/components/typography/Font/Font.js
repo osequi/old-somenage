@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import clsx from "clsx";
 
 /**
@@ -61,8 +61,11 @@ const useStyles = makeStyles(() => ({
  * Don't use this component directly. Instead use `<Text>`.
  */
 const Font = (props) => {
-  const { children, name } = props;
-  const { fontStyle } = useStyles(props);
+  const { name, children } = props;
+  const theme = useTheme();
+
+  const font = theme.typography.font(name);
+  const { fontStyle } = useStyles(font);
 
   if (!children) return null;
 

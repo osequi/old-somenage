@@ -1,14 +1,14 @@
 /**
  * Imports other components and hooks
  */
-import typography from "./typography";
+import { typography, font } from "./typography";
 import { breakpoints, breakpoint } from "./responsiveness";
 
 /**
  * Defines the theme.
  */
 const theme = {
-  typography: typography,
+  typography: { ...typography, font: (name) => font(name) },
   breakpoints: breakpoints,
   breakpointQuery: (name) => breakpoint(name),
   breakpoint: (name) => {
