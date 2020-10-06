@@ -22,6 +22,11 @@ const theme = {
     const query = breakpoint(name);
     return query ? `@media screen and ${query})` : null;
   },
+  /**
+   * Always leave room for later customization.
+   * @type {Object}
+   */
+  custom: {},
 };
 
 export default theme;

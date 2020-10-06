@@ -1,11 +1,12 @@
 import React, { createElement } from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import clsx from "clsx";
 
 /**
  * Imports other components and hooks
  */
+import { gridFauxLines, gridFauxLinesStyles } from "../GridFauxLines";
 
 /**
  * Defines the prop types
@@ -45,10 +46,10 @@ const propTypes = {
    */
   gap: PropTypes.number,
   /**
-   * The gap lines.
+   * The gap faux lines, aka the grid borders.
    * @type {string}
    */
-  gapLines: PropTypes.oneOf(["horizontal", "vertical", "both"]),
+  fauxLines: PropTypes.oneOf(["none", "horizontal", "vertical", "both"]),
   /**
    * The content to be displayed.
    * @type {any}
@@ -66,7 +67,7 @@ const defaultProps = {
   height: "100%",
   columns: 1,
   gap: 0,
-  lines: null,
+  fauxLines: "none",
   children: null,
 };
 
@@ -88,14 +89,49 @@ const useStyles = makeStyles(() => ({
   }),
 }));
 
+const displayFauxLines = (props) => {
+  const { fauxLines, columns, children, theme } = props;
+
+  if (fauxLines === "none") return null;
+
+  /**
+   * Calculates the number of rows.
+   * The grid faux lines need them.
+   */
+  const rows = Math.floor(children.length / columns);
+
+  /**
+   * Loads the props for the grid faux lines.
+   */
+  const fauxLinesProps =
+    fauxLines !== "none"
+      ? gridFauxLines({ ...props, rows: rows, lines: fauxLines })
+      : null;
+  const { borderLeftSelector, borderBottomSelector } = fauxLinesProps;
+
+  /**
+   * Extends theme with faux lines props
+   */
+  theme.custom.fauxLinesBorderLeftSelector = borderLeftSelector;
+  theme.custom.fauxLinesBorderBottomSelector = borderBottomSelector;
+
+  /**
+   * Displays the faux lines
+   */
+  return gridFauxLinesStyles(fauxLinesProps);
+};
+
 /**
  * Displays the component
  */
 const Layout = (props) => {
-  const { variant, as, children } = props;
+  const { variant, as, columns, fauxLines, children } = props;
   const { container } = useStyles(props);
 
-  const props2 = { className: clsx("Layout", container) };
+  let theme = useTheme();
+  const fauxLinesKlass = displayFauxLines({ ...props, theme: theme });
+
+  const props2 = { className: clsx("Layout", container, fauxLinesKlass) };
 
   return createElement(as, props2, children);
 };
