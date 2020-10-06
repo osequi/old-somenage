@@ -1,25 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import clsx from "clsx";
 import { isNil } from "lodash";
 
 /**
  * Imports other components and hooks
  */
-import { font } from "../Fonts";
 import { scale, scaleValue } from "../Scale";
-import { SetupPropTypes, SetupDefaultProps } from "../Setup";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
   /**
-   * The font name of the headings.
+   * The name of the font used for headings.
    * @type {string}
    */
-  fontName: PropTypes.string,
+  font: PropTypes.string,
+  /**
+   * The new line height.
+   * Headings have a reduced line height while body text has a larger one. For better readabaility.
+   * @type {number}
+   */
+  lineHeight: PropTypes.number,
   /**
    * The scale of the headings in case all of them have the same scale.
    * @type {number}
@@ -31,35 +35,31 @@ const propTypes = {
    */
   modularScale: PropTypes.shape({}),
   /**
-   * The new line height.
-   * Headings have a reduced line height while body text has a larger one. For better readabaility.
-   * @type {number}
-   */
-  lineHeight: PropTypes.number,
-  /**
-   * The global grid setup.
+   * The theme object.
    * @type {object}
    */
-  setup: PropTypes.shape(SetupPropTypes),
+  theme: PropTypes.object,
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  fontName: "Default",
+  font: "Default",
+  lineHeight: 1,
   scale: null,
   modularScale: null,
-  lineHeight: 1,
-  setup: SetupDefaultProps,
+  theme: null,
 };
 
 /**
  * Sets the new margins
  */
 const margin = (props) => {
-  const { scale, lineHeight } = props;
-  const { fontSize, lineHeight: setupLineHeight } = defaultProps.setup;
+  const { scale, lineHeight, theme } = props;
+  const { typography } = theme;
+  const { setup } = typography;
+  const { fontSize, lineHeight: setupLineHeight } = setup;
 
   /**
    * The deafult line height in em.
@@ -116,13 +116,13 @@ const margin = (props) => {
  * Returns headings with the same size.
  */
 const sameSize = (props) => {
-  const { fontName, scale: scaleValue, lineHeight } = props;
+  const { font, lineHeight, scale: scaleValue, theme } = props;
 
   return {
     ["& h1, h2, h3, h4, h5, h6"]: {
-      ...font(fontName),
+      ...theme.typography.font(font),
       ...scale(scaleValue),
-      ...margin({ scale: scaleValue, lineHeight: lineHeight }),
+      ...margin(props),
       lineHeight: lineHeight,
     },
   };
@@ -132,42 +132,42 @@ const sameSize = (props) => {
  * Returns headings with different sizes
  */
 const differentSizes = (props) => {
-  const { fontName, modularScale, lineHeight } = props;
+  const { font, lineHeight, modularScale, theme } = props;
 
   return {
     ["& h1, h2, h3, h4, h5, h6"]: {
-      ...font(fontName),
+      ...theme.typography.font(font),
       lineHeight: lineHeight,
     },
     ["& h6"]: {
       ...scale(1),
-      ...margin({ scale: 1, lineHeight: lineHeight }),
+      ...margin({ ...props, scale: 1 }),
     },
     ["& h5"]: {
       ...scale(2),
-      ...margin({ scale: 2, lineHeight: lineHeight }),
+      ...margin({ ...props, scale: 2 }),
     },
     ["& h4"]: {
       ...scale(3),
-      ...margin({ scale: 3, lineHeight: lineHeight }),
+      ...margin({ ...props, scale: 3 }),
     },
     ["& h3"]: {
       ...scale(4),
-      ...margin({ scale: 4, lineHeight: lineHeight }),
+      ...margin({ ...props, scale: 4 }),
     },
     ["& h2"]: {
       ...scale(5),
-      ...margin({ scale: 5, lineHeight: lineHeight }),
+      ...margin({ ...props, scale: 5 }),
     },
     ["& h1"]: {
       ...scale(6),
-      ...margin({ scale: 6, lineHeight: lineHeight }),
+      ...margin({ ...props, scale: 6 }),
     },
   };
 };
 
 /**
- * Returns headings
+ * Returns the style for the headings.
  */
 const headings = (props) => {
   const { scale } = props;
@@ -186,11 +186,14 @@ const useStyles = makeStyles(() => ({
 
 /**
  * Displays children inside a headings container.
- * Don't use this component directly. Instead use `<Typography>`.
+ * Don't use this component directly. Instead use `<Text>`.
  */
 const Headings = (props) => {
   const { children } = props;
-  const { container } = useStyles(props);
+
+  const theme = useTheme();
+  const props2 = { ...props, theme: theme };
+  const { container } = useStyles(props2);
 
   return <div className={clsx("Headings", container)}>{children}</div>;
 };

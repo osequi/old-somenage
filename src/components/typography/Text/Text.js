@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
     ...headings({
       fontName: "Nimbus Sans Medium",
       scale: 0,
+      theme: theme,
     }),
   }),
 
@@ -85,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
     ...headings({
       fontName: "Nimbus Sans Regular",
       lineHeight: 1,
+      theme: theme,
     }),
     ...textElements,
   }),
