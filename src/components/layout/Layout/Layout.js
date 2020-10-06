@@ -89,9 +89,8 @@ const useStyles = makeStyles((theme) => ({
       : `calc(${props.gap} * var(--lem))`,
 
     ["& > *"]: {
-      background: "lightgrey",
       padding: theme.custom.fauxLinesBorderLeftSelector
-        ? `calc(${props.gap} * var(--lem))`
+        ? `0 calc(${props.gap} * var(--lem)) calc(${props.gap} * var(--lem)) 0`
         : "inherit",
     },
   }),
