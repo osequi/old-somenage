@@ -17,7 +17,7 @@ const LayoutDemo = (props) => {
 
   return (
     <>
-      <Layout columns={3} gap={3} fauxLines="both">
+      <Layout columns={3} gap={0} fauxLines="both">
         {items}
       </Layout>
     </>

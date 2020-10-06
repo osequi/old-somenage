@@ -6,7 +6,6 @@ import clsx from "clsx";
 /**
  * Imports other components and hooks
  */
-import { gridFauxLines, gridFauxLinesStyles } from "../GridFauxLines";
 
 /**
  * Defines the prop types
@@ -74,7 +73,7 @@ const defaultProps = {
 /**
  * Defines the styles
  */
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: (props) => ({
     display: "grid",
     width: `${props.width}`,
@@ -87,38 +86,48 @@ const useStyles = makeStyles(() => ({
       background: "lightgrey",
     },
   }),
+
+  fauxLines: {
+    ["&  > *"]: {
+      boxSizing: "border-box",
+
+      [`${theme.custom.fauxLinesBorderLeftSelector}`]: {
+        borderLeft: (props) => (props.displayHorizontal ? "1px solid" : "none"),
+      },
+
+      [`${theme.custom.fauxLinesBorderBottomSelector}`]: {
+        borderBottom: (props) => (props.displayVertical ? "1px solid" : "none"),
+      },
+    },
+  },
 }));
 
-const displayFauxLines = (props) => {
-  const { fauxLines, columns, children, theme } = props;
+/**
+ * Calculates the position of the faux lines.
+ */
+const calculateFauxLines = (props) => {
+  const { fauxLines, columns, children } = props;
 
   if (fauxLines === "none") return null;
 
-  /**
-   * Calculates the number of rows.
-   * The grid faux lines need them.
-   */
   const rows = Math.floor(children.length / columns);
 
-  /**
-   * Loads the props for the grid faux lines.
-   */
-  const fauxLinesProps =
-    fauxLines !== "none"
-      ? gridFauxLines({ ...props, rows: rows, lines: fauxLines })
-      : null;
-  const { borderLeftSelector, borderBottomSelector } = fauxLinesProps;
+  const lastRow = columns * rows - columns + 1;
+  const firstRow = columns - 1;
+  const borderLeftException = `${columns}n - ${firstRow}`;
+  const borderBottomException = `n + ${lastRow}`;
 
-  /**
-   * Extends theme with faux lines props
-   */
-  theme.custom.fauxLinesBorderLeftSelector = borderLeftSelector;
-  theme.custom.fauxLinesBorderBottomSelector = borderBottomSelector;
+  const displayHorizontal = fauxLines === "both" || fauxLines === "vertical";
+  const displayVertical = fauxLines === "both" || fauxLines === "horizontal";
+  const borderLeftSelector = `&:not(:nth-child(${borderLeftException}))`;
+  const borderBottomSelector = `&:not(:nth-child(${borderBottomException}))`;
 
-  /**
-   * Displays the faux lines
-   */
-  return gridFauxLinesStyles(fauxLinesProps);
+  return {
+    displayVertical: displayVertical,
+    displayHorizontal: displayHorizontal,
+    borderLeftSelector: borderLeftSelector,
+    borderBottomSelector: borderBottomSelector,
+  };
 };
 
 /**
@@ -126,11 +135,27 @@ const displayFauxLines = (props) => {
  */
 const Layout = (props) => {
   const { variant, as, columns, fauxLines, children } = props;
-  const { container } = useStyles(props);
 
+  /**
+   * Displays the faux lines if requested.
+   */
   let theme = useTheme();
-  const fauxLinesKlass = displayFauxLines({ ...props, theme: theme });
+  const fauxLinesProps = calculateFauxLines(props);
 
+  if (fauxLinesProps) {
+    const { borderLeftSelector, borderBottomSelector } = fauxLinesProps;
+    theme.custom.fauxLinesBorderLeftSelector = borderLeftSelector;
+    theme.custom.fauxLinesBorderBottomSelector = borderBottomSelector;
+  }
+
+  const { container, fauxLines: fauxLinesKlass } = useStyles({
+    ...props,
+    ...fauxLinesProps,
+  });
+
+  /**
+   * Prepares the props to render the component.
+   */
   const props2 = { className: clsx("Layout", container, fauxLinesKlass) };
 
   return createElement(as, props2, children);
