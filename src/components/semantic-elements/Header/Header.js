@@ -20,7 +20,7 @@ const propTypes = {
  */
 const defaultProps = {
   ...SemanticElementsDefaultProps,
-  type: "header",
+  as: "header",
   display: false,
   // NOTE: children is set to non-null to enable: `<Header title="Demo" display={true} />`
   children: "",

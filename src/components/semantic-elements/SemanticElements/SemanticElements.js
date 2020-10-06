@@ -16,7 +16,7 @@ const propTypes = {
    * Like `nav`, 'article'
    * @type {string}
    */
-  type: PropTypes.oneOf([
+  as: PropTypes.oneOf([
     "article",
     "aside",
     "footer",
@@ -64,7 +64,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  type: null,
+  as: null,
   heading: HeadingsDefaultProps,
   title: null,
   display: false,
@@ -89,7 +89,7 @@ const requiredPropsAreSet = (props) => {
  * It's better to use specific components like `<Article>` which has their props properly set up.
  */
 const SemanticElements = (props) => {
-  const { type, heading, title, children, display, className } = props;
+  const { as, heading, title, children, display, className } = props;
 
   /**
    * Displays nothing if the mandatory props are not defined.
@@ -112,7 +112,7 @@ const SemanticElements = (props) => {
     </>
   );
 
-  return createElement(type, props2, children2);
+  return createElement(as, props2, children2);
 };
 
 SemanticElements.propTypes = propTypes;

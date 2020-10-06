@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/styles";
-import clsx from "clsx";
 import { useMediaQuery } from "react-responsive";
 
 /**
@@ -35,18 +33,10 @@ const defaultProps = {
 };
 
 /**
- * Defines the styles
- */
-const useStyles = makeStyles(() => ({
-  container: {},
-}));
-
-/**
  * Displays the content for the specified media queries.
  */
 const MediaQueries = (props) => {
   const { values, children } = props;
-  const { container } = useStyles(props);
 
   const queries = values && values.join(" and ");
   const visible = useMediaQuery({ query: `${queries}` });

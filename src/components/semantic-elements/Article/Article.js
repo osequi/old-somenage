@@ -20,7 +20,7 @@ const propTypes = {
  */
 const defaultProps = {
   ...SemanticElementsDefaultProps,
-  type: "article",
+  as: "article",
   display: true,
 };
 

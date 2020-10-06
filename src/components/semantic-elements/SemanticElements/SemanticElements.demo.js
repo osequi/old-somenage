@@ -30,7 +30,7 @@ const SemanticElementsDemo = (props) => {
       <Header title="Semantic Elements Demo (header)" display={true}>
         <Nav title="Menu navigation">Menu navigation (nav)</Nav>
       </Header>
-      <SemanticElements type="article">Article (article)</SemanticElements>
+      <SemanticElements as="article">Article (article)</SemanticElements>
       <Article title="Another article (article)">
         <H1>Heading level 1</H1>
         <Heading level={1}>Heading level 1</Heading>

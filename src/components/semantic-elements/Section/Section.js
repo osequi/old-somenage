@@ -20,7 +20,7 @@ const propTypes = {
  */
 const defaultProps = {
   ...SemanticElementsDefaultProps,
-  type: "section",
+  as: "section",
 };
 
 /**
