@@ -39,10 +39,8 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  fontSize: "100%",
-  lineHeight: "1.25",
-  displayHorizontalRhytm: false,
-  displayVerticalRhytm: false,
+  displayHorizontalRhytm: true,
+  displayVerticalRhytm: true,
   numberOfHorizontalLines: 500,
   numberOfVerticalLines: 1000,
   lineColor: "lightgrey",
