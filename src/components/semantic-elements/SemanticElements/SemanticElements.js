@@ -51,6 +51,13 @@ const propTypes = {
    * @type {any}
    */
   children: PropTypes.any,
+  /**
+   * The className of the element.
+   * It's optional to set.
+   * Serves the technical purpose of style chaining.
+   * @type {string}
+   */
+  className: PropTypes.string,
 };
 
 /**
@@ -62,6 +69,7 @@ const defaultProps = {
   title: null,
   display: false,
   children: null,
+  className: "SemanticElement",
 };
 
 /**
@@ -81,7 +89,7 @@ const requiredPropsAreSet = (props) => {
  * It's better to use specific components like `<Article>` which has their props properly set up.
  */
 const SemanticElements = (props) => {
-  const { type, heading, title, children, display } = props;
+  const { type, heading, title, children, display, className } = props;
 
   /**
    * Displays nothing if the mandatory props are not defined.
@@ -96,6 +104,7 @@ const SemanticElements = (props) => {
   /**
    * Prepares props for createElement
    */
+  const props2 = { className: className };
   const children2 = (
     <>
       {<Headings {...heading2} />}
@@ -103,7 +112,7 @@ const SemanticElements = (props) => {
     </>
   );
 
-  return createElement(type, null, children2);
+  return createElement(type, props2, children2);
 };
 
 SemanticElements.propTypes = propTypes;

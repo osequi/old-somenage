@@ -16,17 +16,17 @@ const propTypes = {
    * The font family name as defined in the font css
    * @type {string}
    */
-  family: PropTypes.string,
+  fontFamily: PropTypes.string,
   /**
    * The weight of the font
    * @type {array}
    */
-  weight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  fontWeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The font style
    * @type {string}
    */
-  style: PropTypes.string,
+  fontStyle: PropTypes.string,
   /**
    * The content to be displayed.
    * @type {any}
@@ -39,9 +39,9 @@ const propTypes = {
  */
 const defaultProps = {
   name: "Default",
-  family: "inherit",
-  weight: "normal",
-  style: "normal",
+  fontFamily: "inherit",
+  fontWeight: "normal",
+  fontStyle: "normal",
   children: null,
 };
 
@@ -50,9 +50,9 @@ const defaultProps = {
  */
 const useStyles = makeStyles(() => ({
   fontStyle: (props) => ({
-    fontFamily: props.family,
-    fontWeight: props.weight,
-    fontStyle: props.style,
+    fontFamily: props.fontFamily,
+    fontWeight: props.fontWeight,
+    fontStyle: props.fontStyle,
   }),
 }));
 
