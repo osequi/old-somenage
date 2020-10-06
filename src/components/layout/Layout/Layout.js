@@ -12,16 +12,6 @@ import clsx from "clsx";
  */
 const propTypes = {
   /**
-   * What kind of layout to display.
-   */
-  variant: PropTypes.oneOf(["1d"]),
-  /**
-   * In which container element to display.
-   * Preferably inside a Semantic Element.
-   * @type {func}
-   */
-  as: PropTypes.func,
-  /**
    * The width of the layout
    * @type {string}
    */
@@ -47,10 +37,16 @@ const propTypes = {
   /**
    * The gap faux lines, aka the grid borders.
    * The grid borders look good only when there is no gap in the grid.
-   * Therefore when fauxLines is set instead of grid gap we'll set a margin on the grid elements.
+   * Therefore when fauxLines is set instead of grid gap we'll set a padding on the grid elements.
    * @type {string}
    */
   fauxLines: PropTypes.oneOf(["none", "horizontal", "vertical", "both"]),
+  /**
+   * The container element / component where the content will be displayed.
+   * Preferably a Semantic Element.
+   * @type {func}
+   */
+  as: PropTypes.func,
   /**
    * The content to be displayed.
    * @type {any}
@@ -62,13 +58,12 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  variant: null,
-  as: "div",
   width: "100%",
   height: "100%",
   columns: 1,
   gap: 0,
   fauxLines: "none",
+  as: "div",
   children: null,
 };
 
@@ -99,6 +94,9 @@ const useStyles = makeStyles((theme) => ({
     ["&  > *"]: {
       boxSizing: "border-box",
 
+      /**
+       * Can't use props inside ['&...'], hacking it with theme.
+       */
       [`${theme.custom.fauxLinesBorderLeftSelector}`]: {
         borderLeft: (props) => (props.displayHorizontal ? "1px solid" : "none"),
       },
@@ -142,7 +140,7 @@ const calculateFauxLines = (props) => {
  * Displays the component
  */
 const Layout = (props) => {
-  const { variant, as, columns, fauxLines, children } = props;
+  const { columns, fauxLines, as, children } = props;
 
   /**
    * Displays the faux lines if requested.
