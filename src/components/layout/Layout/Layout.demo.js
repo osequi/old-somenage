@@ -9,10 +9,16 @@ import Layout from ".";
  * Displays the Layout demo
  */
 const LayoutDemo = (props) => {
+  const items = Array(10)
+    .fill("")
+    .map((item, index) => {
+      return <div key={index}>Item {index + 1}</div>;
+    });
+
   return (
     <>
-      <Layout>
-        <p>Layout demo</p>
+      <Layout columns={3} gap={3}>
+        {items}
       </Layout>
     </>
   );

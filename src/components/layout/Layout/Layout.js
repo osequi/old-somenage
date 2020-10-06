@@ -38,11 +38,6 @@ const propTypes = {
    */
   columns: PropTypes.string,
   /**
-   * The dimensions of the rows following the CSS Grid `grid-template-rows` syntax
-   * @type {string}
-   */
-  rows: PropTypes.string,
-  /**
    * The gap between the cells, unitless.
    * The gap will be a multiply of `var(--lem)`
    * Sets the gaps both horizontally with `column-gap` and vertically with `row-gap`.
@@ -70,8 +65,7 @@ const defaultProps = {
   width: "100%",
   height: "100%",
   columns: 1,
-  rows: null,
-  gap: 1,
+  gap: 0,
   lines: null,
   children: null,
 };
@@ -85,9 +79,12 @@ const useStyles = makeStyles(() => ({
     width: `${props.width}`,
     height: `${props.height}`,
     gridTemplateColumns: `repeat(${props.columns}, 1fr)`,
-    gridTemplateRows: `${props.rows}`,
     columnGap: `calc(${props.gap} * var(--lem))`,
     rowGap: `calc(${props.gap} * var(--lem))`,
+
+    ["& > *"]: {
+      background: "lightgrey",
+    },
   }),
 }));
 

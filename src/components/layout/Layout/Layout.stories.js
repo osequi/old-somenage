@@ -34,3 +34,9 @@ WithEmptyColumnAtEnd.args = {
   ...WithoutColumns.args,
   columns: 3,
 };
+
+export const WithGap = Template.bind({});
+WithGap.args = {
+  ...WithColumns.args,
+  gap: 1,
+};
