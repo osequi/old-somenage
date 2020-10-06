@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import marked from "marked";
+import DOMPurify from "dompurify";
 
 const useMarkdown = (file) => {
   const [markdown, setMarkdown] = useState("");
@@ -14,7 +15,9 @@ const useMarkdown = (file) => {
       });
   }, [file]);
 
-  const html = <div dangerouslySetInnerHTML={{ __html: markdown }} />;
+  const html = (
+    <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(markdown) }} />
+  );
 
   return { markdown: markdown, html: html };
 };
