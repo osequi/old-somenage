@@ -33,7 +33,7 @@ const defaultProps = {
 };
 
 /**
- * Displays the component
+ * Displays content above a breakpoint.
  */
 const Display = (props) => {
   const { above, children } = props;

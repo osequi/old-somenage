@@ -74,12 +74,22 @@ const typography = {
 };
 
 /**
- * Returns a media query for a breakpoint name.
- * @param  {string} name The breakpoint name.
- * @return {string}      A media query.
+ * Finds a font.
+ * @param  {string} name The font name.
+ * @return {object}      The font object.
  */
 const font = (name) => {
   return typography.fonts.find((item) => item.name === name);
 };
 
-export { typography, font };
+/**
+ * Sets the max-width of a text to display 50-60 character in a row.
+ * // TODO: do the calculations. Currently maxWidth is hardcoded to 35.
+ * @param  {string} name The font name
+ * @return {string}      The max width set
+ */
+const maxWidth = (name) => {
+  return { maxWidth: `calc(35*var(--lem))` };
+};
+
+export { typography, font, maxWidth };
