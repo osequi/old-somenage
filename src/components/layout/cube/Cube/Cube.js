@@ -7,7 +7,13 @@ import shortid from "shortid";
 /**
  * Imports other components and hooks
  */
-import Side, { SidePropTypes, SideDefaultProps, sideNames } from "../Side";
+import Side, {
+  SidePropTypes,
+  SideDefaultProps,
+  sideNames,
+  BorderPropTypes,
+  BorderDefaultProps,
+} from "../Side";
 
 /**
  * Defines the prop types
@@ -70,6 +76,11 @@ const propTypes = {
    */
   sides: PropTypes.arrayOf(PropTypes.shape(SidePropTypes)),
   /**
+   * The borders of the cube.
+   * @type {object}
+   */
+  borders: PropTypes.shape(BorderPropTypes),
+  /**
    * The `transform-style` CSS property value.
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/transform-style
    * @type {string}
@@ -103,6 +114,7 @@ const defaultProps = {
     .map((item, index) => {
       return { ...item, id: shortid.generate(), name: sideNames[index] };
     }),
+  borders: BorderDefaultProps,
   transformStyle: "preserve-3d",
   className: "Cube",
 };
@@ -136,7 +148,7 @@ const useStyles = makeStyles((theme) => ({
  * Displays a 3D cube.
  */
 const Cube = (props) => {
-  const { className, sides, container } = props;
+  const { container, sides, borders, className } = props;
   const { className: containerClassName } = container;
   const { cube: cubeKlass, container: containerKlass } = useStyles(props);
 
@@ -144,7 +156,7 @@ const Cube = (props) => {
     sides &&
     sides.map((item) => {
       const { id } = item;
-      return <Side key={id} {...item} />;
+      return <Side key={id} {...item} borders={borders} />;
     });
 
   return (

@@ -4,6 +4,11 @@ import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 
 /**
+ * Imports styles.
+ */
+import { BorderPropTypes, BorderDefaultProps, borderStyles } from ".";
+
+/**
  * Defines the side names.
  */
 const sideNames = ["front", "back", "left", "right", "top", "bottom"];
@@ -47,10 +52,10 @@ const propTypes = {
    */
   opacity: PropTypes.number,
   /**
-   * The border of the side.
-   * @type {string}
+   * The borders of the side.
+   * @type {object}
    */
-  border: PropTypes.string,
+  borders: PropTypes.shape(BorderPropTypes),
   /**
    * The width and height of the container.
    * Needed for 3d transformations.
@@ -79,7 +84,7 @@ const defaultProps = {
   width: "100%",
   height: "100%",
   opacity: 0.9,
-  border: "1px solid",
+  borders: BorderDefaultProps,
   parent: {
     width: "200px",
     height: "200px",
@@ -88,39 +93,44 @@ const defaultProps = {
 };
 
 /**
- * Defines the styles
+ * Defines the styles.
  */
 const useStyles = makeStyles((theme) => ({
   side: (props) => ({
     position: "absolute",
     width: props.width,
     height: props.height,
-    border: props.border,
     opacity: props.opacity,
   }),
 
   front: (props) => ({
     transform: `translateZ(calc(${props.parent.width} / 2))`,
+    ...borderStyles({ ...props.borders, name: "front" }),
   }),
 
   back: (props) => ({
     transform: `translateZ(calc(-${props.parent.width} / 2))`,
+    ...borderStyles({ ...props.borders, name: "back" }),
   }),
 
   left: (props) => ({
     transform: `rotateY(90deg) translateZ(calc(${props.parent.width} / 2))`,
+    ...borderStyles({ ...props.borders, name: "left" }),
   }),
 
   right: (props) => ({
     transform: `rotateY(-90deg) translateZ(calc(${props.parent.width} / 2))`,
+    ...borderStyles({ ...props.borders, name: "right" }),
   }),
 
   top: (props) => ({
     transform: `rotateX(90deg) translateZ(calc(${props.parent.width} / 2))`,
+    ...borderStyles({ ...props.borders, name: "top" }),
   }),
 
   bottom: (props) => ({
     transform: `rotateX(-90deg) translateZ(calc(${props.parent.width} / 2))`,
+    ...borderStyles({ ...props.borders, name: "bottom" }),
   }),
 }));
 
