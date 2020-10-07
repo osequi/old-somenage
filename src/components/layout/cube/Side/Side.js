@@ -4,23 +4,69 @@ import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 
 /**
- * Defines the prop types
+ * Defines the side names.
  */
 const names = ["front", "back", "left", "right", "top", "bottom"];
 
+/**
+ * Defines the prop types.
+ */
 const propTypes = {
+  /**
+   * The unique id of the side.
+   * The sides are part of a list so they need a unique `key`.
+   * @type {string}
+   */
   id: PropTypes.string,
+  /**
+   * The name of the side.
+   * @type {string}
+   */
   name: PropTypes.oneOf(names),
-  content: PropTypes.any,
+  /**
+   * The content of the side.
+   * @type {any}
+   */
+  children: PropTypes.any,
+  /**
+   * The width of the side.
+   * Optional, it is set to 100%
+   * @type {string}
+   */
   width: PropTypes.string,
+  /**
+   * The height of the side.
+   * Optional, it is set to 100%
+   * @type {string}
+   */
   height: PropTypes.string,
-  className: PropTypes.string,
+  /**
+   * The opacity of the sides.
+   * It should be less than 1 to make sides visible.
+   * @type {string}
+   */
   opacity: PropTypes.number,
+  /**
+   * The border of the side.
+   * @type {string}
+   */
   border: PropTypes.string,
+  /**
+   * The width and height of the container.
+   * Needed for 3d transformations.
+   * @type {object}
+   */
   parent: PropTypes.shape({
     width: PropTypes.string,
     height: PropTypes.string,
   }),
+  /**
+   * The className of the element.
+   * It's optional to set.
+   * Serves the technical purpose of style chaining.
+   * @type {string}
+   */
+  className: PropTypes.string,
 };
 
 /**
@@ -29,16 +75,16 @@ const propTypes = {
 const defaultProps = {
   id: "front",
   name: "front",
-  content: null,
+  children: null,
   width: "100%",
   height: "100%",
-  className: "Side",
   opacity: 0.9,
   border: "1px solid",
   parent: {
     width: "200px",
     height: "200px",
   },
+  className: "Side",
 };
 
 /**
@@ -79,10 +125,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /**
- * Displays a side of the cube
+ * Displays a side of the cube.
  */
 const Side = (props) => {
-  const { name, className, content } = props;
+  const { name, className, children } = props;
   const { side, front, back, left, right, top, bottom } = useStyles(props);
 
   const klasses = [front, back, left, right, top, bottom];
@@ -91,7 +137,7 @@ const Side = (props) => {
 
   return (
     <div className={clsx(className, side, klass)}>
-      <div className="Content">{content}</div>
+      <div className="Content">{children}</div>
     </div>
   );
 };
