@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
  * Defines a set of presets to draw borders.
  * @type {Array}
  */
-const borderPresets = ["normalized"];
+const borderPresets = ["normalized", "noBorders", "allBorders"];
 
 /**
  * Defines the border prop types.
@@ -43,7 +43,7 @@ const propTypes = PropTypes.shape({
  * @type {Object}
  */
 const defaultProps = {
-  preset: "normalized",
+  preset: "allBorders",
   width: 1,
   unit: "px",
   style: "solid",
@@ -81,16 +81,61 @@ const normalized = (props) => {
   };
 };
 
+/**
+ * Draws no borders
+ */
+const noBorders = () => {
+  return {
+    front: {},
+    back: {},
+    left: {},
+    right: {},
+    top: {},
+    bottom: {},
+  };
+};
+
+const allBorders = (props) => {
+  return {
+    front: {
+      border: props.border,
+    },
+
+    back: {
+      border: props.border,
+    },
+
+    left: {
+      border: props.border,
+    },
+
+    right: {
+      border: props.border,
+    },
+
+    top: {
+      border: props.border,
+    },
+
+    bottom: {
+      border: props.border,
+    },
+  };
+};
+
 const borderStyles = (props) => {
   const { preset, width, unit, style, color, name } = props;
 
   const border = `${width}${unit} ${style} ${color}`;
 
-  const klasses = [normalized];
+  const klasses = [normalized, noBorders, allBorders];
   const index = borderPresets.findIndex((item) => item === preset);
-  const klass = klasses[index];
 
+  if (index === -1) return null;
+
+  const klass = klasses[index];
   const styles = klass({ border: border, width: width });
+
   return styles[name];
 };
 
