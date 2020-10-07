@@ -3,4 +3,4 @@ export {
   BorderPropTypes,
   BorderDefaultProps,
   borderStyles,
-} from "./Side.styles.borders";
+} from "./Side.borders";
