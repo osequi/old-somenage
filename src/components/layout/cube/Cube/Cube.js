@@ -156,7 +156,7 @@ const Cube = (props) => {
     sides &&
     sides.map((item) => {
       const { id } = item;
-      return <Side key={id} {...item} borders={borders} />;
+      return <Side key={id} {...item} parents={props} />;
     });
 
   return (

@@ -73,7 +73,7 @@ const normalized = (props) => {
     left: {
       borderTop: props.border,
       borderBottom: props.border,
-      borderBottomWidth: props.width * 3,
+      borderBottomWidth: `${props.width * 3}${props.unit}`,
     },
 
     right: {
@@ -146,7 +146,7 @@ const dottedInTheBackground = (props) => {
     left: {
       borderTop: props.border,
       borderBottom: props.border,
-      borderBottomWidth: props.width * 3,
+      borderBottomWidth: `${props.width * 2}${props.unit}`,
     },
 
     right: {
@@ -171,7 +171,7 @@ const borderStyles = (props) => {
   if (index === -1) return null;
 
   const klass = klasses[index];
-  const styles = klass({ border: border, width: width });
+  const styles = klass({ ...props, border: border });
 
   return styles[name];
 };
