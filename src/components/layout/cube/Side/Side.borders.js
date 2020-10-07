@@ -4,7 +4,12 @@ import PropTypes from "prop-types";
  * Defines a set of presets to draw borders.
  * @type {Array}
  */
-const borderPresets = ["normalized", "noBorders", "allBorders"];
+const borderPresets = [
+  "normalized",
+  "noBorders",
+  "allBorders",
+  "dottedInTheBackground",
+];
 
 /**
  * Defines the border prop types.
@@ -95,6 +100,9 @@ const noBorders = () => {
   };
 };
 
+/**
+ * Draws all borders
+ */
 const allBorders = (props) => {
   return {
     front: {
@@ -123,12 +131,41 @@ const allBorders = (props) => {
   };
 };
 
+const dottedInTheBackground = (props) => {
+  return {
+    front: {
+      border: props.border,
+    },
+
+    back: {
+      border: props.border,
+      borderLeftStyle: "dashed",
+      borderBottomStyle: "dashed",
+    },
+
+    left: {
+      borderTop: props.border,
+      borderBottom: props.border,
+      borderBottomWidth: props.width * 3,
+    },
+
+    right: {
+      borderTop: props.border,
+      borderBottom: props.border,
+      borderBottomStyle: "dashed",
+    },
+
+    top: {},
+    bottom: {},
+  };
+};
+
 const borderStyles = (props) => {
   const { preset, width, unit, style, color, name } = props;
 
   const border = `${width}${unit} ${style} ${color}`;
 
-  const klasses = [normalized, noBorders, allBorders];
+  const klasses = [normalized, noBorders, allBorders, dottedInTheBackground];
   const index = borderPresets.findIndex((item) => item === preset);
 
   if (index === -1) return null;

@@ -30,6 +30,12 @@ const CubeDemo = (props) => {
       <Article title="Default, normalized borders" className={defaultKlass}>
         <Cube borders={{ ...borders, preset: "normalized" }} />
       </Article>
+      <Article
+        title="Default, normalized borders with dotted style in the background"
+        className={defaultKlass}
+      >
+        <Cube borders={{ ...borders, preset: "dottedInTheBackground" }} />
+      </Article>
     </Section>
   );
 };
