@@ -69,7 +69,7 @@ const defaultProps = {
   title: null,
   display: false,
   children: null,
-  className: "SemanticElement",
+  className: null,
 };
 
 /**
@@ -84,12 +84,36 @@ const requiredPropsAreSet = (props) => {
 };
 
 /**
+ * Sets the className when className is empty.
+ * @param  {object} props The props object
+ * @return {string}       The className
+ */
+const nonEmptyClassname = (props) => {
+  const { className, as, title } = props;
+
+  if (className) return className;
+
+  /**
+   * Returns `ClassName` when the other props are not defined.
+   */
+  if (!className && !as && !title) return "ClassName";
+
+  /**
+   * Generates a className.
+   */
+  const as2 = as ? startCase(as) : "";
+  const title2 = title ? startCase(title) : "";
+
+  return `${as2}${title2}`;
+};
+
+/**
  * Displays a semantic element.
  * This is a factory component.
  * It's better to use specific components like `<Article>` which has their props properly set up.
  */
 const SemanticElements = (props) => {
-  const { as, heading, title, children, display, className } = props;
+  const { as, heading, title, children, display } = props;
 
   /**
    * Displays nothing if the mandatory props are not defined.
@@ -100,6 +124,13 @@ const SemanticElements = (props) => {
    * Overwrites the `heading` props.
    */
   const heading2 = { ...heading, children: title, display: display };
+
+  /**
+   * Always displays a className.
+   * When `className` is not specified it will become the tag name combined with the title.
+   * Like `SectionDemo` for `<section title="Demo">`.
+   */
+  const className = nonEmptyClassname(props);
 
   /**
    * Prepares props for createElement
