@@ -6,7 +6,7 @@ import clsx from "clsx";
 /**
  * Defines the side names.
  */
-const names = ["front", "back", "left", "right", "top", "bottom"];
+const sideNames = ["front", "back", "left", "right", "top", "bottom"];
 
 /**
  * Defines the prop types.
@@ -22,7 +22,7 @@ const propTypes = {
    * The name of the side.
    * @type {string}
    */
-  name: PropTypes.oneOf(names),
+  name: PropTypes.oneOf(sideNames),
   /**
    * The content of the side.
    * @type {any}
@@ -132,7 +132,7 @@ const Side = (props) => {
   const { side, front, back, left, right, top, bottom } = useStyles(props);
 
   const klasses = [front, back, left, right, top, bottom];
-  const index = names.findIndex((item) => item === name);
+  const index = sideNames.findIndex((item) => item === name);
   const klass = klasses[index];
 
   return (
@@ -149,5 +149,5 @@ export default Side;
 export {
   propTypes as SidePropTypes,
   defaultProps as SideDefaultProps,
-  names as sideNames,
+  sideNames,
 };
