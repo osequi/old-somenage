@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 /**
  * Displays the component
  */
-const CubeDemo = (props) => {
+const CubeDemoContent = (props) => {
   const {
     default: defaultKlass,
     extraMargin,
@@ -188,4 +188,4 @@ const CubeDemo = (props) => {
   );
 };
 
-export default CubeDemo;
+export default CubeDemoContent;
