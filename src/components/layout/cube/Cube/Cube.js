@@ -15,6 +15,13 @@ import Side, {
   BorderDefaultProps,
 } from "../Side";
 
+import {
+  rotate,
+  rotateKeyframes,
+  RotatePropTypes,
+  RotateDefaultProps,
+} from "./Cube.rotate";
+
 /**
  * Defines the prop types
  */
@@ -77,9 +84,16 @@ const propTypes = {
   sides: PropTypes.arrayOf(PropTypes.shape(SidePropTypes)),
   /**
    * The borders of the cube.
+   * Preferred to use one of the presets.
    * @type {object}
    */
   borders: PropTypes.shape(BorderPropTypes),
+  /**
+   * The rotation of the cube.
+   * Preferred to use one of the presets.
+   * @type {object}
+   */
+  rotate: PropTypes.shape(RotatePropTypes),
   /**
    * The `transform-style` CSS property value.
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/transform-style
@@ -115,6 +129,7 @@ const defaultProps = {
       return { ...item, id: shortid.generate(), name: sideNames[index] };
     }),
   borders: BorderDefaultProps,
+  rotate: RotateDefaultProps,
   transformStyle: "preserve-3d",
   className: "Cube",
 };
@@ -141,7 +156,13 @@ const useStyles = makeStyles((theme) => ({
     height: props.height,
     transformStyle: props.transformStyle,
     position: "relative",
+    animation: `cubeRotate 10s infinite linear`,
   }),
+
+  "@keyframes cubeRotate": {
+    from: { transform: "rotateY(0deg) rotateX(720deg) rotateZ(0deg)" },
+    to: { transform: "rotateY(360deg) rotateX(0deg) rotateZ(360deg)" },
+  },
 }));
 
 /**

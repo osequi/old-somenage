@@ -12,7 +12,7 @@ const borderPresets = [
 ];
 
 /**
- * Defines the border prop types.
+ * Defines the prop types.
  * @type {object}
  */
 const propTypes = PropTypes.shape({
@@ -131,6 +131,9 @@ const allBorders = (props) => {
   };
 };
 
+/**
+ * Draws dotted / dashed borders on the invisible sides.
+ */
 const dottedInTheBackground = (props) => {
   return {
     front: {
@@ -160,6 +163,9 @@ const dottedInTheBackground = (props) => {
   };
 };
 
+/**
+ * Returns a set of border styles based on a preset.
+ */
 const borderStyles = (props) => {
   const { preset, width, unit, style, color, name } = props;
 
