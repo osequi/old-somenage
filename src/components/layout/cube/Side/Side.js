@@ -57,15 +57,11 @@ const propTypes = {
    */
   borders: PropTypes.shape(BorderPropTypes),
   /**
-   * The width and height of the container.
+   * The parent (cube, container) props.
    * Needed for 3d transformations.
    * @type {object}
    */
-  container: PropTypes.shape({
-    width: PropTypes.string,
-    height: PropTypes.string,
-  }),
-  parents: PropTypes.any,
+  parent: PropTypes.any,
   /**
    * The className of the element.
    * It's optional to set.
@@ -86,10 +82,7 @@ const defaultProps = {
   height: "100%",
   opacity: 0.9,
   borders: BorderDefaultProps,
-  container: {
-    width: "200px",
-    height: "200px",
-  },
+  parent: null,
   className: "Side",
 };
 
@@ -105,33 +98,33 @@ const useStyles = makeStyles((theme) => ({
   }),
 
   front: (props) => ({
-    transform: `translateZ(calc(${props.parents.width} / 2))`,
-    ...borderStyles({ ...props.parents.borders, name: "front" }),
+    transform: `translateZ(calc(${props.parent.width} / 2))`,
+    ...borderStyles({ ...props.parent.borders, name: "front" }),
   }),
 
   back: (props) => ({
-    transform: `translateZ(calc(-${props.parents.width} / 2))`,
-    ...borderStyles({ ...props.parents.borders, name: "back" }),
+    transform: `translateZ(calc(-${props.parent.width} / 2))`,
+    ...borderStyles({ ...props.parent.borders, name: "back" }),
   }),
 
   left: (props) => ({
-    transform: `rotateY(90deg) translateZ(calc(${props.parents.width} / 2))`,
-    ...borderStyles({ ...props.parents.borders, name: "left" }),
+    transform: `rotateY(90deg) translateZ(calc(${props.parent.width} / 2))`,
+    ...borderStyles({ ...props.parent.borders, name: "left" }),
   }),
 
   right: (props) => ({
-    transform: `rotateY(-90deg) translateZ(calc(${props.parents.width} / 2))`,
-    ...borderStyles({ ...props.parents.borders, name: "right" }),
+    transform: `rotateY(-90deg) translateZ(calc(${props.parent.width} / 2))`,
+    ...borderStyles({ ...props.parent.borders, name: "right" }),
   }),
 
   top: (props) => ({
-    transform: `rotateX(90deg) translateZ(calc(${props.parents.width} / 2))`,
-    ...borderStyles({ ...props.parents.borders, name: "top" }),
+    transform: `rotateX(90deg) translateZ(calc(${props.parent.width} / 2))`,
+    ...borderStyles({ ...props.parent.borders, name: "top" }),
   }),
 
   bottom: (props) => ({
-    transform: `rotateX(-90deg) translateZ(calc(${props.parents.width} / 2))`,
-    ...borderStyles({ ...props.parents.borders, name: "bottom" }),
+    transform: `rotateX(-90deg) translateZ(calc(${props.parent.width} / 2))`,
+    ...borderStyles({ ...props.parent.borders, name: "bottom" }),
   }),
 
   content: {
