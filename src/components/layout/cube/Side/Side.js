@@ -133,6 +133,14 @@ const useStyles = makeStyles((theme) => ({
     transform: `rotateX(-90deg) translateZ(calc(${props.parents.width} / 2))`,
     ...borderStyles({ ...props.parents.borders, name: "bottom" }),
   }),
+
+  content: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 }));
 
 /**
@@ -140,7 +148,9 @@ const useStyles = makeStyles((theme) => ({
  */
 const Side = (props) => {
   const { name, className, children } = props;
-  const { side, front, back, left, right, top, bottom } = useStyles(props);
+  const { side, front, back, left, right, top, bottom, content } = useStyles(
+    props
+  );
 
   const klasses = [front, back, left, right, top, bottom];
   const index = sideNames.findIndex((item) => item === name);
@@ -148,7 +158,7 @@ const Side = (props) => {
 
   return (
     <div className={clsx(className, side, klass)}>
-      <div className="Content">{children}</div>
+      <div className={clsx(content)}>{children}</div>
     </div>
   );
 };

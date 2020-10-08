@@ -25,7 +25,29 @@ const useStyles = makeStyles((theme) => ({
 const CubeDemo = (props) => {
   const { default: defaultKlass, extraMargin } = useStyles(props);
 
-  const { borders, container } = CubeDefaultProps;
+  const { borders, container, sides } = CubeDefaultProps;
+
+  const content = [
+    <p>Side #1</p>,
+    <p>Side #2</p>,
+    <p>Side #3</p>,
+    <p>Side #4</p>,
+    <p>Side #5</p>,
+    <p>Side #6</p>,
+  ];
+
+  const images = [
+    <img src="https://placekitten.com/500/500" />,
+    <img src="https://placekitten.com/500/500" />,
+    <img src="https://placekitten.com/500/500" />,
+    <img src="https://placekitten.com/500/500" />,
+    <img src="https://placekitten.com/500/500" />,
+    <img src="https://placekitten.com/500/500" />,
+  ];
+
+  const sidesWithContent = sides.map((item, index) => {
+    return { ...item, children: images[index] };
+  });
 
   return (
     <Section title="CubeDemo">
@@ -45,6 +67,7 @@ const CubeDemo = (props) => {
             perspective: "200vmin",
           }}
           borders={{ ...borders, preset: "normalized" }}
+          sides={sidesWithContent}
         />
       </Article>
     </Section>
