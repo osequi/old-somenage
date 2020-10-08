@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 /**
  * Displays the component
  */
-const CubeDemo = (props) => {
+const CubeDemoResponsive = (props) => {
   const { default: defaultKlass, extraMargin } = useStyles(props);
 
   const { borders, container } = CubeDefaultProps;
@@ -51,4 +51,4 @@ const CubeDemo = (props) => {
   );
 };
 
-export default CubeDemo;
+export default CubeDemoResponsive;
