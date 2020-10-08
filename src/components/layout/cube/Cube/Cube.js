@@ -156,7 +156,7 @@ const useStyles = makeStyles((theme) => ({
     height: props.height,
     transformStyle: props.transformStyle,
     position: "relative",
-    animation: `cubeRotate 10s infinite linear`,
+    animation: `$cubeRotate 10s infinite linear`,
   }),
 
   "@keyframes cubeRotate": {

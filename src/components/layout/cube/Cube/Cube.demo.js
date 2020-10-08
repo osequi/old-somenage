@@ -53,63 +53,9 @@ const CubeDemo = (props) => {
     <p>Side #6</p>,
   ];
 
-  const images = [
-    <img src="https://placekitten.com/500/500" />,
-    <img src="https://placekitten.com/500/500" />,
-    <img src="https://placekitten.com/500/500" />,
-    <img src="https://placekitten.com/500/500" />,
-    <img src="https://placekitten.com/500/500" />,
-    <img src="https://placekitten.com/500/500" />,
-  ];
-
-  const imagesWithPadding = [
-    <div className={clsx(contentKlass, "ContentKlass")}>
-      <img src="https://placekitten.com/500/500" />
-    </div>,
-    <div className={contentKlass}>
-      <img src="https://placekitten.com/500/500" />
-    </div>,
-    <div className={contentKlass}>
-      <img src="https://placekitten.com/500/500" />
-    </div>,
-    <div className={contentKlass}>
-      <img src="https://placekitten.com/500/500" />
-    </div>,
-    <div className={contentKlass}>
-      <img src="https://placekitten.com/500/500" />
-    </div>,
-    <div className={contentKlass}>
-      <img src="https://placekitten.com/500/500" />
-    </div>,
-  ];
-
-  const contentWithPadding = [
-    <div className={contentKlass}>
-      <p>Side #1</p>
-    </div>,
-    <div className={contentKlass}>
-      <p>Side #2</p>
-    </div>,
-    <div className={contentKlass}>
-      <p>Side #3</p>
-    </div>,
-    <div className={contentKlass}>
-      <p>Side #4</p>
-    </div>,
-    <div className={contentKlass}>
-      <p>Side #5</p>
-    </div>,
-    <div className={contentKlass}>
-      <p>Side #6</p>
-    </div>,
-  ];
-
   return (
     <Section title="CubeDemo">
-      <Article
-        title="Simple content."
-        className={clsx(defaultKlass, extraMargin)}
-      >
+      <Article title="Simple content." className={clsx(defaultKlass)}>
         <p>Styling, positioning content is done here.</p>
         <Cube
           {...props}
@@ -124,63 +70,6 @@ const CubeDemo = (props) => {
           borders={{ ...borders, preset: "normalized" }}
           sides={sides.map((item, index) => {
             return { ...item, children: content[index] };
-          })}
-        />
-      </Article>
-      <Article title="Images" className={clsx(defaultKlass, extraMargin)}>
-        <Cube
-          {...props}
-          width="50vmin"
-          height="50vmin"
-          container={{
-            ...container,
-            width: "100vmin",
-            height: "100vmin",
-            perspective: "200vmin",
-          }}
-          borders={{ ...borders, preset: "normalized" }}
-          sides={sides.map((item, index) => {
-            return { ...item, children: images[index] };
-          })}
-        />
-      </Article>
-      <Article
-        title="Content with padding."
-        className={clsx(defaultKlass, extraMargin)}
-      >
-        <Cube
-          {...props}
-          width="50vmin"
-          height="50vmin"
-          container={{
-            ...container,
-            width: "100vmin",
-            height: "100vmin",
-            perspective: "200vmin",
-          }}
-          borders={{ ...borders, preset: "normalized" }}
-          sides={sides.map((item, index) => {
-            return { ...item, children: contentWithPadding[index] };
-          })}
-        />
-      </Article>
-      <Article
-        title="Images with padding."
-        className={clsx(defaultKlass, extraMargin)}
-      >
-        <Cube
-          {...props}
-          width="50vmin"
-          height="50vmin"
-          container={{
-            ...container,
-            width: "100vmin",
-            height: "100vmin",
-            perspective: "200vmin",
-          }}
-          borders={{ ...borders, preset: "normalized" }}
-          sides={sides.map((item, index) => {
-            return { ...item, children: imagesWithPadding[index] };
           })}
         />
       </Article>
