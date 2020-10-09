@@ -5,7 +5,7 @@ import React from "react";
  */
 import Text from ".";
 import useMarkdown from "../../../hooks/use-markdown";
-import markdown from "./Text.demo.md";
+import markdown from "./demos/Text.demo.md";
 import { Article } from "../../semantic-elements/SemanticElements";
 import Setup from "../Setup";
 import Grid from "../Grid";
