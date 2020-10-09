@@ -9,7 +9,7 @@ import { fold, foldKeyframes } from "./Side.preset.fold";
 /**
  * Imports helpers
  */
-import { findInArrays } from "../../../../helpers";
+import { findStyles } from "../../../../helpers";
 
 /**
  * Defines a set of presets.
@@ -70,17 +70,14 @@ const animationStyles = (props) => {
 
   const presets = [none, fold];
 
-  const found = findInArrays({
-    targetArray: presets,
-    anotherArray: animationPresets,
-    identifier: preset,
+  const styles = findStyles({
+    presets: presets,
+    presetNames: animationPresets,
+    preset: preset,
+    props2: props,
   });
 
-  if (!found) return null;
-
-  const styles = fold(props);
-
-  return styles[entry];
+  return styles ? styles[entry] : null;
 };
 
 export {
