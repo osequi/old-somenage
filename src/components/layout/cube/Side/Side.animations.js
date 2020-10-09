@@ -108,37 +108,37 @@ const keyframes = (props) => {
   return {
     "@keyframes Front": {
       to: {
-        transform: `translateZ(100px)`,
+        transform: `translateZ(calc(${props.parent.width} / 2))`,
       },
     },
 
     "@keyframes Back": {
       to: {
-        transform: `translateZ(-100px)`,
+        transform: `translateZ(calc(-${props.parent.width} / 2))`,
       },
     },
 
     "@keyframes Left": {
       to: {
-        transform: `rotateY(90deg) translateZ(100px)`,
+        transform: `rotateY(90deg) translateZ(calc(${props.parent.width} / 2))`,
       },
     },
 
     "@keyframes Right": {
       to: {
-        transform: `rotateY(-90deg) translateZ(100px)`,
+        transform: `rotateY(-90deg) translateZ(calc(${props.parent.width} / 2))`,
       },
     },
 
     "@keyframes Top": {
       to: {
-        transform: `rotateX(90deg) translateZ(100px)`,
+        transform: `rotateX(90deg) translateZ(calc(${props.parent.width} / 2))`,
       },
     },
 
     "@keyframes Bottom": {
       to: {
-        transform: `rotateX(-90deg) translateZ(100px)`,
+        transform: `rotateX(-90deg) translateZ(calc(${props.parent.width} / 2))`,
       },
     },
   };

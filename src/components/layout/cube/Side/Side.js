@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 
   front: (props) => ({
-    transform: `translateZ(calc(${props.parent.width} / 2))`,
+    //transform: `translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, name: "front" }),
   }),
 
@@ -119,7 +119,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   back: (props) => ({
-    transform: `translateZ(calc(-${props.parent.width} / 2))`,
+    //transform: `translateZ(calc(-${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, name: "back" }),
   }),
 
@@ -128,7 +128,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   left: (props) => ({
-    transform: `rotateY(90deg) translateZ(calc(${props.parent.width} / 2))`,
+    //transform: `rotateY(90deg) translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, name: "left" }),
   }),
 
@@ -137,7 +137,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   right: (props) => ({
-    transform: `rotateY(-90deg) translateZ(calc(${props.parent.width} / 2))`,
+    //transform: `rotateY(-90deg) translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, name: "right" }),
   }),
 
@@ -146,7 +146,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   top: (props) => ({
-    transform: `rotateX(90deg) translateZ(calc(${props.parent.width} / 2))`,
+    //transform: `rotateX(90deg) translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, name: "top" }),
   }),
 
@@ -155,7 +155,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   bottom: (props) => ({
-    transform: `rotateX(-90deg) translateZ(calc(${props.parent.width} / 2))`,
+    //transform: `rotateX(-90deg) translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, name: "bottom" }),
   }),
 
@@ -163,7 +163,7 @@ const useStyles = makeStyles((theme) => ({
     ...animationStyles({ ...theme.custom.animation1, name: "bottom" }),
   },
 
-  ...keyframes(theme.custom.parent),
+  ...keyframes(theme.custom.props),
 }));
 
 /**
@@ -177,7 +177,7 @@ const Side = (props) => {
    */
   const theme = useTheme();
   theme.custom.animation1 = parent.animations[0];
-  theme.custom.parent = parent;
+  theme.custom.props = props;
 
   const {
     side,
