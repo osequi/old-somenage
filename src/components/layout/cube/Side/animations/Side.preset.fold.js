@@ -1,5 +1,5 @@
 /**
- * The 'fold' animation preset
+ * The 'fold' animation preset.
  */
 const fold = (props) => {
   return {
