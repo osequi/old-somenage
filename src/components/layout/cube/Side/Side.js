@@ -4,9 +4,14 @@ import { makeStyles, useTheme } from "@material-ui/styles";
 import clsx from "clsx";
 
 /**
- * Imports styles.
+ * Imports other components, hooks, helpers.
  */
-import { borderStyles, animationStyles, keyframes } from ".";
+import { borderStyles } from ".";
+import {
+  animationStyles,
+  animationKeyframes,
+} from "./animations/Side.animations";
+import { findInArrays } from "../../../helpers";
 
 /**
  * Defines the side names.
@@ -115,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 
   frontAnimation: {
-    ...animationStyles({ ...theme.custom.animation1, name: "front" }),
+    ...animationStyles({ ...theme.custom.animation1, entry: "front" }),
   },
 
   back: (props) => ({
@@ -124,7 +129,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 
   backAnimation: {
-    ...animationStyles({ ...theme.custom.animation1, name: "back" }),
+    ...animationStyles({ ...theme.custom.animation1, entry: "back" }),
   },
 
   left: (props) => ({
@@ -133,7 +138,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 
   leftAnimation: {
-    ...animationStyles({ ...theme.custom.animation1, name: "left" }),
+    ...animationStyles({ ...theme.custom.animation1, entry: "left" }),
   },
 
   right: (props) => ({
@@ -142,7 +147,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 
   rightAnimation: {
-    ...animationStyles({ ...theme.custom.animation1, name: "right" }),
+    ...animationStyles({ ...theme.custom.animation1, entry: "right" }),
   },
 
   top: (props) => ({
@@ -151,7 +156,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 
   topAnimation: {
-    ...animationStyles({ ...theme.custom.animation1, name: "top" }),
+    ...animationStyles({ ...theme.custom.animation1, entry: "top" }),
   },
 
   bottom: (props) => ({
@@ -160,10 +165,10 @@ const useStyles = makeStyles((theme) => ({
   }),
 
   bottomAnimation: {
-    ...animationStyles({ ...theme.custom.animation1, name: "bottom" }),
+    ...animationStyles({ ...theme.custom.animation1, entry: "bottom" }),
   },
 
-  ...keyframes(theme.custom.props),
+  ...animationKeyframes(theme.custom.props),
 }));
 
 /**
@@ -196,6 +201,13 @@ const Side = (props) => {
   } = useStyles(props);
 
   const klasses = [front, back, left, right, top, bottom];
+
+  const klass = findInArrays({
+    targetArray: klasses,
+    anotherArray: sideNames,
+    identifier: name,
+  });
+
   const animations = [
     frontAnimation,
     backAnimation,
@@ -204,9 +216,12 @@ const Side = (props) => {
     topAnimation,
     bottomAnimation,
   ];
-  const index = sideNames.findIndex((item) => item === name);
-  const klass = klasses[index];
-  const animation = animations[index];
+
+  const animation = findInArrays({
+    targetArray: animations,
+    anotherArray: sideNames,
+    identifier: name,
+  });
 
   return (
     <div

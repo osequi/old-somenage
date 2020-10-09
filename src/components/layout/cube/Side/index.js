@@ -8,5 +8,5 @@ export {
   AnimationPropTypes,
   AnimationDefaultProps,
   animationStyles,
-  keyframes,
-} from "./Side.animations";
+  animationKeyframes,
+} from "./animations/Side.animations";
