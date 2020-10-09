@@ -4,3 +4,9 @@ export {
   BorderDefaultProps,
   borderStyles,
 } from "./Side.borders";
+export {
+  AnimationPropTypes,
+  AnimationDefaultProps,
+  animationStyles,
+  keyframes,
+} from "./Side.animations";

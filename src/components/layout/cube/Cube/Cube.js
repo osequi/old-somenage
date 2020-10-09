@@ -13,14 +13,9 @@ import Side, {
   sideNames,
   BorderPropTypes,
   BorderDefaultProps,
+  AnimationPropTypes,
+  AnimationDefaultProps,
 } from "../Side";
-
-import {
-  rotate,
-  rotateKeyframes,
-  RotatePropTypes,
-  RotateDefaultProps,
-} from "./Cube.rotate";
 
 /**
  * Defines the prop types
@@ -89,15 +84,14 @@ const propTypes = {
    */
   borders: PropTypes.shape(BorderPropTypes),
   /**
+   * The animations attached to the cube.
+   * @type {array}
+   */
+  animations: PropTypes.arrayOf(PropTypes.shape(AnimationPropTypes)),
+  /**
    * The rotation of the cube.
    * Preferred to use one of the presets.
    * @type {object}
-   */
-  rotate: PropTypes.shape(RotatePropTypes),
-  /**
-   * The `transform-style` CSS property value.
-   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/transform-style
-   * @type {string}
    */
   transformStyle: PropTypes.oneOf(["preserve-3d", "flat"]),
   /**
@@ -129,7 +123,7 @@ const defaultProps = {
       return { ...item, id: shortid.generate(), name: sideNames[index] };
     }),
   borders: BorderDefaultProps,
-  rotate: RotateDefaultProps,
+  animations: [AnimationDefaultProps],
   transformStyle: "preserve-3d",
   className: "Cube",
 };
@@ -157,30 +151,20 @@ const useStyles = makeStyles((theme) => ({
     transformStyle: props.transformStyle,
     position: "relative",
   }),
-
-  animation: {
-    ...rotate(theme.custom.rotate),
-  },
-
-  ...rotateKeyframes(theme.custom.rotate),
 }));
 
 /**
  * Displays a 3D cube.
  */
 const Cube = (props) => {
-  const { container, sides, borders, rotate, className } = props;
+  const { container, sides, borders, animations, className } = props;
   const { className: containerClassName } = container;
-
-  const theme = useTheme();
-  theme.custom.rotate = rotate;
 
   const { cube: cubeKlass, container: containerKlass, animation } = useStyles(
     props
   );
 
   const [frontFacingSide, setFrontFacingSide] = useState("front");
-  console.log("frontFacingSide:", frontFacingSide);
 
   const clickHandler = (props) => {
     const { name } = props;

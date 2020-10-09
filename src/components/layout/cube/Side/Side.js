@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import clsx from "clsx";
 
 /**
  * Imports styles.
  */
-import { BorderPropTypes, BorderDefaultProps, borderStyles } from ".";
+import { borderStyles, animationStyles, keyframes } from ".";
 
 /**
  * Defines the side names.
@@ -52,13 +52,8 @@ const propTypes = {
    */
   opacity: PropTypes.number,
   /**
-   * The borders of the side.
-   * @type {object}
-   */
-  borders: PropTypes.shape(BorderPropTypes),
-  /**
    * The parent (cube, container) props.
-   * Needed for 3d transformations.
+   * Needed for borders, animations, etc.
    * @type {object}
    */
   parent: PropTypes.any,
@@ -91,7 +86,6 @@ const defaultProps = {
   width: "100%",
   height: "100%",
   opacity: 0.9,
-  borders: BorderDefaultProps,
   parent: null,
   onClick: () => {
     console.log("Side clicked");
@@ -120,46 +114,103 @@ const useStyles = makeStyles((theme) => ({
     ...borderStyles({ ...props.parent.borders, name: "front" }),
   }),
 
+  frontAnimation: {
+    ...animationStyles({ ...theme.custom.animation1, name: "front" }),
+  },
+
   back: (props) => ({
     transform: `translateZ(calc(-${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, name: "back" }),
   }),
+
+  backAnimation: {
+    ...animationStyles({ ...theme.custom.animation1, name: "back" }),
+  },
 
   left: (props) => ({
     transform: `rotateY(90deg) translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, name: "left" }),
   }),
 
+  leftAnimation: {
+    ...animationStyles({ ...theme.custom.animation1, name: "left" }),
+  },
+
   right: (props) => ({
     transform: `rotateY(-90deg) translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, name: "right" }),
   }),
+
+  rightAnimation: {
+    ...animationStyles({ ...theme.custom.animation1, name: "right" }),
+  },
 
   top: (props) => ({
     transform: `rotateX(90deg) translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, name: "top" }),
   }),
 
+  topAnimation: {
+    ...animationStyles({ ...theme.custom.animation1, name: "top" }),
+  },
+
   bottom: (props) => ({
     transform: `rotateX(-90deg) translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, name: "bottom" }),
   }),
+
+  bottomAnimation: {
+    ...animationStyles({ ...theme.custom.animation1, name: "bottom" }),
+  },
+
+  ...keyframes(theme.custom.parent),
 }));
 
 /**
  * Displays a side of the cube.
  */
 const Side = (props) => {
-  const { name, onClick, frontFacingSide, className, children } = props;
-  const { side, front, back, left, right, top, bottom } = useStyles(props);
+  const { name, parent, onClick, frontFacingSide, className, children } = props;
+
+  /**
+   * Animations can't handle `props` so we'll hack with `theme`
+   */
+  const theme = useTheme();
+  theme.custom.animation1 = parent.animations[0];
+  theme.custom.parent = parent;
+
+  const {
+    side,
+    front,
+    back,
+    left,
+    right,
+    top,
+    bottom,
+    frontAnimation,
+    backAnimation,
+    leftAnimation,
+    rightAnimation,
+    topAnimation,
+    bottomAnimation,
+  } = useStyles(props);
 
   const klasses = [front, back, left, right, top, bottom];
+  const animations = [
+    frontAnimation,
+    backAnimation,
+    leftAnimation,
+    rightAnimation,
+    topAnimation,
+    bottomAnimation,
+  ];
   const index = sideNames.findIndex((item) => item === name);
   const klass = klasses[index];
+  const animation = animations[index];
 
   return (
     <div
-      className={clsx(className, side, klass)}
+      className={clsx(className, side, klass, animation)}
       onClick={() => onClick(props)}
     >
       {children}
