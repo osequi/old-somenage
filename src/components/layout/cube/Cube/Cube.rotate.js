@@ -36,7 +36,7 @@ const noRotation = () => {};
  */
 const defaultRotation = (props) => {
   return {
-    animation: `$cubeRotate 10s infinite linear`,
+    animation: `$defaultRotation 10s infinite linear`,
   };
 };
 
@@ -44,7 +44,7 @@ const defaultRotation = (props) => {
  * Defines the keyframes animations for the rotations
  */
 const rotateKeyframes = {
-  "@keyframes cubeRotate": {
+  "@keyframes defaultRotation": {
     "0%": { transform: "rotateY(0deg) rotateX(720deg) rotateZ(0deg)" },
     "100%": { transform: "rotateY(360deg) rotateX(0deg) rotateZ(360deg)" },
   },

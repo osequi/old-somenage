@@ -156,10 +156,13 @@ const useStyles = makeStyles((theme) => ({
     height: props.height,
     transformStyle: props.transformStyle,
     position: "relative",
-    animation: `$cubeRotate 10s infinite linear`,
   }),
 
-  "@keyframes cubeRotate": {
+  animation: {
+    animation: `$defaultRotation 10s infinite linear`,
+  },
+
+  "@keyframes defaultRotation": {
     from: { transform: "rotateY(0deg) rotateX(720deg) rotateZ(0deg)" },
     to: { transform: "rotateY(360deg) rotateX(0deg) rotateZ(360deg)" },
   },
@@ -171,7 +174,9 @@ const useStyles = makeStyles((theme) => ({
 const Cube = (props) => {
   const { container, sides, borders, className } = props;
   const { className: containerClassName } = container;
-  const { cube: cubeKlass, container: containerKlass } = useStyles(props);
+  const { cube: cubeKlass, container: containerKlass, animation } = useStyles(
+    props
+  );
 
   const sidesList =
     sides &&
@@ -182,7 +187,7 @@ const Cube = (props) => {
 
   return (
     <div className={clsx(containerClassName, containerKlass)}>
-      <div className={clsx(className, cubeKlass)}>{sidesList}</div>
+      <div className={clsx(className, cubeKlass, animation)}>{sidesList}</div>
     </div>
   );
 };
