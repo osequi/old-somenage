@@ -158,9 +158,9 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
   }),
 
-  animation: {
+  animation: (props) => ({
     animation: `$defaultRotation 10s infinite linear`,
-  },
+  }),
 
   "@keyframes defaultRotation": {
     from: { transform: "rotateY(0deg) rotateX(720deg) rotateZ(0deg)" },
