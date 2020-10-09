@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import clsx from "clsx";
 import shortid from "shortid";
 
@@ -158,22 +158,23 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
   }),
 
-  animation: (props) => ({
-    animation: `$defaultRotation 10s infinite linear`,
-  }),
-
-  "@keyframes defaultRotation": {
-    from: { transform: "rotateY(0deg) rotateX(720deg) rotateZ(0deg)" },
-    to: { transform: "rotateY(360deg) rotateX(0deg) rotateZ(360deg)" },
+  animation: {
+    ...rotate(theme.custom.rotate),
   },
+
+  ...rotateKeyframes(theme.custom.rotate),
 }));
 
 /**
  * Displays a 3D cube.
  */
 const Cube = (props) => {
-  const { container, sides, borders, className } = props;
+  const { container, sides, borders, rotate, className } = props;
   const { className: containerClassName } = container;
+
+  const theme = useTheme();
+  theme.custom.rotate = rotate;
+
   const { cube: cubeKlass, container: containerKlass, animation } = useStyles(
     props
   );

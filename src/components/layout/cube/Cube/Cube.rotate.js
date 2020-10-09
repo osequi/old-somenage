@@ -29,12 +29,16 @@ const defaultProps = {
 /**
  * Defines no rotation.
  */
-const noRotation = () => {};
+const noRotation = () => {
+  return {
+    animation: "",
+  };
+};
 
 /**
  * Defines the default rotation.
  */
-const defaultRotation = (props) => {
+const defaultRotation = () => {
   return {
     animation: `$defaultRotation 10s infinite linear`,
   };
@@ -43,11 +47,13 @@ const defaultRotation = (props) => {
 /**
  * Defines the keyframes animations for the rotations
  */
-const rotateKeyframes = {
-  "@keyframes defaultRotation": {
-    "0%": { transform: "rotateY(0deg) rotateX(720deg) rotateZ(0deg)" },
-    "100%": { transform: "rotateY(360deg) rotateX(0deg) rotateZ(360deg)" },
-  },
+const rotateKeyframes = (props) => {
+  return {
+    "@keyframes defaultRotation": {
+      "0%": { transform: "rotateY(0deg) rotateX(720deg) rotateZ(0deg)" },
+      "100%": { transform: "rotateY(360deg) rotateX(0deg) rotateZ(360deg)" },
+    },
+  };
 };
 
 /**
@@ -58,10 +64,13 @@ const rotate = (props) => {
 
   const rotations = [noRotation, defaultRotation];
   const index = rotationPresets.findIndex((item) => item === preset);
+
   if (index === -1) return null;
+  console.log("rotate:", rotations[index]);
 
   const rotation = rotations[index];
   const styles = rotation(props);
+  console.log("styles:", styles);
 
   return styles;
 };
