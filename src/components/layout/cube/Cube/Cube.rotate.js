@@ -16,6 +16,13 @@ const propTypes = PropTypes.shape({
    * @type {string}
    */
   preset: PropTypes.oneOf(rotationPresets),
+  /**
+   * The animation settings.
+   * @type {object}
+   */
+  animation: PropTypes.shape({
+    duration: PropTypes.string,
+  }),
 });
 
 /**
@@ -24,6 +31,9 @@ const propTypes = PropTypes.shape({
  */
 const defaultProps = {
   preset: "default",
+  animation: {
+    duration: "20s",
+  },
 };
 
 /**
@@ -37,10 +47,12 @@ const noRotation = () => {
 
 /**
  * Defines the default rotation.
+ * // NOTE: `$defaultRotation ...` cannot contain any props inside ...
  */
-const defaultRotation = () => {
+const defaultRotation = (props) => {
   return {
-    animation: `$defaultRotation 10s infinite linear`,
+    animation: `$defaultRotation infinite linear`,
+    animationDuration: (props = props.duration),
   };
 };
 
@@ -60,17 +72,15 @@ const rotateKeyframes = (props) => {
  * Returns a rotation animation based on a preset.
  */
 const rotate = (props) => {
-  const { preset } = props;
+  const { preset, animation } = props;
 
   const rotations = [noRotation, defaultRotation];
   const index = rotationPresets.findIndex((item) => item === preset);
 
   if (index === -1) return null;
-  console.log("rotate:", rotations[index]);
 
   const rotation = rotations[index];
-  const styles = rotation(props);
-  console.log("styles:", styles);
+  const styles = rotation(animation);
 
   return styles;
 };
