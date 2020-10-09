@@ -53,6 +53,12 @@ const defaultRotation = (props) => {
   return {
     animation: `$defaultRotation infinite linear`,
     animationDuration: (props = props.duration),
+
+    cursor: "pointer",
+
+    ["&:hover"]: {
+      animationPlayState: "paused",
+    },
   };
 };
 

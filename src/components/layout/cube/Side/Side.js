@@ -63,6 +63,16 @@ const propTypes = {
    */
   parent: PropTypes.any,
   /**
+   * The click handler.
+   * @type {func}
+   */
+  onClick: PropTypes.func,
+  /**
+   * The name of the side which is currently facing the front.
+   * @type {string}
+   */
+  frontFacingSide: PropTypes.string,
+  /**
    * The className of the element.
    * It's optional to set.
    * Serves the technical purpose of style chaining.
@@ -83,6 +93,10 @@ const defaultProps = {
   opacity: 0.9,
   borders: BorderDefaultProps,
   parent: null,
+  onClick: () => {
+    console.log("Side clicked");
+  },
+  frontFacingSide: "front",
   className: "Side",
 };
 
@@ -95,6 +109,10 @@ const useStyles = makeStyles((theme) => ({
     width: props.width,
     height: props.height,
     opacity: props.opacity,
+
+    ["&:hover"]: {
+      background: "red",
+    },
   }),
 
   front: (props) => ({
@@ -132,14 +150,21 @@ const useStyles = makeStyles((theme) => ({
  * Displays a side of the cube.
  */
 const Side = (props) => {
-  const { name, className, children } = props;
+  const { name, onClick, frontFacingSide, className, children } = props;
   const { side, front, back, left, right, top, bottom } = useStyles(props);
 
   const klasses = [front, back, left, right, top, bottom];
   const index = sideNames.findIndex((item) => item === name);
   const klass = klasses[index];
 
-  return <div className={clsx(className, side, klass)}>{children}</div>;
+  return (
+    <div
+      className={clsx(className, side, klass)}
+      onClick={() => onClick(props)}
+    >
+      {children}
+    </div>
+  );
 };
 
 Side.propTypes = propTypes;

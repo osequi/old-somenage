@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import clsx from "clsx";
@@ -179,11 +179,27 @@ const Cube = (props) => {
     props
   );
 
+  const [frontFacingSide, setFrontFacingSide] = useState("front");
+  console.log("frontFacingSide:", frontFacingSide);
+
+  const clickHandler = (props) => {
+    const { name } = props;
+    setFrontFacingSide(name);
+  };
+
   const sidesList =
     sides &&
     sides.map((item) => {
       const { id } = item;
-      return <Side key={id} {...item} parent={props} />;
+      return (
+        <Side
+          key={id}
+          {...item}
+          parent={props}
+          onClick={clickHandler}
+          frontFacingSide={frontFacingSide}
+        />
+      );
     });
 
   return (
