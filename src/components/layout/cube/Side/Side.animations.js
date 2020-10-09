@@ -70,10 +70,33 @@ const unfold = (props) => {
       animationFillMode: "forwards",
     },
 
-    left: {},
-    right: {},
-    top: {},
-    bottom: {},
+    left: {
+      animationName: `$Left`,
+      animationDuration: "1s",
+      animationDelay: "1s",
+      animationFillMode: "forwards",
+    },
+
+    right: {
+      animationName: `$Right`,
+      animationDuration: "1s",
+      animationDelay: "1s",
+      animationFillMode: "forwards",
+    },
+
+    top: {
+      animationName: `$Top`,
+      animationDuration: "1s",
+      animationDelay: "2s",
+      animationFillMode: "forwards",
+    },
+
+    bottom: {
+      animationName: `$Bottom`,
+      animationDuration: "1s",
+      animationDelay: "2s",
+      animationFillMode: "forwards",
+    },
   };
 };
 
@@ -92,6 +115,30 @@ const keyframes = (props) => {
     "@keyframes Back": {
       to: {
         transform: `translateZ(-100px)`,
+      },
+    },
+
+    "@keyframes Left": {
+      to: {
+        transform: `rotateY(90deg) translateZ(100px)`,
+      },
+    },
+
+    "@keyframes Right": {
+      to: {
+        transform: `rotateY(-90deg) translateZ(100px)`,
+      },
+    },
+
+    "@keyframes Top": {
+      to: {
+        transform: `rotateX(90deg) translateZ(100px)`,
+      },
+    },
+
+    "@keyframes Bottom": {
+      to: {
+        transform: `rotateX(-90deg) translateZ(100px)`,
       },
     },
   };
