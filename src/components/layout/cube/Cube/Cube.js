@@ -17,6 +17,11 @@ import Side, {
   AnimationDefaultProps,
 } from "../Side";
 
+import {
+  AnimationPropTypes as CubeAnimationPropTypes,
+  AnimationDefaultProps as CubeAnimationDefaultProps,
+} from "./animations/Cube.animations";
+
 /**
  * Defines the prop types
  */
