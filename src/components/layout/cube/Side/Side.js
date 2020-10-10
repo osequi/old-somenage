@@ -6,11 +6,13 @@ import clsx from "clsx";
 /**
  * Imports other components, hooks, helpers.
  */
-import { borderStyles } from ".";
+import { borderStyles } from "./borders/Side.borders";
+
 import {
   animationStyles,
   animationKeyframes,
 } from "./animations/Side.animations";
+
 import { findInArrays } from "../../../helpers";
 
 /**
@@ -116,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
 
   front: (props) => ({
     //transform: `translateZ(calc(${props.parent.width} / 2))`,
-    ...borderStyles({ ...props.parent.borders, name: "front" }),
+    ...borderStyles({ ...props.parent.borders, entry: "front" }),
   }),
 
   frontAnimation: {
@@ -125,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
 
   back: (props) => ({
     //transform: `translateZ(calc(-${props.parent.width} / 2))`,
-    ...borderStyles({ ...props.parent.borders, name: "back" }),
+    ...borderStyles({ ...props.parent.borders, entry: "back" }),
   }),
 
   backAnimation: {
@@ -134,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
 
   left: (props) => ({
     //transform: `rotateY(90deg) translateZ(calc(${props.parent.width} / 2))`,
-    ...borderStyles({ ...props.parent.borders, name: "left" }),
+    ...borderStyles({ ...props.parent.borders, entry: "left" }),
   }),
 
   leftAnimation: {
@@ -143,7 +145,7 @@ const useStyles = makeStyles((theme) => ({
 
   right: (props) => ({
     //transform: `rotateY(-90deg) translateZ(calc(${props.parent.width} / 2))`,
-    ...borderStyles({ ...props.parent.borders, name: "right" }),
+    ...borderStyles({ ...props.parent.borders, entry: "right" }),
   }),
 
   rightAnimation: {
@@ -152,7 +154,7 @@ const useStyles = makeStyles((theme) => ({
 
   top: (props) => ({
     //transform: `rotateX(90deg) translateZ(calc(${props.parent.width} / 2))`,
-    ...borderStyles({ ...props.parent.borders, name: "top" }),
+    ...borderStyles({ ...props.parent.borders, entry: "top" }),
   }),
 
   topAnimation: {
@@ -161,7 +163,7 @@ const useStyles = makeStyles((theme) => ({
 
   bottom: (props) => ({
     //transform: `rotateX(-90deg) translateZ(calc(${props.parent.width} / 2))`,
-    ...borderStyles({ ...props.parent.borders, name: "bottom" }),
+    ...borderStyles({ ...props.parent.borders, entry: "bottom" }),
   }),
 
   bottomAnimation: {

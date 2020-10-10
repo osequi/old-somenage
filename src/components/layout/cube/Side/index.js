@@ -1,9 +1,11 @@
 export { default, SidePropTypes, SideDefaultProps, sideNames } from "./Side";
+
 export {
   BorderPropTypes,
   BorderDefaultProps,
   borderStyles,
-} from "./Side.borders";
+} from "./borders/Side.borders";
+
 export {
   AnimationPropTypes,
   AnimationDefaultProps,
