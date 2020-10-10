@@ -1,6 +1,14 @@
 import PropTypes from "prop-types";
 
 /**
+ * Imports other components and hooks
+ */
+import {
+  CssAnimationsPropTypes,
+  CssAnimationsDefaultProps,
+} from "../../../../animations/CssAnimations";
+
+/**
  * Imports presets.
  */
 import { rotate, rotateKeyframes } from "./Cube.preset.rotate";
@@ -31,9 +39,7 @@ const propTypes = PropTypes.shape({
    * The animation settings.
    * @type {object}
    */
-  animation: PropTypes.shape({
-    duration: PropTypes.string,
-  }),
+  animation: PropTypes.shape(CssAnimationsPropTypes),
 });
 
 /**

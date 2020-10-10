@@ -1,6 +1,14 @@
 import PropTypes from "prop-types";
 
 /**
+ * Imports other components and hooks
+ */
+import {
+  CssAnimationsPropTypes,
+  CssAnimationsDefaultProps,
+} from "../../../../animations/CssAnimations";
+
+/**
  * Imports animations.
  */
 import { none } from "./Side.preset.none";
@@ -34,20 +42,10 @@ const propTypes = PropTypes.shape({
    */
   entry: PropTypes.string,
   /**
-   * The animation duration.
-   * @type {string}
+   * The animation settings.
+   * @type {object}
    */
-  duration: PropTypes.string,
-  /**
-   * The animation delay.
-   * @type {string}
-   */
-  delay: PropTypes.string,
-  /**
-   * The animation fill mode.
-   * @type {string}
-   */
-  fillMode: PropTypes.string,
+  animation: PropTypes.shape(CssAnimationsPropTypes),
 });
 
 /**
@@ -57,9 +55,7 @@ const propTypes = PropTypes.shape({
 const defaultProps = {
   preset: "fold",
   entry: null,
-  duration: "1s",
-  delay: "0s",
-  fillMode: "forwards",
+  animation: { duration: "1s", delay: "0s", fillMode: "forwards" },
 };
 
 /**
