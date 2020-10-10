@@ -69,4 +69,5 @@ export {
   propTypes as AnimationPropTypes,
   defaultProps as AnimationDefaultProps,
   animationStyles,
+  rotateKeyframes as animationKeyframes,
 };

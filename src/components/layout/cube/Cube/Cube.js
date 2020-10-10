@@ -20,6 +20,8 @@ import Side, {
 import {
   AnimationPropTypes as CubeAnimationPropTypes,
   AnimationDefaultProps as CubeAnimationDefaultProps,
+  animationStyles,
+  animationKeyframes,
 } from "./animations/Cube.animations";
 
 /**
@@ -156,6 +158,12 @@ const useStyles = makeStyles((theme) => ({
     transformStyle: props.transformStyle,
     position: "relative",
   }),
+
+  cubeAnimation: {
+    ...animationStyles(theme.custom.animation),
+  },
+
+  ...animationKeyframes(theme.custom.props),
 }));
 
 /**
@@ -165,9 +173,18 @@ const Cube = (props) => {
   const { container, sides, borders, animations, className } = props;
   const { className: containerClassName } = container;
 
-  const { cube: cubeKlass, container: containerKlass, animation } = useStyles(
-    props
-  );
+  /**
+   * Animations can't handle `props` so we'll hack with `theme`
+   */
+  const theme = useTheme();
+  theme.custom.animation = { preset: "rotate", duration: "20s" };
+  theme.custom.props = props;
+
+  const {
+    cube: cubeKlass,
+    container: containerKlass,
+    cubeAnimation,
+  } = useStyles(props);
 
   const [frontFacingSide, setFrontFacingSide] = useState("front");
 
@@ -193,7 +210,9 @@ const Cube = (props) => {
 
   return (
     <div className={clsx(containerClassName, containerKlass)}>
-      <div className={clsx(className, cubeKlass, animation)}>{sidesList}</div>
+      <div className={clsx(className, cubeKlass, cubeAnimation)}>
+        {sidesList}
+      </div>
     </div>
   );
 };

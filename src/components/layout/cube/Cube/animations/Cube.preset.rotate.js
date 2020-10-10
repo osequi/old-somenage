@@ -3,8 +3,10 @@
  */
 const rotate = (props) => {
   return {
-    animation: `$rotate infinite linear`,
+    animationName: `$Rotate`,
     animationDuration: (props = props.duration),
+    animationTimingFunction: "linear",
+    animationIterationCount: "infinite",
 
     cursor: "pointer",
 
@@ -19,7 +21,7 @@ const rotate = (props) => {
  */
 const rotateKeyframes = (props) => {
   return {
-    "@keyframes rotate": {
+    "@keyframes Rotate": {
       "0%": { transform: "rotateY(0deg) rotateX(720deg) rotateZ(0deg)" },
       "100%": { transform: "rotateY(360deg) rotateX(0deg) rotateZ(360deg)" },
     },
