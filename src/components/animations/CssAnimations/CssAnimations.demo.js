@@ -1,0 +1,72 @@
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles, useTheme } from "@material-ui/styles";
+import clsx from "clsx";
+
+/**
+ * Imports other components and hooks
+ */
+import CssAnimations, {
+  CssAnimationsPropTypes,
+  CssAnimationsDefaultProps,
+} from ".";
+
+/**
+ * Defines the prop types
+ */
+const propTypes = {
+  ...CssAnimationsPropTypes,
+};
+
+/**
+ * Defines the default props
+ */
+const defaultProps = {
+  animation: {
+    name: "MoveOnX",
+    duration: "2s",
+    timingFunction: "ease-in-out",
+    iterationCount: "infinite",
+    direction: "alternate",
+    keyframes: {
+      from: { transform: "translateX(-50px)" },
+      to: { transform: "translateX(50px)" },
+    },
+  },
+};
+
+/**
+ * Defines the styles
+ */
+const useStyles = makeStyles((theme) => ({
+  container: {
+    width: "400px",
+    height: "400px",
+  },
+
+  square: {
+    width: "400px",
+    height: "400px",
+    background: "lightgreen",
+  },
+}));
+
+/**
+ * Displays the demo.
+ */
+const CssAnimationsDemo = (props) => {
+  const { container, square } = useStyles(props);
+
+  return (
+    <CssAnimations {...props}>
+      <div className={clsx("Container", container)}>
+        <div className={clsx("Square", square)}></div>
+      </div>
+    </CssAnimations>
+  );
+};
+
+CssAnimationsDemo.propTypes = propTypes;
+CssAnimationsDemo.defaultProps = defaultProps;
+
+export default CssAnimations;
