@@ -187,6 +187,7 @@ const Cube = (props) => {
   } = useStyles(props);
 
   const [frontFacingSide, setFrontFacingSide] = useState("front");
+  console.log("frontFacingSide:", frontFacingSide);
 
   const clickHandler = (props) => {
     const { name } = props;

@@ -3,12 +3,12 @@ import React from "react";
 /**
  * Imports other components and hooks
  */
-import Layout from ".";
+import Grid from ".";
 
 /**
  * Displays the Layout demo
  */
-const LayoutDemo = (props) => {
+const GridDemo = (props) => {
   const items = Array(10)
     .fill("")
     .map((item, index) => {
@@ -17,11 +17,11 @@ const LayoutDemo = (props) => {
 
   return (
     <>
-      <Layout columns={3} gap={3} fauxLines="both">
+      <Grid columns={3} gap={3} fauxLines="both">
         {items}
-      </Layout>
+      </Grid>
     </>
   );
 };
 
-export default LayoutDemo;
+export default GridDemo;
