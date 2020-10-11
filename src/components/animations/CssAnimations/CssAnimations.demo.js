@@ -63,11 +63,11 @@ const CssAnimationsDemo = (props) => {
   const { container, square } = useStyles(props);
 
   return (
-    <CssAnimations {...props}>
-      <div className={clsx("Container", container)}>
+    <div className={clsx("Container", container)}>
+      <CssAnimations {...props}>
         <div className={clsx("Square", square)}></div>
-      </div>
-    </CssAnimations>
+      </CssAnimations>
+    </div>
   );
 };
 
