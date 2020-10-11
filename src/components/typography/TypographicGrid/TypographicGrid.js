@@ -119,9 +119,9 @@ const drawLines = (props) => {
 };
 
 /**
- * Displays the component
+ * Displays a typographic grid.
  */
-const Grid = (props) => {
+const TypographicGrid = (props) => {
   const {
     displayVerticalRhytm,
     displayHorizontalRhytm,
@@ -167,8 +167,11 @@ const Grid = (props) => {
   );
 };
 
-Grid.propTypes = propTypes;
-Grid.defaultProps = defaultProps;
+TypographicGrid.propTypes = propTypes;
+TypographicGrid.defaultProps = defaultProps;
 
-export default Grid;
-export { propTypes as GridPropTypes, defaultProps as GridDefaultProps };
+export default TypographicGrid;
+export {
+  propTypes as TypographicGridPropTypes,
+  defaultProps as TypographicGridDefaultProps,
+};

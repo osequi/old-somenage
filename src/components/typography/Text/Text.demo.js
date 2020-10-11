@@ -8,7 +8,7 @@ import useMarkdown from "../../../hooks/use-markdown";
 import markdown from "./demos/Text.demo.md";
 import { Article } from "../../semantic-elements/SemanticElements";
 import Setup from "../Setup";
-import Grid from "../Grid";
+import TypographicGrid from "../TypographicGrid";
 
 /**
  * Displays the component.
@@ -21,7 +21,7 @@ const TextDemo = (props) => {
   return (
     <>
       <Setup />
-      <Grid />
+      <TypographicGrid />
       <h2>Text Demo</h2>
       <p>
         <Text variant="default">This is the default text.</Text>
