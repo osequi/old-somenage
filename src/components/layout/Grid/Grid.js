@@ -45,6 +45,7 @@ const propTypes = {
   as: PropTypes.func,
   /**
    * The content to be displayed.
+   * It should be preferably an array of Cells.
    * @type {any}
    */
   children: PropTypes.any,

@@ -1,9 +1,11 @@
 import React from "react";
+import shortid from "shortid";
 
 /**
  * Imports other components and hooks
  */
 import Grid from ".";
+import Cell from "../Cell";
 
 /**
  * Displays the Layout demo
@@ -12,7 +14,7 @@ const GridDemo = (props) => {
   const items = Array(10)
     .fill("")
     .map((item, index) => {
-      return <div key={index}>Item {index + 1}</div>;
+      return <Cell key={shortid.generate()}>Item {index + 1}</Cell>;
     });
 
   return (
