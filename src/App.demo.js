@@ -20,7 +20,6 @@ const Demo = (props) => {
       <Setup />
       <div className="Demo">
         <CssAnimationsDemo />
-
         {/*<CubeDemo /><GridDemo />
       <SemanticElementsDemo />
       <TextDemo />

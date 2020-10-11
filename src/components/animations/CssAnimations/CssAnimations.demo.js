@@ -23,7 +23,7 @@ const propTypes = {
  */
 const defaultProps = {
   animation: {
-    name: "MoveOnX",
+    name: "$MoveOnX",
     duration: "2s",
     timingFunction: "ease-in-out",
     iterationCount: "infinite",
@@ -38,15 +38,20 @@ const defaultProps = {
 /**
  * Defines the styles
  */
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   container: {
     width: "400px",
     height: "400px",
+    border: "1px solid",
+
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   square: {
-    width: "400px",
-    height: "400px",
+    width: "200px",
+    height: "200px",
     background: "lightgreen",
   },
 }));
@@ -69,4 +74,4 @@ const CssAnimationsDemo = (props) => {
 CssAnimationsDemo.propTypes = propTypes;
 CssAnimationsDemo.defaultProps = defaultProps;
 
-export default CssAnimations;
+export default CssAnimationsDemo;

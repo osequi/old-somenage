@@ -39,7 +39,8 @@ const defaultProps = {
  */
 const useStyles = makeStyles((theme) => ({
   container: (props) => ({
-    animationName: `$${props.name}`,
+    // NOTE: Can't get this to work
+    animationName: props.name,
     animationDuration: props.duration,
     animationTimingFunction: props.timingFunction,
     animationDelay: props.delay,
@@ -49,13 +50,15 @@ const useStyles = makeStyles((theme) => ({
     animationPlayState: props.playState,
   }),
 
-  "@keyframes ${theme.custom.name}": {
+  // NOTE: Don't know if this works or not
+  [`@keyframes ${theme.custom.keyframeName}`]: {
     ...theme.custom.keyframes,
   },
 }));
 
 /**
  * Displays the content inside an animation container.
+ * This doesn't works due to Material UIs strange CSS animations / keyframes support.
  */
 const CssAnimations = (props) => {
   const { animation, children } = props;
@@ -64,10 +67,9 @@ const CssAnimations = (props) => {
   const theme = useTheme();
   theme.custom.name = name;
   theme.custom.keyframes = keyframes;
+  theme.custom.keyframeName = name.substring(1);
 
   const { container } = useStyles(animation);
-
-  console.log("children:", children);
 
   return <div className={clsx("CssAnimations", container)}>{children}</div>;
 };
