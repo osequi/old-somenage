@@ -8,7 +8,6 @@ import clsx from "clsx";
  */
 import Cell, { CellPropTypes, CellDefaultProps } from "../../Cell";
 import { borderStyles } from "./borders/Side.borders";
-
 import {
   animationStyles,
   animationKeyframes,
@@ -94,7 +93,6 @@ const useStyles = makeStyles((theme) => ({
   }),
 
   front: (props) => ({
-    //transform: `translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, entry: "front" }),
   }),
 
@@ -103,7 +101,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   back: (props) => ({
-    //transform: `translateZ(calc(-${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, entry: "back" }),
   }),
 
@@ -112,7 +109,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   left: (props) => ({
-    //transform: `rotateY(90deg) translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, entry: "left" }),
   }),
 
@@ -121,7 +117,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   right: (props) => ({
-    //transform: `rotateY(-90deg) translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, entry: "right" }),
   }),
 
@@ -130,7 +125,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   top: (props) => ({
-    //transform: `rotateX(90deg) translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, entry: "top" }),
   }),
 
@@ -139,7 +133,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   bottom: (props) => ({
-    //transform: `rotateX(-90deg) translateZ(calc(${props.parent.width} / 2))`,
     ...borderStyles({ ...props.parent.borders, entry: "bottom" }),
   }),
 
@@ -179,7 +172,8 @@ const Side = (props) => {
     bottomAnimation,
   } = useStyles(props);
 
-  const klasses = [front, back, left, right, top, bottom];
+  // NOTE: this ordered by frontFacingSide will make the onClick work ...
+  const klasses = [top, bottom, front, back, left, right];
 
   const klass = findInArrays({
     targetArray: klasses,
@@ -188,12 +182,12 @@ const Side = (props) => {
   });
 
   const animations = [
+    topAnimation,
+    bottomAnimation,
     frontAnimation,
     backAnimation,
     leftAnimation,
     rightAnimation,
-    topAnimation,
-    bottomAnimation,
   ];
 
   const animation = findInArrays({
