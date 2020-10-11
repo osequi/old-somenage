@@ -6,14 +6,14 @@ import clsx from "clsx";
 /**
  * Imports other components, hooks, helpers.
  */
-import Cell, { CellPropTypes, CellDefaultProps } from "../../Cell";
+import Cell, { CellPropTypes, CellDefaultProps } from "../../layout/Cell";
 import { borderStyles } from "./borders/Side.borders";
 import {
   animationStyles,
   animationKeyframes,
 } from "./animations/Side.animations";
 
-import { findInArrays } from "../../../helpers";
+import { findInArrays } from "../../helpers";
 
 /**
  * Defines the side names.

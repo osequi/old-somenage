@@ -8,7 +8,7 @@ import { DisplayDemo } from "./components/responsiveness/Display";
 import { TextDemo } from "./components/typography/Text";
 import { SemanticElementsDemo } from "./components/semantic-elements/SemanticElements";
 import { GridDemo } from "./components/layout/Grid";
-import { CubeDemo } from "./components/layout/cube/Cube";
+import { CubeDemo } from "./components/decorations/Cube";
 import { CssAnimationsDemo } from "./components/animations/CssAnimations";
 
 /**

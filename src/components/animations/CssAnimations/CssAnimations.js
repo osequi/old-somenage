@@ -77,6 +77,9 @@ const useStyles = makeStyles((theme) => ({
 const CssAnimations = (props) => {
   const { children } = props;
 
+  /**
+   * Due to Material UIs strange behavior this is the only way to pass props to `makeStyles`.
+   */
   const theme = useTheme();
   theme.custom.props = props;
 

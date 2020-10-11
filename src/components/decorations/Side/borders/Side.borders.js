@@ -11,7 +11,7 @@ import { normalized } from "./Side.preset.normalized";
 /**
  * Imports helpers
  */
-import { findStyles } from "../../../../helpers";
+import { findStyles } from "../../../helpers";
 
 /**
  * Defines a set of presets to draw borders.

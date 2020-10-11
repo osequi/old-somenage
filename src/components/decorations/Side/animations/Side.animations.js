@@ -6,24 +6,24 @@ import PropTypes from "prop-types";
 import {
   CssAnimationsPropTypes,
   CssAnimationsDefaultProps,
-} from "../../../../animations/CssAnimations";
+} from "../../../animations/CssAnimations";
 
 /**
- * Imports presets.
+ * Imports animations.
  */
-import { rotate, rotateKeyframes } from "./Cube.preset.rotate";
-import { noAnimation } from "./Cube.preset.none";
+import { none } from "./Side.preset.none";
+import { fold, foldKeyframes } from "./Side.preset.fold";
 
 /**
- * Imports helpers.
+ * Imports helpers
  */
-import { findStyles } from "../../../../helpers";
+import { findStyles } from "../../../helpers";
 
 /**
  * Defines a set of presets.
  * @type {Array}
  */
-const animationPresets = ["none", "rotate"];
+const animationPresets = ["none", "fold"];
 
 /**
  * Defines the prop types.
@@ -36,6 +36,12 @@ const propTypes = PropTypes.shape({
    */
   preset: PropTypes.oneOf(animationPresets),
   /**
+   * The entry of the preset.
+   * A preset can contain multiple entries.
+   * @type {string}
+   */
+  entry: PropTypes.string,
+  /**
    * The animation settings.
    * @type {object}
    */
@@ -47,19 +53,18 @@ const propTypes = PropTypes.shape({
  * @type {Object}
  */
 const defaultProps = {
-  preset: "rotate",
-  animation: {
-    duration: "20s",
-  },
+  preset: "fold",
+  entry: null,
+  animation: { duration: "1s", delay: "0s", fillMode: "forwards" },
 };
 
 /**
- * Returns an animation based on a preset.
+ * Returns a set of animations based on a preset.
  */
 const animationStyles = (props) => {
-  const { preset } = props;
+  const { preset, entry } = props;
 
-  const presets = [noAnimation, rotate];
+  const presets = [none, fold];
 
   const styles = findStyles({
     presets: presets,
@@ -68,12 +73,12 @@ const animationStyles = (props) => {
     props2: props,
   });
 
-  return styles;
+  return styles ? styles[entry] : null;
 };
 
 export {
   propTypes as AnimationPropTypes,
   defaultProps as AnimationDefaultProps,
   animationStyles,
-  rotateKeyframes as animationKeyframes,
+  foldKeyframes as animationKeyframes,
 };

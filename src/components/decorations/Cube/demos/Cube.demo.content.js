@@ -3,10 +3,7 @@ import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 
 import Cube, { CubeDefaultProps } from "../";
-import {
-  Section,
-  Article,
-} from "../../../../semantic-elements/SemanticElements";
+import { Section, Article } from "../../../semantic-elements/SemanticElements";
 
 /**
  * Defines the styles

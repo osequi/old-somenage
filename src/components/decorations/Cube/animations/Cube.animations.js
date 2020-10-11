@@ -6,24 +6,24 @@ import PropTypes from "prop-types";
 import {
   CssAnimationsPropTypes,
   CssAnimationsDefaultProps,
-} from "../../../../animations/CssAnimations";
+} from "../../../animations/CssAnimations";
 
 /**
- * Imports animations.
+ * Imports presets.
  */
-import { none } from "./Side.preset.none";
-import { fold, foldKeyframes } from "./Side.preset.fold";
+import { rotate, rotateKeyframes } from "./Cube.preset.rotate";
+import { noAnimation } from "./Cube.preset.none";
 
 /**
- * Imports helpers
+ * Imports helpers.
  */
-import { findStyles } from "../../../../helpers";
+import { findStyles } from "../../../helpers";
 
 /**
  * Defines a set of presets.
  * @type {Array}
  */
-const animationPresets = ["none", "fold"];
+const animationPresets = ["none", "rotate"];
 
 /**
  * Defines the prop types.
@@ -36,12 +36,6 @@ const propTypes = PropTypes.shape({
    */
   preset: PropTypes.oneOf(animationPresets),
   /**
-   * The entry of the preset.
-   * A preset can contain multiple entries.
-   * @type {string}
-   */
-  entry: PropTypes.string,
-  /**
    * The animation settings.
    * @type {object}
    */
@@ -53,18 +47,19 @@ const propTypes = PropTypes.shape({
  * @type {Object}
  */
 const defaultProps = {
-  preset: "fold",
-  entry: null,
-  animation: { duration: "1s", delay: "0s", fillMode: "forwards" },
+  preset: "rotate",
+  animation: {
+    duration: "20s",
+  },
 };
 
 /**
- * Returns a set of animations based on a preset.
+ * Returns an animation based on a preset.
  */
 const animationStyles = (props) => {
-  const { preset, entry } = props;
+  const { preset } = props;
 
-  const presets = [none, fold];
+  const presets = [noAnimation, rotate];
 
   const styles = findStyles({
     presets: presets,
@@ -73,12 +68,12 @@ const animationStyles = (props) => {
     props2: props,
   });
 
-  return styles ? styles[entry] : null;
+  return styles;
 };
 
 export {
   propTypes as AnimationPropTypes,
   defaultProps as AnimationDefaultProps,
   animationStyles,
-  foldKeyframes as animationKeyframes,
+  rotateKeyframes as animationKeyframes,
 };
