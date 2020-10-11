@@ -3,9 +3,7 @@ import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import clsx from "clsx";
 
-/**
- * Imports other components and hooks
- */
+// NOTE: Only the propTypes are useful from this component. See why below.
 
 /**
  * Defines the prop types.
