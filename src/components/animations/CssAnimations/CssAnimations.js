@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import clsx from "clsx";
 
-// NOTE: Only the propTypes are useful from this component. See why below.
-
 /**
  * Defines the prop types.
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations
@@ -25,7 +23,7 @@ const propTypes = {
 };
 
 /**
- * Defines the default props
+ * Defines the default props.
  */
 const defaultProps = {
   animation: {},
@@ -33,12 +31,12 @@ const defaultProps = {
 };
 
 /**
- * Defines the styles
+ * Defines the animation.
+ * Due to Material UIs strange behavior this can't be put inside `makeStyles`.
  */
-const useStyles = makeStyles((theme) => ({
-  container: (props) => ({
-    // NOTE: Can't get this to work
-    animationName: props.name,
+const animation = (props) => {
+  return {
+    animationName: `$${props.name}`,
     animationDuration: props.duration,
     animationTimingFunction: props.timingFunction,
     animationDelay: props.delay,
@@ -46,28 +44,43 @@ const useStyles = makeStyles((theme) => ({
     animationDirection: props.direction,
     animationFillMode: props.fillMode,
     animationPlayState: props.playState,
-  }),
+  };
+};
 
-  // NOTE: Don't know if this works or not
-  [`@keyframes ${theme.custom.keyframeName}`]: {
-    ...theme.custom.keyframes,
+/**
+ * Defines the keyframes.
+ * Due to Material UIs strange behavior this can't be put inside `makeStyles`.
+ */
+const keyframes = (props) => {
+  return {
+    [`@keyframes ${props.name}`]: {
+      ...props.keyframes,
+    },
+  };
+};
+
+/**
+ * Defines the styles.
+ * Due to Material UIs strange behavior this is the only way creating a CSS keyframes animation.
+ */
+const useStyles = makeStyles((theme) => ({
+  container: {
+    ...animation(theme.custom.props.animation),
   },
+
+  ...keyframes(theme.custom.props.animation),
 }));
 
 /**
  * Displays the content inside an animation container.
- * This doesn't works due to Material UIs strange CSS animations / keyframes support.
  */
 const CssAnimations = (props) => {
-  const { animation, children } = props;
-  const { name, keyframes } = animation;
+  const { children } = props;
 
   const theme = useTheme();
-  theme.custom.name = name;
-  theme.custom.keyframes = keyframes;
-  theme.custom.keyframeName = name.substring(1);
+  theme.custom.props = props;
 
-  const { container } = useStyles(animation);
+  const { container } = useStyles(props);
 
   return <div className={clsx("CssAnimations", container)}>{children}</div>;
 };

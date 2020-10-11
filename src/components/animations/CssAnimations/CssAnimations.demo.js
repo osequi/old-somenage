@@ -23,7 +23,7 @@ const propTypes = {
  */
 const defaultProps = {
   animation: {
-    name: "$MoveOnX",
+    name: "MoveOnX",
     duration: "2s",
     timingFunction: "ease-in-out",
     iterationCount: "infinite",
