@@ -22,7 +22,7 @@ const propTypes = {
    * The columns will be calculated useing `grid-template-columns: repeat(x, 1fr)`
    * @type {string}
    */
-  columns: PropTypes.string,
+  columns: PropTypes.number,
   /**
    * The gap between the cells, unitless.
    * The gap will be a multiply of `var(--lem)`
@@ -42,7 +42,7 @@ const propTypes = {
    * Preferably a Semantic Element.
    * @type {func}
    */
-  as: PropTypes.func,
+  as: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * The content to be displayed.
    * It should be preferably an array of Cells.

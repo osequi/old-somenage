@@ -16,11 +16,11 @@ const propTypes = {
    * Cells are part of a list so they need a unique `key`.
    * @type {string}
    */
-  key: PropTypes.string,
+  id: PropTypes.string,
   /**
    * The name of the cell.
-   * When cells are transformed into complex objects they need a name.
-   * Example: For a cube names are front, back, left, right, top, bottom
+   * When cells are transformed into complex objects they need a name to aid transformations.
+   * Example: For a cube names are front, back, left, right, top, bottom. Each side of the cube is transformed in a different way.
    * @type {string}
    */
   name: PropTypes.string,
@@ -29,7 +29,7 @@ const propTypes = {
    * Preferably inside a Semantic Element.
    * @type {func}
    */
-  as: PropTypes.func,
+  as: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * The content of the cell.
    * @type {any}
@@ -48,7 +48,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  key: null,
+  id: null,
   name: null,
   as: "div",
   children: null,

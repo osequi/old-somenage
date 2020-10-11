@@ -18,9 +18,8 @@ const Demo = (props) => {
     <>
       <Setup />
       <div className="Demo">
-        <GridDemo />
-
-        {/*<CubeDemo />
+        <CubeDemo />
+        {/*<GridDemo />
       <SemanticElementsDemo />
       <TextDemo />
       <DisplayDemo />

@@ -6,6 +6,7 @@ import clsx from "clsx";
 /**
  * Imports other components, hooks, helpers.
  */
+import Cell, { CellPropTypes, CellDefaultProps } from "../../Cell";
 import { borderStyles } from "./borders/Side.borders";
 
 import {
@@ -24,22 +25,7 @@ const sideNames = ["front", "back", "left", "right", "top", "bottom"];
  * Defines the prop types.
  */
 const propTypes = {
-  /**
-   * The unique id of the side.
-   * The sides are part of a list so they need a unique `key`.
-   * @type {string}
-   */
-  id: PropTypes.string,
-  /**
-   * The name of the side.
-   * @type {string}
-   */
-  name: PropTypes.oneOf(sideNames),
-  /**
-   * The content of the side.
-   * @type {any}
-   */
-  children: PropTypes.any,
+  ...CellPropTypes,
   /**
    * The width of the side.
    * Optional, it is set to 100%
@@ -74,22 +60,14 @@ const propTypes = {
    * @type {string}
    */
   frontFacingSide: PropTypes.string,
-  /**
-   * The className of the element.
-   * It's optional to set.
-   * Serves the technical purpose of style chaining.
-   * @type {string}
-   */
-  className: PropTypes.string,
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  id: "front",
-  name: "front",
-  children: null,
+  ...CellDefaultProps,
+  className: "Side",
   width: "100%",
   height: "100%",
   opacity: 0.9,
@@ -98,7 +76,6 @@ const defaultProps = {
     console.log("Side clicked");
   },
   frontFacingSide: "front",
-  className: "Side",
 };
 
 /**
@@ -226,12 +203,12 @@ const Side = (props) => {
   });
 
   return (
-    <div
+    <Cell
       className={clsx(className, side, klass, animation)}
       onClick={() => onClick(props)}
     >
       {children}
-    </div>
+    </Cell>
   );
 };
 
