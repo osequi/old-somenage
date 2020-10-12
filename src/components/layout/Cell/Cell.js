@@ -4,10 +4,6 @@ import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 
 /**
- * Imports other components and hooks
- */
-
-/**
  * Defines the prop types
  */
 const propTypes = {

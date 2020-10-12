@@ -7,6 +7,7 @@ import clsx from "clsx";
  * Imports other components, hooks, helpers.
  */
 import Cell, { CellPropTypes, CellDefaultProps } from "../../layout/Cell";
+
 import { borderStyles } from "./borders/Side.borders";
 import {
   animationStyles,
