@@ -11,7 +11,7 @@ import { GridDemo } from "./components/layout/Grid";
 import { CubeDemo } from "./components/decorations/Cube";
 import { CssAnimationsDemo } from "./components/animations/CssAnimations";
 //import { CubeDemo as CubeDemo2 } from "./components/shapes/Cube";
-import { FaceDemo } from "./components/shapes/Face";
+import { FacesDemo } from "./components/shapes/Faces";
 
 /**
  * Displays the demo
@@ -21,7 +21,7 @@ const Demo = (props) => {
     <>
       <Setup />
       <div className="Demo">
-        <FaceDemo />
+        <FacesDemo />
         {/*
 		<CssAnimationsDemo />
 		<CubeDemo />
