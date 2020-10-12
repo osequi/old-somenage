@@ -66,6 +66,7 @@ const Faces = (props) => {
     .fill("")
     .map((item, index) => {
       const id = shortid.generate();
+
       return (
         <Face key={id} id={id}>
           {children[index]}
