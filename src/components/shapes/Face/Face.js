@@ -37,10 +37,9 @@ const useStyles = makeStyles(() => ({
  * Displays a face of a shape.
  */
 const Face = (props) => {
-  const { children } = props;
   const { container } = useStyles(props);
 
-  return <Cell className={clsx("Face", container)}>{children}</Cell>;
+  return <Cell {...props} className={clsx("Face", container)} />;
 };
 
 Face.propTypes = propTypes;
