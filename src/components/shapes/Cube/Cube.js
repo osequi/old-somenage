@@ -11,10 +11,17 @@ import Faces, { FacesPropTypes, FacesDefaultProps } from "../Faces";
 import CubeFace, { CubeFacePropTypes, CubeFaceDefaultProps } from "../CubeFace";
 
 /**
+ * Defines the cube face names
+ * @type {array}
+ */
+const cubeFaceNames = ["front", "back", "left", "right", "top", "bottom"];
+
+/**
  * Defines the prop types
  */
 const propTypes = {
   ...FacesPropTypes,
+  faceNames: PropTypes.oneOf(cubeFaceNames),
 };
 
 /**
@@ -29,7 +36,8 @@ const defaultProps = {
         ...item,
         id: shortid.generate(),
         as: CubeFace,
-        children: `Face ${index + 1}`,
+        children: cubeFaceNames[index],
+        name: cubeFaceNames[index],
       };
     }),
 };

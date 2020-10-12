@@ -41,6 +41,7 @@ const defaultProps = {
   width: "100%",
   height: "100%",
   opacity: 0.9,
+  className: "CubeFace",
 };
 
 /**
@@ -59,10 +60,10 @@ const useStyles = makeStyles(() => ({
  * Displays the component
  */
 const CubeFace = (props) => {
-  const { name } = props;
+  const { name, className } = props;
   const { container } = useStyles(props);
 
-  return <Face {...props} className={clsx("CubeFace", container, name)} />;
+  return <Face {...props} className={clsx(className, container, name)} />;
 };
 
 CubeFace.propTypes = propTypes;
