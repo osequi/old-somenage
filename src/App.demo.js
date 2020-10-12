@@ -10,7 +10,7 @@ import { SemanticElementsDemo } from "./components/semantic-elements/SemanticEle
 import { GridDemo } from "./components/layout/Grid";
 import { CubeDemo } from "./components/decorations/Cube";
 import { CssAnimationsDemo } from "./components/animations/CssAnimations";
-//import { CubeDemo as CubeDemo2 } from "./components/shapes/Cube";
+import { CubeDemo as CubeDemo2 } from "./components/shapes/Cube";
 import { CubeFaceDemo } from "./components/shapes/CubeFace";
 
 /**
@@ -21,7 +21,7 @@ const Demo = (props) => {
     <>
       <Setup />
       <div className="Demo">
-        <CubeFaceDemo />
+        <CubeDemo2 />
         {/*
 		<CssAnimationsDemo />
 		<CubeDemo />

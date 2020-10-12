@@ -55,6 +55,8 @@ const Faces = (props) => {
   const { faces, as, className } = props;
   const { container } = useStyles(props);
 
+  console.log("faces:", faces);
+
   const facesList =
     faces &&
     faces.map((item) => {
