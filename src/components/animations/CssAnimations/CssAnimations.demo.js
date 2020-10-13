@@ -33,6 +33,19 @@ const defaultProps = {
       to: { transform: "translateX(50px)" },
     },
   },
+
+  animation2: {
+    name: "MoveOnY",
+    duration: "2s",
+    delay: "2s",
+    timingFunction: "ease-in-out",
+    iterationCount: "infinite",
+    direction: "alternate",
+    keyframes: {
+      from: { transform: "translateY(-50px)" },
+      to: { transform: "translateY(50px)" },
+    },
+  },
 };
 
 /**
@@ -60,12 +73,15 @@ const useStyles = makeStyles(() => ({
  * Displays the demo.
  */
 const CssAnimationsDemo = (props) => {
+  const { animation, animation2 } = props;
   const { container, square } = useStyles(props);
 
   return (
     <div className={clsx("Container", container)}>
-      <CssAnimations {...props}>
-        <div className={clsx("Square", square)}></div>
+      <CssAnimations animation={animation}>
+        <CssAnimations animation={animation2}>
+          <div className={clsx("Square", square)}></div>
+        </CssAnimations>
       </CssAnimations>
     </div>
   );

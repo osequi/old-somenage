@@ -7,6 +7,7 @@ import clsx from "clsx";
  * Imports other components and hooks
  */
 import Face, { FacePropTypes, FaceDefaultProps } from "../Face";
+import CssAnimations from "../../animations/CssAnimations";
 import { findInArrays } from "../../helpers";
 
 /**
@@ -14,6 +15,7 @@ import { findInArrays } from "../../helpers";
  */
 import transform, { transformPresetNames } from "./CubeFace.transforms";
 import border, { borderPresetNames } from "./CubeFace.borders";
+import animation, { animationPresetNames } from "./CubeFace.animations";
 
 /**
  * Defines the face names.
@@ -60,6 +62,11 @@ const propTypes = {
    * @type {string}
    */
   border: PropTypes.string,
+  /**
+   * The name of the animation preset.
+   * @type {string}
+   */
+  animationPresetName: PropTypes.oneOf(animationPresetNames),
 };
 
 /**
@@ -75,6 +82,7 @@ const defaultProps = {
   transformPresetName: "def",
   borderPresetName: "dashedInTheBackground",
   border: "1px solid",
+  animationPresetName: "fold",
 };
 
 /**
@@ -123,8 +131,7 @@ const useStyles = makeStyles(() => ({
  * Displays the component
  */
 const CubeFace = (props) => {
-  const { name, className } = props;
-
+  const { name, className, animationPresetName } = props;
   const { container, front, back, left, right, top, bottom } = useStyles(props);
 
   /**
@@ -138,9 +145,31 @@ const CubeFace = (props) => {
     identifier: name,
   });
 
-  return (
+  /**
+   * Displays the face.
+   */
+  const face = (
     <Face {...props} className={clsx(className, container, klassForName)} />
   );
+
+  /**
+   * Adds animation to the face.
+   */
+  const animationContainer = animationPresetName ? (
+    <CssAnimations
+      animation={animation({
+        ...props,
+        faceName: name,
+        animationPresetName: animationPresetName,
+      })}
+    >
+      {face}
+    </CssAnimations>
+  ) : (
+    face
+  );
+
+  return animationContainer;
 };
 
 CubeFace.propTypes = propTypes;

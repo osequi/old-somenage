@@ -22,6 +22,7 @@ const Demo = (props) => {
     <>
       <Setup />
       <div className="Demo">
+        <CssAnimationsDemo />
         <CubeFaceDemo />
         {/*<FaceDemo />
 			<CubeDemo2 />

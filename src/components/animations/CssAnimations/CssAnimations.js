@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import clsx from "clsx";
@@ -64,7 +64,7 @@ const keyframes = (props) => {
  * Due to Material UIs strange behavior this is the only way creating a CSS keyframes animation.
  */
 const useStyles = makeStyles((theme) => ({
-  container: {
+  [`${theme.custom.props.animation.name}`]: {
     ...animation(theme.custom.props.animation),
   },
 
@@ -75,7 +75,8 @@ const useStyles = makeStyles((theme) => ({
  * Displays the content inside an animation container.
  */
 const CssAnimations = (props) => {
-  const { children } = props;
+  const { animation, children } = props;
+  const { name } = animation;
 
   /**
    * Due to Material UIs strange behavior this is the only way to pass props to `makeStyles`.
@@ -83,9 +84,24 @@ const CssAnimations = (props) => {
   const theme = useTheme();
   theme.custom.props = props;
 
-  const { container } = useStyles(props);
+  /**
+   * // NOTE: This works only once, ie it returns always the same container
+   * .demo.js works fine with a single animation, it works not with a chained animation.
+   * CubeFace.animations where there are 6 calls will always return the animation for the first call.
+   * `useStyles` calls only once the `animation`
+   */
+  const container = useStyles(props)[theme.custom.props.animation.name];
 
-  return <div className={clsx("CssAnimations", container)}>{children}</div>;
+  return (
+    <div
+      className={clsx(
+        `CssAnimations${theme.custom.props.animation.name}`,
+        container
+      )}
+    >
+      {children}
+    </div>
+  );
 };
 
 CssAnimations.propTypes = propTypes;
