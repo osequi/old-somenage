@@ -12,6 +12,7 @@ import { CubeDemo } from "./components/decorations/Cube";
 import { CssAnimationsDemo } from "./components/animations/CssAnimations";
 import { CubeDemo as CubeDemo2 } from "./components/shapes/Cube";
 import { CubeFaceDemo } from "./components/shapes/CubeFace";
+import { FaceDemo } from "./components/shapes/Face";
 
 /**
  * Displays the demo
@@ -21,8 +22,9 @@ const Demo = (props) => {
     <>
       <Setup />
       <div className="Demo">
-        <CubeDemo2 />
+        <FaceDemo />
         {/*
+			<CubeDemo2 />
 		<CssAnimationsDemo />
 		<CubeDemo />
 		<GridDemo />

@@ -24,6 +24,7 @@ const propTypes = {
  */
 const defaultProps = {
   ...CellDefaultProps,
+  className: "Face",
 };
 
 /**
@@ -37,9 +38,10 @@ const useStyles = makeStyles(() => ({
  * Displays a face of a shape.
  */
 const Face = (props) => {
+  const { className } = props;
   const { container } = useStyles(props);
 
-  return <Cell {...props} className={clsx("Face", container)} />;
+  return <Cell {...props} className={clsx(className, container)} />;
 };
 
 Face.propTypes = propTypes;
