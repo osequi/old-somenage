@@ -7,9 +7,13 @@ import clsx from "clsx";
  * Imports other components and hooks
  */
 import Face, { FacePropTypes, FaceDefaultProps } from "../Face";
-import transform from "./CubeFace.transforms";
-import border, { borderPresetNames } from "./CubeFace.borders";
 import { findInArrays } from "../../helpers";
+
+/**
+ * Imports cube props and styles.
+ */
+import transform, { transformPresetNames } from "./CubeFace.transforms";
+import border, { borderPresetNames } from "./CubeFace.borders";
 
 /**
  * Defines the face names.
@@ -41,6 +45,11 @@ const propTypes = {
    */
   opacity: PropTypes.number,
   /**
+   * The name of the transform preset.
+   * @type {string}
+   */
+  transformPresetName: PropTypes.oneOf(transformPresetNames),
+  /**
    * The name of the border preset.
    * @type {string}
    */
@@ -63,6 +72,7 @@ const defaultProps = {
   width: "100px",
   height: "100px",
   opacity: 0.9,
+  transformPresetName: "def",
   borderPresetName: "dashedInTheBackground",
   border: "1px solid",
 };

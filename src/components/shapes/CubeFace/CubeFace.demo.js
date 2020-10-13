@@ -11,7 +11,12 @@ import CubeFace from ".";
 const CubeFaceDemo = (props) => {
   return (
     <>
+      <CubeFace name="front">CubeFace</CubeFace>
       <CubeFace name="back">CubeFace</CubeFace>
+      <CubeFace name="left">CubeFace</CubeFace>
+      <CubeFace name="right">CubeFace</CubeFace>
+      <CubeFace name="top">CubeFace</CubeFace>
+      <CubeFace name="bottom">CubeFace</CubeFace>
     </>
   );
 };

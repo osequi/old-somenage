@@ -1,7 +1,12 @@
 /**
- * Defines the default transforms for the cuba faces.
+ * Imports other components and hooks
  */
-const transforms = (props) => {
+import { findStyles } from "../../helpers";
+
+/**
+ * Defines the default transforms for the cube faces.
+ */
+const def = (props) => {
   return {
     front: {
       transform: `translateZ(calc(${props.width} * 2))`,
@@ -30,12 +35,28 @@ const transforms = (props) => {
 };
 
 /**
+ * Returns the available transform preset names.
+ * @type {Array}
+ */
+const transformPresetNames = ["def"];
+
+/**
  * Returns a transform for a cube face.
+ * The transform comes from a preset.
  */
 const transform = (props) => {
-  const { faceName } = props;
+  const { faceName, transformPresetName } = props;
 
-  return transforms(props)[faceName];
+  const presets = [def];
+  const preset = findStyles({
+    presets: presets,
+    presetNames: transformPresetNames,
+    preset: transformPresetName,
+    props2: props,
+  });
+
+  return preset ? preset[faceName] : null;
 };
 
 export default transform;
+export { transformPresetNames };
