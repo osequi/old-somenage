@@ -9,7 +9,11 @@ import CubeFace from ".";
  * Displays a face of a shape.
  */
 const CubeFaceDemo = (props) => {
-  return <CubeFace>CubeFace</CubeFace>;
+  return (
+    <>
+      <CubeFace name="back">CubeFace</CubeFace>
+    </>
+  );
 };
 
 export default CubeFaceDemo;

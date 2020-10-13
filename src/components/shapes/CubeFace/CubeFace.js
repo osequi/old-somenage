@@ -7,6 +7,14 @@ import clsx from "clsx";
  * Imports other components and hooks
  */
 import Face, { FacePropTypes, FaceDefaultProps } from "../Face";
+import transform from "./CubeFace.transforms";
+import { findInArrays } from "../../helpers";
+
+/**
+ * Defines the face names.
+ * @type {Array}
+ */
+const faceNames = ["front", "back", "left", "right", "top", "bottom"];
 
 /**
  * Defines the prop types
@@ -38,10 +46,11 @@ const propTypes = {
  */
 const defaultProps = {
   ...FaceDefaultProps,
-  width: "100%",
-  height: "100%",
-  opacity: 0.9,
   className: "CubeFace",
+  name: "front",
+  width: "100px",
+  height: "100px",
+  opacity: 0.9,
 };
 
 /**
@@ -54,6 +63,30 @@ const useStyles = makeStyles(() => ({
     height: props.height,
     opacity: props.opacity,
   }),
+
+  front: (props) => ({
+    ...transform({ faceName: "front", ...props }),
+  }),
+
+  back: (props) => ({
+    ...transform({ faceName: "back", ...props }),
+  }),
+
+  left: (props) => ({
+    ...transform({ faceName: "left", ...props }),
+  }),
+
+  right: (props) => ({
+    ...transform({ faceName: "right", ...props }),
+  }),
+
+  top: (props) => ({
+    ...transform({ faceName: "top", ...props }),
+  }),
+
+  bottom: (props) => ({
+    ...transform({ faceName: "bottom", ...props }),
+  }),
 }));
 
 /**
@@ -61,9 +94,23 @@ const useStyles = makeStyles(() => ({
  */
 const CubeFace = (props) => {
   const { name, className } = props;
-  const { container } = useStyles(props);
 
-  return <Face {...props} className={clsx(className, container, name)} />;
+  const { container, front, back, left, right, top, bottom } = useStyles(props);
+
+  /**
+   * Styles the face based on `name`.
+   * @type {object}
+   */
+  const klasses = [front, back, left, right, top, bottom];
+  const klassForName = findInArrays({
+    targetArray: klasses,
+    anotherArray: faceNames,
+    identifier: name,
+  });
+
+  return (
+    <Face {...props} className={clsx(className, container, klassForName)} />
+  );
 };
 
 CubeFace.propTypes = propTypes;
