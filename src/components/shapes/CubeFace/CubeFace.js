@@ -8,6 +8,7 @@ import clsx from "clsx";
  */
 import Face, { FacePropTypes, FaceDefaultProps } from "../Face";
 import transform from "./CubeFace.transforms";
+import border, { borderPresetNames } from "./CubeFace.borders";
 import { findInArrays } from "../../helpers";
 
 /**
@@ -39,6 +40,17 @@ const propTypes = {
    * @type {string}
    */
   opacity: PropTypes.number,
+  /**
+   * The name of the border preset.
+   * @type {string}
+   */
+  borderPresetName: PropTypes.oneOf(borderPresetNames),
+  /**
+   * The border CSS property.
+   * Example: '1px solid'
+   * @type {string}
+   */
+  border: PropTypes.string,
 };
 
 /**
@@ -51,6 +63,8 @@ const defaultProps = {
   width: "100px",
   height: "100px",
   opacity: 0.9,
+  borderPresetName: "dashedInTheBackground",
+  border: "1px solid",
 };
 
 /**
@@ -66,26 +80,32 @@ const useStyles = makeStyles(() => ({
 
   front: (props) => ({
     ...transform({ faceName: "front", ...props }),
+    ...border({ faceName: "front", ...props }),
   }),
 
   back: (props) => ({
     ...transform({ faceName: "back", ...props }),
+    ...border({ faceName: "back", ...props }),
   }),
 
   left: (props) => ({
     ...transform({ faceName: "left", ...props }),
+    ...border({ faceName: "left", ...props }),
   }),
 
   right: (props) => ({
     ...transform({ faceName: "right", ...props }),
+    ...border({ faceName: "right", ...props }),
   }),
 
   top: (props) => ({
     ...transform({ faceName: "top", ...props }),
+    ...border({ faceName: "top", ...props }),
   }),
 
   bottom: (props) => ({
     ...transform({ faceName: "bottom", ...props }),
+    ...border({ faceName: "bottom", ...props }),
   }),
 }));
 
