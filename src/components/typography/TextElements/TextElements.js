@@ -135,4 +135,5 @@ export default TextElements;
 export {
   propTypes as TextElementsPropTypes,
   defaultProps as TextElementsDefaultProps,
+  textElements,
 };

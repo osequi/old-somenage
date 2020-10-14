@@ -9,6 +9,7 @@ const useStyles = (...args) => {
   /**
    * Falls back silently when there are not enough arguments.
    * // NOTE: When `null` used an error is triggered when the args are not all set.
+   * // NOTE: `const styleFunction = (theme) => {}` won't work, only `(props, theme)`
    */
   const styles = args[0] ? args[0] : [];
   const props = args[1] ? args[1] : {};
