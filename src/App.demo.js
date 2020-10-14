@@ -5,6 +5,7 @@ import React from "react";
  */
 import Setup from "./components/typography/Setup";
 import { FontDemo } from "./components/typography/Font";
+import { HeadingsDemo } from "./components/typography/Headings";
 
 /**
  * Displays the demo
@@ -13,6 +14,7 @@ const Demo = (props) => {
   return (
     <>
       <Setup />
+      <HeadingsDemo />
       <FontDemo />
     </>
   );
