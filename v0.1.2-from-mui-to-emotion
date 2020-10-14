@@ -1,0 +1,4 @@
+The MUI theme hack works only once. In the case of the cube only for the first face, then stops rendering.
+https://github.com/osequi/hacks/blob/master/CSS-in-JS.md
+
+Emotion tests are all passed without hacks, so moving there. 
