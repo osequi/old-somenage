@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { cx } from "emotion";
-import { useStyles } from "../../../hooks";
+import { useStyles, useTheme } from "../../../hooks";
 
 /**
  * Adds a CSS Reset with `normalize.css`.
@@ -94,7 +94,7 @@ const container = (props) => {
  */
 const Setup = (props) => {
   const { fontSize, fontSizes, lineHeight } = props;
-  //const theme = useTheme();
+  const theme = useTheme();
 
   /**
    * Calculates the basic spacing unit, the grid size, in `em`
@@ -106,14 +106,12 @@ const Setup = (props) => {
    * Prepares the responsive font sizes.
    */
   let responsiveFontSizes = [];
-  /*
   fontSizes &&
     fontSizes.map((item) => {
       const { breakpoint, fontSize } = item;
       const query = theme.breakpoint(breakpoint);
       responsiveFontSizes[`${query}`] = { fontSize: `${fontSize}%` };
     });
-	*/
 
   /**
    * Loads the styles.

@@ -39,6 +39,11 @@ const propTypes = {
    * @type {object}
    */
   theme: PropTypes.object,
+  /**
+   * The content to be displayed.
+   * @type {any}
+   */
+  children: PropTypes.any,
 };
 
 /**
@@ -50,6 +55,7 @@ const defaultProps = {
   scale: null,
   modularScale: null,
   theme: null,
+  children: null,
 };
 
 /**

@@ -4,9 +4,10 @@ import React from "react";
  * Imports other components and hooks
  */
 import Setup from "./components/typography/Setup";
+import TypographicGrid from "./components/typography/TypographicGrid";
 import { FontDemo } from "./components/typography/Font";
 import { HeadingsDemo } from "./components/typography/Headings";
-import TypographicGrid from "./components/typography/TypographicGrid";
+import { TextElementsDemo } from "./components/typography/TextElements";
 
 /**
  * Displays the demo
@@ -16,6 +17,7 @@ const Demo = (props) => {
     <>
       <Setup />
       <TypographicGrid />
+      <TextElementsDemo />
       <HeadingsDemo />
       <FontDemo />
     </>

@@ -32,6 +32,11 @@ const propTypes = {
    * The color of the grid line
    */
   lineColor: PropTypes.string,
+  /**
+   * The content to be displayed.
+   * @type {any}
+   */
+  children: PropTypes.any,
 };
 
 /**
@@ -43,6 +48,7 @@ const defaultProps = {
   numberOfHorizontalLines: 500,
   numberOfVerticalLines: 1000,
   lineColor: "lightgrey",
+  children: null,
 };
 
 /**
