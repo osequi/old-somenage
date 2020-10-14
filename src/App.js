@@ -1,14 +1,15 @@
-import React from "react";
+import React, { createContext } from "react";
 
-import { ThemeProvider } from "@material-ui/styles";
 import theme from "./theme";
-
 import Demo from "./App.demo";
 
+const ThemeContext = createContext();
+
 const App = () => (
-  <ThemeProvider theme={theme}>
+  <ThemeContext.Provider value={theme}>
     <Demo />
-  </ThemeProvider>
+  </ThemeContext.Provider>
 );
 
 export default App;
+export { ThemeContext };
