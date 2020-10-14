@@ -117,6 +117,7 @@ const Text = (props) => {
 
   /**
    * Finds the required class.
+   * // NOTE: Perhaps the helper is needed here
    */
   const klasses = [
     defaultTextKlass,
