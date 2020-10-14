@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import { makeStyles, useTheme } from "@material-ui/styles";
-import clsx from "clsx";
+import { cx } from "emotion";
+import { useStyles } from "../../../hooks";
 
 /**
  * Adds a CSS Reset with `normalize.css`.
@@ -18,7 +18,7 @@ import "normalize.css";
 import "./Setup.css";
 
 /**
- * Defines the prop types
+ * Defines the prop types.
  */
 const propTypes = {
   /**
@@ -56,7 +56,7 @@ const propTypes = {
 };
 
 /**
- * Defines the default props
+ * Defines the default props.
  */
 const defaultProps = {
   fontSize: 100,
@@ -78,23 +78,23 @@ const defaultProps = {
 };
 
 /**
- * Defines the styles
+ * Defines the styles.
  */
-const useStyles = makeStyles((theme) => ({
-  container: (props) => ({
+const container = (props) => {
+  return {
     fontSize: `${props.fontSize}%`,
     lineHeight: props.lineHeight,
     "--lem": props.lem,
-    ...props.responsiveFontSizes,
-  }),
-}));
+    //...props.responsiveFontSizes,
+  };
+};
 
 /**
- * Sets up the typographic grid in `<body>`.
+ * Sets up the typographic grid in the `<body>`.
  */
 const Setup = (props) => {
   const { fontSize, fontSizes, lineHeight } = props;
-  const theme = useTheme();
+  //const theme = useTheme();
 
   /**
    * Calculates the basic spacing unit, the grid size, in `em`
@@ -106,17 +106,19 @@ const Setup = (props) => {
    * Prepares the responsive font sizes.
    */
   let responsiveFontSizes = [];
+  /*
   fontSizes &&
     fontSizes.map((item) => {
       const { breakpoint, fontSize } = item;
       const query = theme.breakpoint(breakpoint);
       responsiveFontSizes[`${query}`] = { fontSize: `${fontSize}%` };
     });
+	*/
 
   /**
-   * Loads the styles
+   * Loads the styles.
    */
-  const { container } = useStyles({
+  const { containerKlass } = useStyles([container], {
     ...props,
     lem: lem,
     responsiveFontSizes: responsiveFontSizes,
@@ -124,7 +126,7 @@ const Setup = (props) => {
 
   return (
     <Helmet>
-      <body className={clsx(container)} />
+      <body className={cx("Body", containerKlass)} />
     </Helmet>
   );
 };
