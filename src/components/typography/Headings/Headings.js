@@ -32,6 +32,7 @@ const propTypes = {
   /**
    * The modular scale of the headings in case when headings are different.
    * @type {object}
+   * // NOTE: This prop is inactive for now.
    */
   modularScale: PropTypes.shape({}),
   /**
@@ -73,11 +74,15 @@ const margin = (props) => {
    */
   const lineHeightInEm = (fontSize / 100) * setupLineHeight;
 
+  console.log("lineHeightInEm:", lineHeightInEm);
+
   /**
    * The heading's line height in em
    * Ex.: (ms(6), 1) => 5.61
    */
   const headingLineHeightInEm = ms(scale, scaleSetup) * lineHeight;
+
+  console.log("headingLineHeightInEm:", headingLineHeightInEm);
 
   /**
    * The nearest multiply of the default line height for the heading's line height, in em.

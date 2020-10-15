@@ -4,11 +4,8 @@ import ms from "modularscale-js";
 /**
  * Imports other components and hooks.
  */
-import {
-  SetupPropTypes,
-  SetupDefaultProps,
-} from "../components/typography/Setup";
-import { FontPropTypes, FontDefaultProps } from "../components/typography/Font";
+import { SetupPropTypes } from "../components/typography/Setup";
+import { FontPropTypes } from "../components/typography/Font";
 
 /**
  * Imports fonts.
@@ -35,7 +32,7 @@ const typographyPropTypes = {
     ratio: PropTypes.number,
   },
   /**
-   * The list of fonts.
+   * The list of fonts available for this theme.
    * @type {array}
    */
   fonts: PropTypes.arrayOf(PropTypes.shape(FontPropTypes)),
@@ -46,49 +43,67 @@ const typographyPropTypes = {
  */
 const typography = {
   setup: {
-    ...SetupDefaultProps,
+    fontSize: 100,
+    lineHeight: 1.25,
+    fontSizes: [
+      {
+        breakpoint: "tablet",
+        fontSize: 110,
+      },
+      {
+        breakpoint: "laptop",
+        fontSize: 120,
+      },
+      {
+        breakpoint: "desktop",
+        fontSize: 130,
+      },
+    ],
   },
   scale: {
     base: [1],
     ratio: 1.333,
   },
   fonts: [
-    { ...FontDefaultProps },
     {
       name: "Nimbus Sans Light",
       fontFamily: "nimbus-sans",
-      fontWeigh: 300,
+      fontWeight: 300,
       fontStyle: "normal",
     },
     {
       name: "Nimbus Sans Regular",
       fontFamily: "nimbus-sans",
-      fontWeigh: 400,
+      fontWeight: 400,
       fontStyle: "normal",
     },
     {
       name: "Nimbus Sans Medium",
       fontFamily: "nimbus-sans",
-      fontWeigh: 500,
+      fontWeight: 500,
       fontStyle: "normal",
     },
   ],
 };
 
 /**
- * Finds a font.
+ * Returns a font style object identified by name.
  * @param  {string} name The font name.
- * @return {object}      The font object.
+ * @return {object}      The font style object.
+ * @example
+ * ```
+ * font('Nimbus Sans Medium') => { name: "Nimbus Sans Medium", fontFamily: "nimbus-sans", fontWeight: 500, fontStyle: "normal"}
+ * ```
  */
 const font = (name) => {
   return typography.fonts.find((item) => item.name === name);
 };
 
 /**
- * Sets the max-width of a text to display 50-60 character in a row.
+ * Sets the max-width of a text to display 50-60 characters in a row.
  * // TODO: do the calculations. Currently maxWidth is hardcoded to 35.
  * @param  {string} name The font name.
- * @return {object}      The maxWidth JSS.
+ * @return {object}      The maxWidth style object.
  */
 const maxWidth = (name) => {
   return { maxWidth: `calc(35*var(--lem))` };
@@ -97,7 +112,7 @@ const maxWidth = (name) => {
 /**
  * Sets the font size to a modular scale value, in em.
  * @param  {number} number The level on the modular scale.
- * @return {object}        The fontSize JSS.
+ * @return {object}        The fontSize style object.
  */
 const scale = (number) => {
   const scaled = ms(number, typography.scale);

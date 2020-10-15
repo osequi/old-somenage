@@ -19,7 +19,7 @@ const adjacentSiblingsMarginTop = {
 /**
  * Returns a specifing typographic spacing.
  * @param  {string} name The spacing name.
- * @return {object}      The typographic spacing JSS.
+ * @return {object}      The typographic spacing object style.
  */
 const spacing = (name) => {
   switch (name) {
