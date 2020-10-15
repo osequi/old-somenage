@@ -57,6 +57,7 @@ const propTypes = {
 
 /**
  * Defines the default props.
+ * Props will be overwritten by the theme.
  */
 const defaultProps = {
   fontSize: 100,
@@ -80,12 +81,12 @@ const defaultProps = {
 /**
  * Defines the styles.
  */
-const container = (props) => {
+const container = (theme) => {
   return {
-    fontSize: `${props.fontSize}%`,
-    lineHeight: props.lineHeight,
-    "--lem": props.lem,
-    //...props.responsiveFontSizes,
+    fontSize: `${theme.typography.setup.fontSize}%`,
+    ...theme.typography.responsiveFontSizes,
+    lineHeight: theme.typography.setup.lineHeight,
+    "--lem": theme.typography.lem,
   };
 };
 
@@ -93,34 +94,12 @@ const container = (props) => {
  * Sets up the typographic grid in the `<body>`.
  */
 const Setup = (props) => {
-  const { fontSize, fontSizes, lineHeight } = props;
   const theme = useTheme();
-
-  /**
-   * Calculates the basic spacing unit, the grid size, in `em`
-   * Example: {fontSize: 100%, lineHeight: 1.25} => (100 * 1.25) / 100 = 1.25
-   */
-  const lem = `${(fontSize * lineHeight) / 100}em`;
-
-  /**
-   * Prepares the responsive font sizes.
-   */
-  let responsiveFontSizes = [];
-  fontSizes &&
-    fontSizes.map((item) => {
-      const { breakpoint, fontSize } = item;
-      const query = theme.breakpoint(breakpoint);
-      responsiveFontSizes[`${query}`] = { fontSize: `${fontSize}%` };
-    });
 
   /**
    * Loads the styles.
    */
-  const { containerKlass } = useStyles([container], {
-    ...props,
-    lem: lem,
-    responsiveFontSizes: responsiveFontSizes,
-  });
+  const { containerKlass } = useStyles([container], theme);
 
   return (
     <Helmet>

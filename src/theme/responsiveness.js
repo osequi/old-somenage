@@ -49,14 +49,26 @@ const breakpoints = [
 ];
 
 /**
- * Returns an Emotion friendly media query for a breakpoint name.
+ * Returns an Emotion friendly media query value for a breakpoint name.
  * @param  {string} name The breakpoint name.
- * @return {string}      A media query.
+ * @return {string}      A media query value.
+ * @example breakpointQueryValue(tablet) => 'min-wdith: 1024px'
  * @see https://github.com/emotion-js/emotion/issues/490
  */
-const breakpoint = (name) => {
+const breakpointQueryValue = (name) => {
   const bp = breakpoints.find((item) => item.name === name);
   return bp?.value ? `min-width: ${bp.value}px` : null;
 };
 
-export { breakpoint, breakpoints };
+/**
+ * Returns an Emotion friendly media query for a breakpoint name.
+ * @param  {string} name The breakpoint name.
+ * @return {string}      A media query.
+ * @example breakpoint(tablet) => '@media(min-width: 1024px)'
+ */
+const breakpoint = (name) => {
+  const query = breakpointQueryValue(name);
+  return query ? `@media(${query})` : null;
+};
+
+export { breakpoints, breakpointQueryValue, breakpoint };

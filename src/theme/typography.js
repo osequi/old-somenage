@@ -6,6 +6,7 @@ import ms from "modularscale-js";
  */
 import { SetupPropTypes } from "../components/typography/Setup";
 import { FontPropTypes } from "../components/typography/Font";
+import { breakpoint } from "./responsiveness";
 
 /**
  * Imports fonts.
@@ -87,6 +88,35 @@ const typography = {
 };
 
 /**
+ * Calculates the basic spacing unit, the grid size, in `em`
+ * @example {fontSize: 100%, lineHeight: 1.25} => (100 * 1.25) / 100 = 1.25em
+ * @example {fontSize: 110%, lineHeight: 1.25} => (110 * 1.25) / 100 = 1.375em
+ */
+const lem = () => {
+  const { setup } = typography;
+  const { fontSize, lineHeight } = setup;
+  return `${(fontSize * lineHeight) / 100}em`;
+};
+
+/**
+ * Creates the media queries for the responsive font sizes.
+ */
+const responsiveFontSizes = () => {
+  const { setup } = typography;
+  const { fontSizes } = setup;
+
+  let responsiveSizes = [];
+  fontSizes &&
+    fontSizes.map((item) => {
+      const { breakpoint: bp, fontSize } = item;
+      const query = breakpoint(bp);
+      responsiveSizes[`${query}`] = { fontSize: `${fontSize}%` };
+    });
+
+  return responsiveSizes;
+};
+
+/**
  * Returns a font style object identified by name.
  * @param  {string} name The font name.
  * @return {object}      The font style object.
@@ -119,4 +149,4 @@ const scale = (number) => {
   return { fontSize: `${scaled}em` };
 };
 
-export { typography, font, maxWidth, scale };
+export { typography, lem, responsiveFontSizes, font, maxWidth, scale };

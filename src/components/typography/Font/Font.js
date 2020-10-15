@@ -4,11 +4,7 @@ import { cx } from "emotion";
 import { useStyles, useTheme } from "../../../hooks";
 
 /**
- * Imports other components and hooks.
- */
-
-/**
- * Defines the prop types
+ * Defines the prop types.
  */
 const propTypes = {
   /**
@@ -39,7 +35,8 @@ const propTypes = {
 };
 
 /**
- * Defines the default props
+ * Defines the default props.
+ * Props will be overwritten by the theme.
  */
 const defaultProps = {
   name: "Default",
@@ -52,11 +49,11 @@ const defaultProps = {
 /**
  * Defines the styles.
  */
-const container = (props) => {
+const container = (font) => {
   return {
-    fontFamily: props.fontFamily,
-    fontWeight: props.fontWeight,
-    fontStyle: props.fontStyle,
+    fontFamily: font.fontFamily,
+    fontWeight: font.fontWeight,
+    fontStyle: font.fontStyle,
   };
 };
 
