@@ -71,11 +71,7 @@ const bodyText = (props, theme) => {
     ...theme.typography.font("Nimbus Sans Regular"),
     ...theme.typography.maxWidth("Nimbus Sans Regular"),
     ...theme.typography.spacing("Adjacent siblings margin top"),
-    ...headings({
-      font: "Nimbus Sans Medium",
-      scale: 0,
-      theme: theme,
-    }),
+    ...headings({ font: "Nimbus Sans Medium", scale: 0 }),
   };
 };
 
@@ -85,11 +81,7 @@ const longformText = (props, theme) => {
     ...theme.typography.font("Nimbus Sans Regular"),
     ...theme.typography.maxWidth("Nimbus Sans Regular"),
     ...theme.typography.spacing("Adjacent siblings margin top"),
-    ...headings({
-      font: "Nimbus Sans Regular",
-      lineHeight: 1,
-      theme: theme,
-    }),
+    //...headings({ font: "Nimbus Sans Regular", lineHeight: 1 }),
     ...textElements,
   };
 };

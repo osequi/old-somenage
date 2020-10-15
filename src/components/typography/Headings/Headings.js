@@ -62,78 +62,22 @@ const defaultProps = {
 /**
  * Sets the new margins.
  */
-const margin = (props) => {
-  const { scale, lineHeight, theme } = props;
-  const { typography } = theme;
-  const { setup, scale: scaleSetup } = typography;
-  const { fontSize, lineHeight: setupLineHeight } = setup;
-
-  /**
-   * The deafult line height in em.
-   * Ex.: 100 * 1.25 => 1.25
-   */
-  const lineHeightInEm = (fontSize / 100) * setupLineHeight;
-
-  console.log("lineHeightInEm:", lineHeightInEm);
-
-  /**
-   * The heading's line height in em
-   * Ex.: (ms(6), 1) => 5.61
-   */
-  const headingLineHeightInEm = ms(scale, scaleSetup) * lineHeight;
-
-  console.log("headingLineHeightInEm:", headingLineHeightInEm);
-
-  /**
-   * The nearest multiply of the default line height for the heading's line height, in em.
-   * Ex.: default: 1.25, heading: 5.61 => (4+1)*1.25 = 6.25
-   */
-  const nearestInEm =
-    (Math.floor(headingLineHeightInEm / lineHeightInEm) + 1) * lineHeightInEm;
-
-  /**
-   * The margin we should add to match the grid, in em.
-   * Ex.: 6.25 - 5.61 = 0.64
-   */
-  const differenceInEm = nearestInEm - headingLineHeightInEm;
-  const differenceInPx = differenceInEm * 16;
-
-  /**
-   * This shit is very tricky
-   *
-   * - If both margin top and bottom is set, the first h1 is ok, the immediate next h1 gets distorted.
-   * - If only margin top is set they both work fine.
-   *
-   * Tested with, px:
-   * - Nimbus sans, default fonts combined in all possible ways. Worked fine all the time.
-   * - Scales well when the user scales the font size of the browser.
-   * - It gets broken in Chrome on certain, unknown h elements.
-   * - It turns out FF and Chrome compute differently the layout / line height. In FF a h1 is 700×179.533 in Chrome the same h1 is 700x178. No matter if the font size is set in px or em. The same is true also on the https://web.dev/ site on the first h1. So it seems this problem is incurable via CSS.
-   * - A runtime size checker JS code might help, but perhaps will reduce redering speed and introduces code complexity.
-   *
-   * Tested with, em:
-   * - When margins are set in em they are both broken in FF and Chrome, in the same way.
-   *
-   * See Headings.md for more details.
-   */
-
-  return {
-    marginTop: `${differenceInPx}px`,
-    marginBottom: 0,
-  };
+const margin = (props, theme) => {
+  const { scale, lineHeight } = props;
+  return theme;
 };
 
 /**
  * Returns headings with the same size.
  */
-const sameSize = (props) => {
-  const { font, lineHeight, scale, theme } = props;
+const sameSize = (props, theme) => {
+  const { font, lineHeight, scale } = props;
 
   return {
     ["& h1, h2, h3, h4, h5, h6"]: {
       ...theme.typography.font(font),
       ...theme.typography.scale(scale),
-      ...margin(props),
+      ...margin(props, theme),
       lineHeight: lineHeight,
     },
   };
@@ -142,8 +86,8 @@ const sameSize = (props) => {
 /**
  * Returns headings with different sizes.
  */
-const differentSizes = (props) => {
-  const { font, lineHeight, modularScale, theme } = props;
+const differentSizes = (props, theme) => {
+  const { font, lineHeight } = props;
 
   return {
     ["& h1, h2, h3, h4, h5, h6"]: {
@@ -180,18 +124,18 @@ const differentSizes = (props) => {
 /**
  * Returns the style for the headings.
  */
-const headings = (props) => {
+const headings = (props, theme) => {
   const { scale } = props;
 
-  return isNil(scale) ? differentSizes(props) : sameSize(props);
+  return isNil(scale) ? differentSizes(props, theme) : sameSize(props, theme);
 };
 
 /**
  * Defines the styles.
  */
-const container = (props) => {
+const container = (props, theme) => {
   return {
-    ...headings(props),
+    ...headings(props, theme),
   };
 };
 
@@ -204,7 +148,7 @@ const Headings = (props) => {
   const { children } = props;
 
   const theme = useTheme();
-  const { containerKlass } = useStyles([container], { ...props, theme: theme });
+  const { containerKlass } = useStyles([container], props, theme);
 
   return <div className={cx("Headings", containerKlass)}>{children}</div>;
 };

@@ -89,13 +89,13 @@ const typography = {
 
 /**
  * Calculates the basic spacing unit, the grid size, in `em`
- * @example {fontSize: 100%, lineHeight: 1.25} => (100 * 1.25) / 100 = 1.25em
- * @example {fontSize: 110%, lineHeight: 1.25} => (110 * 1.25) / 100 = 1.375em
+ * @example {fontSize: 100%, lineHeight: 1.25} => (100 * 1.25) / 100 = 1.25
+ * @example {fontSize: 110%, lineHeight: 1.25} => (110 * 1.25) / 100 = 1.375
  */
 const lem = () => {
   const { setup } = typography;
   const { fontSize, lineHeight } = setup;
-  return `${(fontSize * lineHeight) / 100}em`;
+  return (fontSize * lineHeight) / 100;
 };
 
 /**
