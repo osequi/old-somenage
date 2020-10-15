@@ -85,7 +85,7 @@ const container = (props) => {
     fontSize: `${props.fontSize}%`,
     lineHeight: props.lineHeight,
     "--lem": props.lem,
-    //...props.responsiveFontSizes,
+    ...props.responsiveFontSizes,
   };
 };
 
@@ -112,6 +112,8 @@ const Setup = (props) => {
       const query = theme.breakpoint(breakpoint);
       responsiveFontSizes[`${query}`] = { fontSize: `${fontSize}%` };
     });
+
+  console.log("responsiveFontSizes:", responsiveFontSizes);
 
   /**
    * Loads the styles.

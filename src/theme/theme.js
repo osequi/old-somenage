@@ -18,9 +18,16 @@ const theme = {
   },
   breakpoints: breakpoints,
   breakpointQuery: (name) => breakpoint(name),
+  /**
+   * Retuns an Emotion-style media query.
+   * @param  {string} name The breakpoint name, like tablet
+   * @return {string}      The Emotion-style media query
+   * @example theme.breakpoint('tablet') => '@media(min-width: 1024px)'
+   * @see https://github.com/emotion-js/emotion/issues/490
+   */
   breakpoint: (name) => {
     const query = breakpoint(name);
-    return query ? `@media screen and ${query})` : null;
+    return query ? `@media(${query})` : null;
   },
   /**
    * Always leave room for later customization.
