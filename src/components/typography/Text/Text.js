@@ -1,7 +1,7 @@
 import React, { createElement } from "react";
 import PropTypes from "prop-types";
 import { cx } from "emotion";
-import { useStyles, useTheme } from "../../../hooks";
+import { useStyles, useTheme, useFindInArrays } from "../../../hooks";
 import { startCase } from "lodash";
 
 /**
@@ -116,18 +116,16 @@ const Text = (props) => {
   } = useStyles([bodyText, longformText, titleText], props, theme);
 
   /**
-   * Finds the required class.
-   * // NOTE: Perhaps the helper is needed here
+   * Finds the class for the variant.
    */
-  const klasses = [
-    defaultTextKlass,
-    bodyTextKlass,
-    longformTextKlass,
-    titleTextKlass,
-  ];
-  const index = variants.findIndex((item) => item === variant);
+  const klass = useFindInArrays(
+    [defaultTextKlass, bodyTextKlass, longformTextKlass, titleTextKlass],
+    variants,
+    variant
+  );
+
   const props2 = {
-    className: cx(klasses[index], `Text${startCase(variant)}`),
+    className: cx(klass, `Text${startCase(variant)}`),
   };
 
   return createElement(as, props2, children);
