@@ -80,10 +80,10 @@ const typography = {
         fontSize: 130,
       },
     ],
-  },
-  scale: {
-    base: [1],
-    ratio: 1.333,
+    scale: {
+      base: [1],
+      ratio: 1.333,
+    },
   },
   fonts: [
     {

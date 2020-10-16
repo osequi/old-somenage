@@ -44,23 +44,58 @@ const defaultProps = {
  * Sets the new margins.
  */
 const margin = (props, theme) => {
-  const { scale, lineHeight } = props;
-  return null;
-};
+  const { scale: scaleProp, lineHeight } = props;
+  const { typography } = theme;
+  const { lem, setup } = typography;
+  const { fontSize, scale: scaleTheme } = setup;
 
-/**
- * Returns headings with the same size.
- */
-const sameSize = (props, theme) => {
-  const { font, lineHeight, scale } = props;
+  /**
+   * The size of a single line in the heading.
+   * Example: (6, 1) => 5.61
+   */
+  const headingLem = ms(scaleProp, scaleTheme) * lineHeight;
+
+  /**
+   * The number of lines in the heading.
+   * This can't be calculated...
+   */
+  const headingLines = 1;
+
+  /**
+   * The size of the heading.
+   * Example: 1 * 5.61 = 5.61
+   */
+  const headingSize = headingLines * headingLem;
+
+  /**
+   * How many cells (vertical grid lines) the heading occupies.
+   * Example: 5.61 / 1.25 = 4.488
+   */
+  const nrOfCellsOccupied = headingSize / lem;
+
+  /**
+   * How big the margin has to be set.
+   * Example: 5 * 1.25 - 5.61 = 0.64
+   */
+  const marginToSet = Math.ceil(nrOfCellsOccupied) * lem - headingSize;
+
+  /**
+   * Convert em to px.
+   * If margin is set in `em` it doesn't works. If set in `px` it works like a charm.
+   */
+  const marginToSetinPx = marginToSet * ((fontSize * 16) / 100);
+
+  /**
+   * This shit is very tricky
+   *
+   * - If both margin top and bottom is set, the first h1 is ok, the immediate next h1 gets distorted.
+   * - If only margin top is set they both work fine.
+   * - Tested in FF, Chrome.
+   */
 
   return {
-    ["& h1, h2, h3, h4, h5, h6"]: {
-      ...theme.typography.font(font),
-      ...theme.typography.scale(scale),
-      ...margin(props, theme),
-      lineHeight: lineHeight,
-    },
+    marginTop: `${marginToSetinPx}px`,
+    marginBottom: 0,
   };
 };
 
@@ -98,6 +133,22 @@ const differentSizes = (props, theme) => {
     ["& h1"]: {
       ...theme.typography.scale(6),
       ...margin({ ...props, scale: 6 }, theme),
+    },
+  };
+};
+
+/**
+ * Returns headings with the same size.
+ */
+const sameSize = (props, theme) => {
+  const { font, lineHeight, scale } = props;
+
+  return {
+    ["& h1, h2, h3, h4, h5, h6"]: {
+      ...theme.typography.font(font),
+      ...theme.typography.scale(scale),
+      ...margin(props, theme),
+      lineHeight: lineHeight,
     },
   };
 };

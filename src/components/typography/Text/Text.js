@@ -78,7 +78,7 @@ const longformText = (props, theme) => {
   return {
     ...theme.typography.scale(0),
     ...theme.typography.font("Nimbus Sans Regular"),
-    ...theme.typography.maxWidth("Nimbus Sans Regular"),
+    //...theme.typography.maxWidth("Nimbus Sans Regular"),
     ...theme.typography.spacing("Adjacent siblings margin top"),
     ...theme.typography.headings(
       {

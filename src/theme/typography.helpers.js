@@ -68,7 +68,10 @@ const maxWidth = (name) => {
  * @return {object}        The fontSize style object.
  */
 const scale = (number) => {
-  const scaled = ms(number, typography.scale);
+  const { setup } = typography;
+  const { scale } = setup;
+
+  const scaled = ms(number, scale);
   return { fontSize: `${scaled}em` };
 };
 

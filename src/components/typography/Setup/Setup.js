@@ -84,8 +84,8 @@ const defaultProps = {
 const container = (theme) => {
   return {
     fontSize: `${theme.typography.setup.fontSize}%`,
-    ...theme.typography.responsiveFontSizes,
     lineHeight: theme.typography.setup.lineHeight,
+    //...theme.typography.responsiveFontSizes,
     "--lem": `${theme.typography.lem}em`,
   };
 };
