@@ -19,16 +19,17 @@ const defaultProps = {
 /**
  * Returns a value from the linear scale.
  * @param  {number} size       The size on the scale.
- * @param  {object} settings   The settings needed for the calculations.
+ * @param  {object} settings   The settings needed for the calculations. Currently we only need `lineHeight`.
  * @param  {object} typography The typographic settings needed for the calculations.
  * @return {number}            The value on the scale.
  * @example scale('linear', 2, 1) => 3.75em (the value of the 0 scale is 1em)
  */
 const scaleLinear = (value, settings, typography) => {
   const { setup } = typography;
-  const { lineHeight } = setup;
+  const { lineHeight: lineHeightFromSetup } = setup;
 
-  const newLineHeight = lineHeight / settings;
+  const lineHeightFromSettings = settings ? settings : lineHeightFromSetup;
+  const newLineHeight = lineHeightFromSetup / lineHeightFromSettings;
 
   return (value + 1) * newLineHeight;
 };
