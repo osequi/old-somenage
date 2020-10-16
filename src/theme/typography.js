@@ -8,6 +8,7 @@ import { lem, responsiveFontSizes, font, maxWidth } from "./typography.helpers";
 import { scale, ScalePropTypes } from "./typography.scale";
 import { elements } from "./typography.elements";
 import { spacing } from "./typography.spacing";
+import { headings } from "./typography.headings";
 
 /**
  * Imports fonts.
@@ -128,6 +129,7 @@ const helpers = {
   maxWidth: (value) => maxWidth(value),
   scale: (value) => scale(typography.scale.preset, value),
   spacing: (preset) => spacing(preset),
+  headings: (props, theme) => headings(props, theme),
 };
 
 /**

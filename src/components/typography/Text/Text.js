@@ -53,18 +53,18 @@ const defaultProps = {
  */
 const defaultText = (props, theme) => {
   return {
-    ...theme.typography.scale(0),
-    ...theme.typography.font("Nimbus Sans Light"),
+    ...theme.typography.helpers.scale(0),
+    ...theme.typography.helpers.font("Nimbus Sans Light"),
   };
 };
 
 const bodyText = (props, theme) => {
   return {
-    ...theme.typography.scale(0),
-    ...theme.typography.font("Nimbus Sans Regular"),
-    ...theme.typography.maxWidth("Nimbus Sans Regular"),
-    ...theme.typography.spacing("Adjacent siblings margin top"),
-    ...theme.typography.headings(
+    ...theme.typography.helpers.scale(0),
+    ...theme.typography.helpers.font("Nimbus Sans Regular"),
+    ...theme.typography.helpers.maxWidth("Nimbus Sans Regular"),
+    ...theme.typography.helpers.spacing("Adjacent siblings margin top"),
+    ...theme.typography.helpers.headings(
       {
         font: "Nimbus Sans Medium",
         scale: 0,
@@ -76,11 +76,11 @@ const bodyText = (props, theme) => {
 
 const longformText = (props, theme) => {
   return {
-    ...theme.typography.scale(0),
-    ...theme.typography.font("Nimbus Sans Regular"),
-    //...theme.typography.maxWidth("Nimbus Sans Regular"),
-    ...theme.typography.spacing("Adjacent siblings margin top"),
-    ...theme.typography.headings(
+    ...theme.typography.helpers.scale(0),
+    ...theme.typography.helpers.font("Nimbus Sans Regular"),
+    ...theme.typography.helpers.maxWidth("Nimbus Sans Regular"),
+    ...theme.typography.helpers.spacing("Adjacent siblings margin top"),
+    ...theme.typography.helpers.headings(
       {
         font: "Nimbus Sans Medium",
         lineHeight: 1,
@@ -93,7 +93,7 @@ const longformText = (props, theme) => {
 
 const titleText = (props, theme) => {
   return {
-    ...theme.typography.scale(1),
+    ...theme.typography.helpers.scale(1),
   };
 };
 

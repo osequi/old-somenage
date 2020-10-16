@@ -5,10 +5,6 @@ import { useStyles } from "../../../hooks";
 import shortid from "shortid";
 
 /**
- * Imports other components and hooks.
- */
-
-/**
  * Defines the prop types.
  */
 const propTypes = {

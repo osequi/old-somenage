@@ -107,31 +107,31 @@ const differentSizes = (props, theme) => {
 
   return {
     ["& h1, h2, h3, h4, h5, h6"]: {
-      ...theme.typography.font(font),
+      ...theme.typography.helpers.font(font),
       lineHeight: lineHeight,
     },
     ["& h6"]: {
-      ...theme.typography.scale(1),
+      ...theme.typography.helpers.scale(1),
       ...margin({ ...props, scale: 1 }, theme),
     },
     ["& h5"]: {
-      ...theme.typography.scale(2),
+      ...theme.typography.helpers.scale(2),
       ...margin({ ...props, scale: 2 }, theme),
     },
     ["& h4"]: {
-      ...theme.typography.scale(3),
+      ...theme.typography.helpers.scale(3),
       ...margin({ ...props, scale: 3 }, theme),
     },
     ["& h3"]: {
-      ...theme.typography.scale(4),
+      ...theme.typography.helpers.scale(4),
       ...margin({ ...props, scale: 4 }, theme),
     },
     ["& h2"]: {
-      ...theme.typography.scale(5),
+      ...theme.typography.helpers.scale(5),
       ...margin({ ...props, scale: 5 }, theme),
     },
     ["& h1"]: {
-      ...theme.typography.scale(6),
+      ...theme.typography.helpers.scale(6),
       ...margin({ ...props, scale: 6 }, theme),
     },
   };
@@ -145,8 +145,8 @@ const sameSize = (props, theme) => {
 
   return {
     ["& h1, h2, h3, h4, h5, h6"]: {
-      ...theme.typography.font(font),
-      ...theme.typography.scale(scale),
+      ...theme.typography.helpers.font(font),
+      ...theme.typography.helpers.scale(scale),
       ...margin(props, theme),
       lineHeight: lineHeight,
     },
