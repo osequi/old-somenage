@@ -5,13 +5,6 @@ import { useStyles, useTheme, useFindInArrays } from "../../../hooks";
 import { startCase } from "lodash";
 
 /**
- * Imports other components and hooks.
- */
-import { headings } from "../Headings";
-// NOTE: Perhaps <TextElements/> should be used instead...
-import { textElements } from "../TextElements";
-
-/**
  * Defines the text types.
  * Each text type is standalone and unique, defined by a font face, scale, colors etc.
  * Onlye these text types will be accessible from the app.
@@ -71,7 +64,13 @@ const bodyText = (props, theme) => {
     ...theme.typography.font("Nimbus Sans Regular"),
     ...theme.typography.maxWidth("Nimbus Sans Regular"),
     ...theme.typography.spacing("Adjacent siblings margin top"),
-    ...headings({ font: "Nimbus Sans Medium", scale: 0 }),
+    ...theme.typography.headings(
+      {
+        font: "Nimbus Sans Medium",
+        scale: 0,
+      },
+      (theme: theme)
+    ),
   };
 };
 
@@ -81,8 +80,14 @@ const longformText = (props, theme) => {
     ...theme.typography.font("Nimbus Sans Regular"),
     ...theme.typography.maxWidth("Nimbus Sans Regular"),
     ...theme.typography.spacing("Adjacent siblings margin top"),
-    //...headings({ font: "Nimbus Sans Regular", lineHeight: 1 }),
-    ...textElements,
+    ...theme.typography.headings(
+      {
+        font: "Nimbus Sans Medium",
+        lineHeight: 1,
+      },
+      (theme: theme)
+    ),
+    ...theme.typography.elements,
   };
 };
 

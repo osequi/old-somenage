@@ -1,19 +1,23 @@
 /**
  * Imports other components and hooks.
  */
+import { typography } from "./typography";
 import {
-  typography,
   lem,
   responsiveFontSizes,
   font,
   maxWidth,
   scale,
-} from "./typography";
+} from "./typography.helpers";
+import { elements } from "./typography.elements";
+import { headings } from "./typography.headings";
+
 import {
   breakpoints,
   breakpointQueryValue,
   breakpoint,
 } from "./responsiveness";
+
 import { spacing } from "./spacing";
 
 /**
@@ -22,7 +26,7 @@ import { spacing } from "./spacing";
  * Theme overwrites the defaultProps in components.
  * In other words, everything should be set up here. Rely on components only for their propTypes, not for their defaultProps.
  *
- * Beside the settings the theme provides various helper functions.
+ * Beside settings the theme provides various helper functions.
  * These functions are documented in the respective files.
  */
 const theme = {
@@ -31,6 +35,8 @@ const theme = {
      * The settings.
      */
     ...typography,
+    elements: elements,
+    headings: (props, theme) => headings(props, theme),
     /**
      * The helpers.
      */

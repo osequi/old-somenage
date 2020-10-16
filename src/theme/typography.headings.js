@@ -1,13 +1,6 @@
-import React from "react";
 import PropTypes from "prop-types";
-import { cx } from "emotion";
-import { useStyles, useTheme } from "../../../hooks";
 import { isNil } from "lodash";
 import ms from "modularscale-js";
-
-/**
- * Imports other components and hooks.
- */
 
 /**
  * Defines the prop types.
@@ -35,16 +28,6 @@ const propTypes = {
    * // NOTE: This prop is inactive for now.
    */
   modularScale: PropTypes.shape({}),
-  /**
-   * The theme object.
-   * @type {object}
-   */
-  theme: PropTypes.object,
-  /**
-   * The content to be displayed.
-   * @type {any}
-   */
-  children: PropTypes.any,
 };
 
 /**
@@ -55,8 +38,6 @@ const defaultProps = {
   lineHeight: 1,
   scale: null,
   modularScale: null,
-  theme: null,
-  children: null,
 };
 
 /**
@@ -64,7 +45,7 @@ const defaultProps = {
  */
 const margin = (props, theme) => {
   const { scale, lineHeight } = props;
-  return theme;
+  return null;
 };
 
 /**
@@ -130,35 +111,4 @@ const headings = (props, theme) => {
   return isNil(scale) ? differentSizes(props, theme) : sameSize(props, theme);
 };
 
-/**
- * Defines the styles.
- */
-const container = (props, theme) => {
-  return {
-    ...headings(props, theme),
-  };
-};
-
-/**
- * Displays children inside a headings container.
- * Don't use this component directly. Instead use `<Text>`.
- * @see Headings.md
- */
-const Headings = (props) => {
-  const { children } = props;
-
-  const theme = useTheme();
-  const { containerKlass } = useStyles([container], props, theme);
-
-  return <div className={cx("Headings", containerKlass)}>{children}</div>;
-};
-
-Headings.propTypes = propTypes;
-Headings.defaultProps = defaultProps;
-
-export default Headings;
-export {
-  propTypes as HeadingsPropTypes,
-  defaultProps as HeadingsDefaultProps,
-  headings,
-};
+export { headings };
