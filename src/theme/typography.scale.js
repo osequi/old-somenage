@@ -1,9 +1,17 @@
 import PropTypes from "prop-types";
-import ms from "modularscale-js";
 
 /**
  * Imports other components and hooks.
  */
+import {
+  scaleLinear,
+  LinearScalePropTypes,
+  LinearScaleDefaultProps,
+} from "./typography.scale.linear";
+import {
+  scaleModular,
+  ModularScalePropTypes,
+} from "./typography.scale.modular";
 import { findInArrays } from "../hooks";
 
 /**
@@ -11,6 +19,12 @@ import { findInArrays } from "../hooks";
  * @type {Array}
  */
 const scalePresets = ["linear", "modular"];
+
+/**
+ * Defines the settings for the presets.
+ * @type {Array}
+ */
+const scaleSettings = [LinearScalePropTypes, ModularScalePropTypes];
 
 /**
  * Defines the prop types.
@@ -22,6 +36,7 @@ const propTypes = {
    * @type {string}
    */
   preset: PropTypes.oneOf(scalePresets),
+  settings: PropTypes.oneOf(scaleSettings),
 };
 
 /**
@@ -30,47 +45,29 @@ const propTypes = {
  */
 const defaultProps = {
   preset: "linear",
-};
-
-/**
- * Returns a value from the linear scale
- * @param  {number} size The size on the scale.
- * @return {number}      The value on the scale.
- * @example scale('linear', 2) => 3em (the value of the 0 scale is 1em)
- */
-const scaleLinear = (value) => {
-  return value + 1;
-};
-
-/**
- * Returns a value from the modular scale
- * @param  {number} size The size on the scale.
- * @return {number}      The value on the scale.
- * @example scale('modular', 2) => 1.77em (within the perfect fourth ratio)
- * @see https://www.modularscale.com/?1&em&1.333
- */
-const scaleModular = (value) => {
-  return ms(value);
+  settings: LinearScaleDefaultProps,
 };
 
 /**
  * Returns a value from a scale.
  */
-const scaleValue = (preset, value) => {
+const scaleValue = (props) => {
+  const { value, preset, settings } = props;
+
   const scaleFunction = findInArrays(
     [scaleLinear, scaleModular],
     scalePresets,
     preset
   );
 
-  return scaleFunction(value);
+  return scaleFunction(value, settings);
 };
 
 /**
  * Resizes the element to a value on a scale.
  */
-const scaleTo = (preset, value) => {
-  return { fontSize: `${scaleValue(preset, value)}em` };
+const scaleTo = (props) => {
+  return { fontSize: `${scaleValue(props)}em` };
 };
 
 export {

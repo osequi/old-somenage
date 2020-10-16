@@ -127,8 +127,18 @@ const helpers = {
   responsiveFontSizes: responsiveFontSizes(),
   font: (name) => font(name),
   maxWidth: (value) => maxWidth(value),
-  scale: (value) => scaleTo(typography.scale.preset, value),
-  scaleValue: (value) => scaleValue(typography.scale.preset, value),
+  scale: (value, settings) =>
+    scaleTo({
+      value: value,
+      preset: typography.scale.preset,
+      settings: settings,
+    }),
+  scaleValue: (value, settings) =>
+    scaleValue({
+      value: value,
+      preset: typography.scale.preset,
+      settings: settings,
+    }),
   spacing: (preset) => spacing(preset),
   headings: (props, theme) => headings(props, theme),
 };
