@@ -52,7 +52,7 @@ const font = (name) => {
   );
 
   const removeMonospace = {
-    ["& code, kbd, samp"]: {
+    ["& input, pre, code, kbd, samp"]: {
       ...rest,
     },
   };

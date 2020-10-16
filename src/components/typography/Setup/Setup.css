@@ -38,22 +38,29 @@ h6 {
 
 /**
  * Trying to remove the monospace font.
- * Later the font-family has to be set explicitely in the theme.
+ * Later the font-family has to be explicitely set in the theme.
  */
+input,
+pre,
 code,
 kbd,
 samp {
   font-family: inherit;
 }
 
-/* FIXME: Input and select distorts the grid. */
+input,
 input[type="range"],
 input[type="color"],
 input[type="file"],
 select,
 option {
   background: red;
-  max-height: calc(var(--lem) * 0.5);
+  border: none;
+  height: var(--lem);
+}
+
+label {
+  display: inline-flex;
 }
 
 table,
