@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
 /**
- * Defines the breakpoints prop types.
+ * Defines the prop types.
  * @type {Object}
  */
-const breakpointPropTypes = {
+const propTypes = {
   /**
    * Defines the breakpoints.
    * Example: [{mobile: '320'}]
@@ -24,6 +24,11 @@ const breakpointPropTypes = {
       value: PropTypes.number,
     })
   ),
+  /**
+   * A set of helper functions.
+   * @type {[type]}
+   */
+  helpers: PropTypes.object,
 };
 
 /**
@@ -71,4 +76,21 @@ const breakpoint = (name) => {
   return query ? `@media(${query})` : null;
 };
 
-export { breakpoints, breakpointQueryValue, breakpoint };
+/**
+ * Defines the helpers.
+ * @type {Object}
+ */
+const helpers = {
+  breakpointQueryValue: (name) => breakpointQueryValue(name),
+  breakpoint: (name) => breakpoint(name),
+};
+
+/**
+ * Merges helpers with the settings.
+ */
+const responsiveness = {
+  breakpoints: breakpoints,
+  helpers: helpers,
+};
+
+export { responsiveness };

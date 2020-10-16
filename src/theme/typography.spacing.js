@@ -18,11 +18,11 @@ const adjacentSiblingsMarginTop = {
 
 /**
  * Returns a specifing typographic spacing.
- * @param  {string} name The spacing name.
- * @return {object}      The typographic spacing object style.
+ * @param  {string} preset The spacing preset name.
+ * @return {object}        The typographic spacing object style.
  */
-const spacing = (name) => {
-  switch (name) {
+const spacing = (preset) => {
+  switch (preset) {
     case "Adjacent siblings margin top":
     default:
       return adjacentSiblingsMarginTop;

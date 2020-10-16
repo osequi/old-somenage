@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
  * Imports other components and hooks.
  */
 import { SetupPropTypes } from "../components/typography/Setup";
+import { lem, responsiveFontSizes, font, maxWidth } from "./typography.helpers";
+import { scale, ScalePropTypes } from "./typography.scale";
+import { elements } from "./typography.elements";
+import { spacing } from "./typography.spacing";
 
 /**
  * Imports fonts.
@@ -21,14 +25,10 @@ const propTypes = {
    */
   setup: PropTypes.shape(SetupPropTypes),
   /**
-   * Sets up the Modular Scale for font sizing.
-   * @see https://github.com/modularscale/modularscale-js
+   * Sets up the scale for font and element sizing.
    * @type {object}
    */
-  scale: {
-    base: PropTypes.arrayOf(PropTypes.number),
-    ratio: PropTypes.number,
-  },
+  scale: ScalePropTypes,
   /**
    * The list of fonts available for this theme.
    * @type {array}
@@ -57,6 +57,16 @@ const propTypes = {
       fontStyle: PropTypes.string,
     })
   ),
+  /**
+   * The style objects for all typographic elements
+   * @type {[type]}
+   */
+  elements: PropTypes.object,
+  /**
+   * A set of helper functions.
+   * @type {[type]}
+   */
+  helpers: PropTypes.object,
 };
 
 /**
@@ -80,10 +90,9 @@ const typography = {
         fontSize: 130,
       },
     ],
-    scale: {
-      base: [1],
-      ratio: 1.333,
-    },
+  },
+  scale: {
+    preset: "linear",
   },
   fonts: [
     {
@@ -105,6 +114,25 @@ const typography = {
       fontStyle: "normal",
     },
   ],
+  elements: elements,
 };
+
+/**
+ * Defines the helpers.
+ * @type {Object}
+ */
+const helpers = {
+  lem: lem(),
+  responsiveFontSizes: responsiveFontSizes(),
+  font: (name) => font(name),
+  maxWidth: (value) => maxWidth(value),
+  scale: (value) => scale(typography.scale.preset, value),
+  spacing: (preset) => spacing(preset),
+};
+
+/**
+ * Merges helpers with the settings.
+ */
+typography.helpers = helpers;
 
 export { typography };
