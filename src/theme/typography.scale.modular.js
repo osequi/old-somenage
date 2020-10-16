@@ -2,6 +2,18 @@ import PropTypes from "prop-types";
 import ms from "modularscale-js";
 
 /**
+ * On the modular scale values are floats.
+ * This breaks the grid aligmnet for multiline headings.
+ * With margin calculations the grid can be preserved for single line headings.
+ *
+ * To calculate on-the-fly the margins for multiline headings we either need refs to the headings, or use `ReactDOM.findDOMNode`.
+ * Since content often times comes from markdown we don't have access to refs.
+ * And `findDOMNode` is deprecated in `StrictMode`, CRA comes with `StrictMode` enabled.
+ *
+ * The only way left for multiline headings is to skip markdown usage.
+ */
+
+/**
  * Defines the prop types.
  * @see https://www.modularscale.com/?1&em&1.333
  * @type {Object}

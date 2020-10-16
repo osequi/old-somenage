@@ -50,7 +50,14 @@ const font = (name) => {
   const { name: fontName, ...rest } = typography.fonts.find(
     (item) => item.name === name
   );
-  return rest;
+
+  const removeMonospace = {
+    ["& code, kbd, samp"]: {
+      ...rest,
+    },
+  };
+
+  return { ...rest, ...removeMonospace };
 };
 
 /**
@@ -61,7 +68,11 @@ const font = (name) => {
  * @return {object}       The maxWidth style object.
  */
 const maxWidth = (value) => {
-  return { maxWidth: `calc(35*var(--lem))` };
+  return {
+    ["& > * :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6)"]: {
+      maxWidth: `calc(35*var(--lem))`,
+    },
+  };
 };
 
 export { lem, responsiveFontSizes, font, maxWidth };

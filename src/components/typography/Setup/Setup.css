@@ -36,6 +36,16 @@ h6 {
   word-wrap: break-word;
 }
 
+/**
+ * Trying to remove the monospace font.
+ * Later the font-family has to be set explicitely in the theme.
+ */
+code,
+kbd,
+samp {
+  font-family: inherit;
+}
+
 /* FIXME: Input and select distorts the grid. */
 input[type="range"],
 input[type="color"],
@@ -73,6 +83,9 @@ td {
   display: inline;
 }
 
+/**
+ * Still the height has to be set in `lem`.
+ */
 img {
   display: block;
 }

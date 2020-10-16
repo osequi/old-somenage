@@ -13,7 +13,7 @@ import markdown2 from "./demos/Text.demo.2.md";
  * Displays the Text demo.
  */
 const TextDemo = (props) => {
-  const { html } = useMarkdown(markdown);
+  const { html } = useMarkdown(markdown2);
 
   return (
     <>

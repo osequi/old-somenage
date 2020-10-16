@@ -1,6 +1,13 @@
 import PropTypes from "prop-types";
 
 /**
+ * On the linear scale every scale value is an integer.
+ * This preserves the grid aligmnent for multiline headings.
+ * The drawback is `h1` gets very large.
+ * This can be fixed with setting all headings to level 1, or 2. Then style them creatively, Bauhaus style, without further enlarging them.
+ */
+
+/**
  * Defines the prop types.
  * @type {Object}
  */
@@ -18,6 +25,7 @@ const defaultProps = {
 
 /**
  * Returns a value from the linear scale.
+ * The returned value is responsive, ie. follows the responsive font-sizes applied to the body.
  * @param  {number} size       The size on the scale.
  * @param  {object} settings   The settings needed for the calculations. Currently we only need `lineHeight`.
  * @param  {object} typography The typographic settings needed for the calculations.

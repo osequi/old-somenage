@@ -1,6 +1,18 @@
 import PropTypes from "prop-types";
 
 /**
+ * Trying to set up the perfect grid / typographic scale.
+ * - On FF the linear scale works perfectly.
+ * - But it gets broken in Chrome on certain, unknown h elements.
+ * - It turns out FF and Chrome compute differently the layout / line height.
+ * - In FF a h1 is 700×179.533 in Chrome the same h1 is 700x178.
+ * - No matter if the font size is set in px or em.
+ * - The same is true also on the https://web.dev/ site on the first h1.
+ *
+ * It seems this problem is incurable for now.
+ */
+
+/**
  * Imports other components and hooks.
  */
 import {
