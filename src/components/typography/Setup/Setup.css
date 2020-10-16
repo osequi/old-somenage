@@ -27,6 +27,15 @@ textarea {
   font-weight: normal;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  word-wrap: break-word;
+}
+
 /* FIXME: Input and select distorts the grid. */
 input[type="range"],
 input[type="color"],

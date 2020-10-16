@@ -26,7 +26,7 @@ Line height should be set unitless. This way the `font-size * line-height` combo
 
 With a `font-size: 100%; line-height: 1.25` the grid cell size will be '`16px * 1.25 = 20px`'.
 
-## Sizing child elements only with `em`
+## Sizing child elements only with em
 
 So far the grid is measured in pixels even if we used `%` and an unitless measure to set it up.
 
@@ -44,7 +44,7 @@ And Iain's grid is built on font size.
 
 Converting the grid size from `px` to `em` is easy. `1em` equals the body font size. In the `16px * 1.25` formula `16px` can be replaced with `1em` to get `1.25em` as the grid size.
 
-## `<body>`
+## Body
 
 If possible set the grid in the `<body>` element. This way the whole page will have an universal grid layout all children can inherit and build upon.
 

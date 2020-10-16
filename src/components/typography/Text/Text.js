@@ -82,7 +82,7 @@ const longformText = (props, theme) => {
     ...theme.typography.helpers.spacing("Adjacent siblings margin top"),
     ...theme.typography.helpers.headings(
       {
-        font: "Nimbus Sans Medium",
+        font: "Nimbus Sans Light",
         lineHeight: 1,
       },
       (theme: theme)
