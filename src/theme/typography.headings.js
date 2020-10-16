@@ -94,8 +94,8 @@ const margin = (props, theme) => {
    * - Tested in FF, Chrome.
    */
   return {
-    marginTop: `${marginToSetinPx}px`,
-    marginBottom: 0,
+    //marginTop: `${marginToSetinPx}px`,
+    //marginBottom: 0,
   };
 };
 

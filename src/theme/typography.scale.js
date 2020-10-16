@@ -39,7 +39,7 @@ const defaultProps = {
  * @example scale('linear', 2) => 3em (the value of the 0 scale is 1em)
  */
 const scaleLinear = (value) => {
-  return value;
+  return value + 1;
 };
 
 /**
@@ -56,7 +56,7 @@ const scaleModular = (value) => {
 /**
  * Returns a value from a scale.
  */
-const scale = (preset, value) => {
+const scaleValue = (preset, value) => {
   const scaleFunction = findInArrays(
     [scaleLinear, scaleModular],
     scalePresets,
@@ -66,8 +66,16 @@ const scale = (preset, value) => {
   return scaleFunction(value);
 };
 
+/**
+ * Resizes the element to a value on a scale.
+ */
+const scaleTo = (preset, value) => {
+  return { fontSize: `${scaleValue(preset, value)}em` };
+};
+
 export {
-  scale,
   propTypes as ScalePropTypes,
   defaultProps as ScaleDefaultProps,
+  scaleValue,
+  scaleTo,
 };
