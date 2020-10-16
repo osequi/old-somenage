@@ -77,27 +77,27 @@ const differentSizes = (props, theme) => {
     },
     ["& h6"]: {
       ...theme.typography.scale(1),
-      ...margin({ ...props, scale: 1 }),
+      ...margin({ ...props, scale: 1 }, theme),
     },
     ["& h5"]: {
       ...theme.typography.scale(2),
-      ...margin({ ...props, scale: 2 }),
+      ...margin({ ...props, scale: 2 }, theme),
     },
     ["& h4"]: {
       ...theme.typography.scale(3),
-      ...margin({ ...props, scale: 3 }),
+      ...margin({ ...props, scale: 3 }, theme),
     },
     ["& h3"]: {
       ...theme.typography.scale(4),
-      ...margin({ ...props, scale: 4 }),
+      ...margin({ ...props, scale: 4 }, theme),
     },
     ["& h2"]: {
       ...theme.typography.scale(5),
-      ...margin({ ...props, scale: 5 }),
+      ...margin({ ...props, scale: 5 }, theme),
     },
     ["& h1"]: {
       ...theme.typography.scale(6),
-      ...margin({ ...props, scale: 6 }),
+      ...margin({ ...props, scale: 6 }, theme),
     },
   };
 };

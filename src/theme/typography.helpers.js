@@ -41,11 +41,14 @@ const responsiveFontSizes = () => {
  * @return {object}      The font style object.
  * @example
  * ```
- * font('Nimbus Sans Medium') => { name: "Nimbus Sans Medium", fontFamily: "nimbus-sans", fontWeight: 500, fontStyle: "normal"}
+ * font('Nimbus Sans Medium') => { fontFamily: "nimbus-sans", fontWeight: 500, fontStyle: "normal"}
  * ```
  */
 const font = (name) => {
-  return typography.fonts.find((item) => item.name === name);
+  const { name: fontName, ...rest } = typography.fonts.find(
+    (item) => item.name === name
+  );
+  return rest;
 };
 
 /**

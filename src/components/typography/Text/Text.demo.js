@@ -15,6 +15,7 @@ const TextDemo = (props) => {
 
   return (
     <>
+      <Text variant="longform">{html}</Text>
       <h2>Text Demo</h2>
       <p>
         <Text variant="default">This is the default text.</Text>
@@ -28,7 +29,6 @@ const TextDemo = (props) => {
           </p>
         </Text>
       </p>
-      <Text variant="longform">{html}</Text>
     </>
   );
 };
