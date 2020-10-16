@@ -25,9 +25,8 @@ const propTypes = {
   /**
    * The scales of the headings in case when headings are different.
    * @type {object}
-   * // NOTE: This prop is inactive for now.
    */
-  scales: PropTypes.shape({}),
+  scales: PropTypes.arrayOf(PropTypes.number),
 };
 
 /**
@@ -37,7 +36,7 @@ const defaultProps = {
   font: "Default",
   lineHeight: 1,
   scale: null,
-  scales: null,
+  scales: [1, 2, 3, 4, 5, 6],
 };
 
 /**
@@ -103,7 +102,7 @@ const margin = (props, theme) => {
  * Returns headings with different sizes.
  */
 const differentSizes = (props, theme) => {
-  const { font, lineHeight } = props;
+  const { font, lineHeight, scales } = props;
 
   return {
     ["& h1, h2, h3, h4, h5, h6"]: {
@@ -111,28 +110,28 @@ const differentSizes = (props, theme) => {
       lineHeight: lineHeight,
     },
     ["& h6"]: {
-      ...theme.typography.helpers.scale(1, lineHeight),
-      ...margin({ ...props, scale: 1 }, theme),
+      ...theme.typography.helpers.scale(scales[0], lineHeight),
+      ...margin({ ...props, scale: scales[0] }, theme),
     },
     ["& h5"]: {
-      ...theme.typography.helpers.scale(2, lineHeight),
-      ...margin({ ...props, scale: 2 }, theme),
+      ...theme.typography.helpers.scale(scales[1], lineHeight),
+      ...margin({ ...props, scale: scales[1] }, theme),
     },
     ["& h4"]: {
-      ...theme.typography.helpers.scale(3, lineHeight),
-      ...margin({ ...props, scale: 3 }, theme),
+      ...theme.typography.helpers.scale(scales[2], lineHeight),
+      ...margin({ ...props, scale: scales[2] }, theme),
     },
     ["& h3"]: {
-      ...theme.typography.helpers.scale(4, lineHeight),
-      ...margin({ ...props, scale: 4 }, theme),
+      ...theme.typography.helpers.scale(scales[3], lineHeight),
+      ...margin({ ...props, scale: scales[3] }, theme),
     },
     ["& h2"]: {
-      ...theme.typography.helpers.scale(5, lineHeight),
-      ...margin({ ...props, scale: 5 }, theme),
+      ...theme.typography.helpers.scale(scales[4], lineHeight),
+      ...margin({ ...props, scale: scales[4] }, theme),
     },
     ["& h1"]: {
-      ...theme.typography.helpers.scale(6, lineHeight),
-      ...margin({ ...props, scale: 6 }, theme),
+      ...theme.typography.helpers.scale(scales[5], lineHeight),
+      ...margin({ ...props, scale: scales[5] }, theme),
     },
   };
 };
@@ -157,9 +156,12 @@ const sameSize = (props, theme) => {
  * Returns the style for the headings.
  */
 const headings = (props, theme) => {
-  const { scale } = props;
+  const { scale, scales } = props;
 
-  return isNil(scale) ? differentSizes(props, theme) : sameSize(props, theme);
+  const scales2 = isNil(scales) ? defaultProps.scales : scales;
+  const props2 = { ...props, scales: scales2 };
+
+  return isNil(scale) ? differentSizes(props2, theme) : sameSize(props, theme);
 };
 
 export { headings };
