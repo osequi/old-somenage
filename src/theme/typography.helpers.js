@@ -72,7 +72,8 @@ const scale = (number) => {
   const { scale } = setup;
 
   const scaled = ms(number, scale);
-  return { fontSize: `${scaled}em` };
+  //return { fontSize: `${scaled}em` };
+  return { fontSize: `${number + 1}em` };
 };
 
 export { lem, responsiveFontSizes, font, maxWidth, scale };

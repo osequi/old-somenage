@@ -53,7 +53,8 @@ const margin = (props, theme) => {
    * The size of a single line in the heading.
    * Example: (6, 1) => 5.61
    */
-  const headingLem = ms(scaleProp, scaleTheme) * lineHeight;
+  //const headingLem = ms(scaleProp, scaleTheme) * lineHeight;
+  const headingLem = (scaleProp + 1) * lineHeight;
 
   /**
    * The number of lines in the heading.
