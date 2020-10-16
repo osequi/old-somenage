@@ -23,11 +23,11 @@ const propTypes = {
    */
   scale: PropTypes.number,
   /**
-   * The modular scale of the headings in case when headings are different.
+   * The scales of the headings in case when headings are different.
    * @type {object}
    * // NOTE: This prop is inactive for now.
    */
-  modularScale: PropTypes.shape({}),
+  scales: PropTypes.shape({}),
 };
 
 /**
@@ -37,7 +37,7 @@ const defaultProps = {
   font: "Default",
   lineHeight: 1,
   scale: null,
-  modularScale: null,
+  scales: null,
 };
 
 /**
@@ -94,8 +94,8 @@ const margin = (props, theme) => {
    * - Tested in FF, Chrome.
    */
   return {
-    //marginTop: `${marginToSetinPx}px`,
-    //marginBottom: 0,
+    marginTop: 0,
+    marginBottom: 0,
   };
 };
 
@@ -111,27 +111,27 @@ const differentSizes = (props, theme) => {
       lineHeight: lineHeight,
     },
     ["& h6"]: {
-      ...theme.typography.helpers.scale(1),
+      ...theme.typography.helpers.scale(1, lineHeight),
       ...margin({ ...props, scale: 1 }, theme),
     },
     ["& h5"]: {
-      ...theme.typography.helpers.scale(2),
+      ...theme.typography.helpers.scale(2, lineHeight),
       ...margin({ ...props, scale: 2 }, theme),
     },
     ["& h4"]: {
-      ...theme.typography.helpers.scale(3),
+      ...theme.typography.helpers.scale(3, lineHeight),
       ...margin({ ...props, scale: 3 }, theme),
     },
     ["& h3"]: {
-      ...theme.typography.helpers.scale(4),
+      ...theme.typography.helpers.scale(4, lineHeight),
       ...margin({ ...props, scale: 4 }, theme),
     },
     ["& h2"]: {
-      ...theme.typography.helpers.scale(5),
+      ...theme.typography.helpers.scale(5, lineHeight),
       ...margin({ ...props, scale: 5 }, theme),
     },
     ["& h1"]: {
-      ...theme.typography.helpers.scale(6),
+      ...theme.typography.helpers.scale(6, lineHeight),
       ...margin({ ...props, scale: 6 }, theme),
     },
   };
@@ -146,7 +146,7 @@ const sameSize = (props, theme) => {
   return {
     ["& h1, h2, h3, h4, h5, h6"]: {
       ...theme.typography.helpers.font(font),
-      ...theme.typography.helpers.scale(scale),
+      ...theme.typography.helpers.scale(scale, lineHeight),
       ...margin(props, theme),
       lineHeight: lineHeight,
     },

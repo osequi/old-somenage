@@ -11,6 +11,7 @@ import {
 import {
   scaleModular,
   ModularScalePropTypes,
+  ModularScaleDefaultProps,
 } from "./typography.scale.modular";
 import { findInArrays } from "../hooks";
 
@@ -52,7 +53,9 @@ const defaultProps = {
  * Returns a value from a scale.
  */
 const scaleValue = (props) => {
-  const { value, preset, settings } = props;
+  const { value, settings, typography } = props;
+  const { scale } = typography;
+  const { preset } = scale;
 
   const scaleFunction = findInArrays(
     [scaleLinear, scaleModular],
@@ -60,7 +63,12 @@ const scaleValue = (props) => {
     preset
   );
 
-  return scaleFunction(value, settings);
+  /**
+   * The settings for modular scale comes from the default props
+   */
+  const settings2 = preset === "linear" ? settings : ModularScaleDefaultProps;
+
+  return scaleFunction(value, settings2, typography);
 };
 
 /**

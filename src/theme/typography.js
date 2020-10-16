@@ -130,14 +130,14 @@ const helpers = {
   scale: (value, settings) =>
     scaleTo({
       value: value,
-      preset: typography.scale.preset,
       settings: settings,
+      typography: typography,
     }),
   scaleValue: (value, settings) =>
     scaleValue({
       value: value,
-      preset: typography.scale.preset,
       settings: settings,
+      typography: typography,
     }),
   spacing: (preset) => spacing(preset),
   headings: (props, theme) => headings(props, theme),
