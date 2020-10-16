@@ -92,7 +92,6 @@ const margin = (props, theme) => {
    * - If only margin top is set they both work fine.
    * - Tested in FF, Chrome.
    */
-
   return {
     marginTop: `${marginToSetinPx}px`,
     marginBottom: 0,
