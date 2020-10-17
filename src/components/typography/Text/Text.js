@@ -87,7 +87,7 @@ const longformText = (props, theme) => {
         preset: "differentSizes",
         font: "Nimbus Sans Medium",
         lineHeight: 1,
-        scales: [0, 0, 1, 1, 2, 2],
+        scales: [1, 2, 3, 4, 5, 6],
       },
       theme
     ),

@@ -50,7 +50,7 @@ const scaleModularMargin = (props, theme) => {
  * @see https://www.modularscale.com/?1&em&1.333
  */
 const scaleModular = (value, settings) => {
-  return ms(value);
+  return ms(value, settings);
 };
 
 export {
