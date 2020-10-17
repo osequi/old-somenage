@@ -13,7 +13,7 @@ import { headings } from "./headings";
 /**
  * Imports fonts.
  */
-import "../fonts/fonts.css";
+import "./fonts/fonts.css";
 
 /**
  * Defines the typography prop types.
