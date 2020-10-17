@@ -13,10 +13,12 @@ import markdown2 from "./demos/Text.demo.2.md";
  * Displays the Text demo.
  */
 const TextDemo = (props) => {
-  const { html } = useMarkdown(markdown2);
+  const { html } = useMarkdown(markdown1);
 
   return (
     <>
+      <Text variant="longform">{html}</Text>
+
       <Text variant="longform">
         <section>
           <h1>Notes:</h1>
@@ -257,8 +259,6 @@ const TextDemo = (props) => {
           <a href="/code/license.txt">MIT license.</a>
         </p>
       </Text>
-
-      <Text variant="longform">{html}</Text>
     </>
   );
 };

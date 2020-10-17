@@ -86,7 +86,11 @@ const scaleMargin = (props, theme) => {
   const { scale } = typography;
   const { preset } = scale;
 
+  console.log("preset:", preset);
+
   const marginFunction = findInArrays(scaleMargins, scalePresets, preset);
+
+  console.log("marginFunction:", marginFunction);
 
   return marginFunction ? marginFunction(props, theme) : null;
 };

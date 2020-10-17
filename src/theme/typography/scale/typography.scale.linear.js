@@ -27,7 +27,12 @@ const defaultProps = {
  * Sets the margins of an element to realign to the grid.
  * In the case of linear scale elements never break the grid.
  */
-const scaleLinearMargin = () => null;
+const scaleLinearMargin = () => {
+  return {
+    marginTop: 0,
+    marginBottom: 0,
+  };
+};
 
 /**
  * Returns a value from the linear scale.
