@@ -27,7 +27,7 @@ import {
   ModularScaleDefaultProps,
 } from "./typography.scale.modular";
 
-import { findInArrays } from "../../hooks";
+import { findInArrays } from "../../../hooks";
 
 /**
  * Defines the presets.

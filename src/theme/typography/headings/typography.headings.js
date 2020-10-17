@@ -15,7 +15,7 @@ import {
   DifferentSizesDefaultProps,
 } from "./typography.headings.differentSizes";
 
-import { findInArrays } from "../../hooks";
+import { findInArrays } from "../../../hooks";
 
 /**
  * Defines the presets.

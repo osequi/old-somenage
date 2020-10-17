@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
  */
 import { SetupPropTypes } from "../../components/typography/Setup";
 import { lem, responsiveFontSizes, font, maxWidth } from "./typography.helpers";
-import { scaleValue, scaleTo, ScalePropTypes } from "./typography.scale";
+import { scaleValue, scaleTo, ScalePropTypes } from "./scale";
 import { elements } from "./typography.elements";
 import { spacing } from "./typography.spacing";
-import { headings } from "./typography.headings";
+import { headings } from "./headings";
 
 /**
  * Imports fonts.
