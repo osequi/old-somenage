@@ -65,7 +65,7 @@ const headings = (props, theme) => {
     preset
   );
 
-  return headingsFunction(props, theme);
+  return headingsFunction ? headingsFunction(props, theme) : null;
 };
 
 export { headings };

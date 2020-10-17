@@ -86,7 +86,7 @@ const scaleValue = (props) => {
    */
   const settings2 = preset === "linear" ? settings : ModularScaleDefaultProps;
 
-  return scaleFunction(value, settings2, typography);
+  return scaleFunction ? scaleFunction(value, settings2, typography) : null;
 };
 
 /**

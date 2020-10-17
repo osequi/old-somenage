@@ -66,10 +66,12 @@ const bodyText = (props, theme) => {
     ...theme.typography.helpers.spacing("Adjacent siblings margin top"),
     ...theme.typography.helpers.headings(
       {
+        preset: "sameSize",
         font: "Nimbus Sans Medium",
-        scale: 0,
+        lineHeight: 1,
+        scale: 1,
       },
-      (theme: theme)
+      theme
     ),
   };
 };
@@ -82,10 +84,12 @@ const longformText = (props, theme) => {
     ...theme.typography.helpers.spacing("Adjacent siblings margin top"),
     ...theme.typography.helpers.headings(
       {
-        font: "Nimbus Sans Light",
+        preset: "differentSizes",
+        font: "Nimbus Sans Medium",
         lineHeight: 1,
+        scales: [0, 0, 1, 1, 2, 2],
       },
-      (theme: theme)
+      theme
     ),
     ...theme.typography.elements,
   };

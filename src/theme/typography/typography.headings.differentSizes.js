@@ -44,27 +44,27 @@ const differentSizes = (props, theme) => {
     },
     ["& h6"]: {
       ...theme.typography.helpers.scale(scales[0], lineHeight),
-      ...margin({ ...props, scale: scales[0] }, theme),
+      //...margin({ ...props, scale: scales[0] }, theme),
     },
     ["& h5"]: {
       ...theme.typography.helpers.scale(scales[1], lineHeight),
-      ...margin({ ...props, scale: scales[1] }, theme),
+      //...margin({ ...props, scale: scales[1] }, theme),
     },
     ["& h4"]: {
       ...theme.typography.helpers.scale(scales[2], lineHeight),
-      ...margin({ ...props, scale: scales[2] }, theme),
+      //...margin({ ...props, scale: scales[2] }, theme),
     },
     ["& h3"]: {
       ...theme.typography.helpers.scale(scales[3], lineHeight),
-      ...margin({ ...props, scale: scales[3] }, theme),
+      //...margin({ ...props, scale: scales[3] }, theme),
     },
     ["& h2"]: {
       ...theme.typography.helpers.scale(scales[4], lineHeight),
-      ...margin({ ...props, scale: scales[4] }, theme),
+      //...margin({ ...props, scale: scales[4] }, theme),
     },
     ["& h1"]: {
       ...theme.typography.helpers.scale(scales[5], lineHeight),
-      ...margin({ ...props, scale: scales[5] }, theme),
+      //...margin({ ...props, scale: scales[5] }, theme),
     },
   };
 };
