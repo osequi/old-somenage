@@ -44,7 +44,7 @@ const differentSizes = (props, theme) => {
     },
     ["& h6"]: {
       ...theme.typography.helpers.scale(scales[0], lineHeight),
-      //...margin({ ...props, scale: scales[0] }, theme),
+      ...theme.typography.helpers.margin({ ...props, scale: scales[0] }, theme),
     },
     ["& h5"]: {
       ...theme.typography.helpers.scale(scales[1], lineHeight),

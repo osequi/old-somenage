@@ -17,12 +17,14 @@ import PropTypes from "prop-types";
  */
 import {
   scaleLinear,
+  scaleLinearMargin,
   LinearScalePropTypes,
   LinearScaleDefaultProps,
 } from "./typography.scale.linear";
 
 import {
   scaleModular,
+  scaleModularMargin,
   ModularScalePropTypes,
   ModularScaleDefaultProps,
 } from "./typography.scale.modular";
@@ -40,6 +42,12 @@ const scalePresets = ["linear", "modular"];
  * @type {Array}
  */
 const scaleSettings = [LinearScalePropTypes, ModularScalePropTypes];
+
+/**
+ * Collects the margin functions from the presets
+ * @type {Array}
+ */
+const scaleMargins = [scaleLinearMargin, scaleModularMargin];
 
 /**
  * Defines the prop types.
@@ -65,6 +73,22 @@ const propTypes = {
 const defaultProps = {
   preset: "linear",
   settings: LinearScaleDefaultProps,
+};
+
+/**
+ * Returns a margin style object for a scale.
+ * Margins realign elements to the grid.
+ * When elements have different font size / line height they break the grid.
+ * This helper adds the necessary margin to fit the element to the grid again.
+ */
+const scaleMargin = (props, theme) => {
+  const { typography } = theme;
+  const { scale } = typography;
+  const { preset } = scale;
+
+  const marginFunction = findInArrays(scaleMargins, scalePresets, preset);
+
+  return marginFunction ? marginFunction(props, theme) : null;
 };
 
 /**
@@ -101,4 +125,5 @@ export {
   defaultProps as ScaleDefaultProps,
   scaleValue,
   scaleTo,
+  scaleMargin,
 };

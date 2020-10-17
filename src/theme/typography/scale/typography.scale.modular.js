@@ -33,6 +33,11 @@ const defaultProps = {
 };
 
 /**
+ * Sets the margins of an element to realign to the grid.
+ */
+const scaleModularMargin = (props, theme) => {};
+
+/**
  * Returns a value from the modular scale
  * @param  {number} size The size on the scale.
  * @return {number}      The value on the scale.
@@ -47,4 +52,5 @@ export {
   propTypes as ModularScalePropTypes,
   defaultProps as ModularScaleDefaultProps,
   scaleModular,
+  scaleModularMargin,
 };

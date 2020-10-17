@@ -24,6 +24,12 @@ const defaultProps = {
 };
 
 /**
+ * Sets the margins of an element to realign to the grid.
+ * In the case of linear scale elements never break the grid.
+ */
+const scaleLinearMargin = () => null;
+
+/**
  * Returns a value from the linear scale.
  * The returned value is responsive, ie. follows the responsive font-sizes applied to the body.
  * @param  {number} size       The size on the scale.
@@ -46,4 +52,5 @@ export {
   propTypes as LinearScalePropTypes,
   defaultProps as LinearScaleDefaultProps,
   scaleLinear,
+  scaleLinearMargin,
 };

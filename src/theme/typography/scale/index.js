@@ -3,4 +3,5 @@ export {
   ScaleDefaultProps,
   scaleValue,
   scaleTo,
+  scaleMargin,
 } from "./typography.scale";

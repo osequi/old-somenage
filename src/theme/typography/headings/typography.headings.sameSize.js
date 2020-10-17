@@ -41,7 +41,6 @@ const sameSize = (props, theme) => {
     ["& h1, h2, h3, h4, h5, h6"]: {
       ...theme.typography.helpers.font(font),
       ...theme.typography.helpers.scale(scale, lineHeight),
-      //...margin(props, theme),
       lineHeight: lineHeight,
     },
   };

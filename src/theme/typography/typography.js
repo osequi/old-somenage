@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
  */
 import { SetupPropTypes } from "../../components/typography/Setup";
 import { lem, responsiveFontSizes, font, maxWidth } from "./typography.helpers";
-import { scaleValue, scaleTo, ScalePropTypes } from "./scale";
+import { scaleValue, scaleTo, scaleMargin, ScalePropTypes } from "./scale";
 import { elements } from "./typography.elements";
 import { spacing } from "./typography.spacing";
 import { headings } from "./headings";
@@ -141,6 +141,7 @@ const helpers = {
     }),
   spacing: (preset) => spacing(preset),
   headings: (props, theme) => headings(props, theme),
+  margin: (props, theme) => scaleMargin(props, theme),
 };
 
 /**
