@@ -93,7 +93,7 @@ const typography = {
     ],
   },
   scale: {
-    preset: "linear",
+    preset: "modular",
   },
   fonts: [
     {
