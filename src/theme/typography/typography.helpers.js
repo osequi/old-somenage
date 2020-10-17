@@ -4,7 +4,7 @@ import ms from "modularscale-js";
  * Imports other components and hooks.
  */
 import { typography } from "./typography";
-import { responsiveness } from "./responsiveness";
+import { responsiveness } from "../responsiveness";
 
 /**
  * Calculates the basic spacing unit, the grid size, in `em`

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 /**
  * Imports other components and hooks.
  */
-import { SetupPropTypes } from "../components/typography/Setup";
+import { SetupPropTypes } from "../../components/typography/Setup";
 import { lem, responsiveFontSizes, font, maxWidth } from "./typography.helpers";
 import { scaleValue, scaleTo, ScalePropTypes } from "./typography.scale";
 import { elements } from "./typography.elements";
@@ -13,7 +13,7 @@ import { headings } from "./typography.headings";
 /**
  * Imports fonts.
  */
-import "./fonts.css";
+import "../fonts/fonts.css";
 
 /**
  * Defines the typography prop types.
