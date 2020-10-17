@@ -2,15 +2,16 @@ import PropTypes from "prop-types";
 import ms from "modularscale-js";
 
 /**
- * On the modular scale values are floats.
- * This breaks the grid aligmnet for multiline headings.
- * With margin calculations the grid can be preserved for single line headings.
+ * On the modular scale values are floats. For example `ms(6)` = 5.61em
+ * Setting font sizes in arbitrary floats breaks the grid, which is set in `lem`.
+ * The 5.61em grid has to be aligned to the 1.25em grid.
+ * `scaleModularMargin` does the trick for single line text scaled with modular scale.
  *
- * To calculate on-the-fly the margins for multiline headings we either need refs to the headings, or use `ReactDOM.findDOMNode`.
+ * For multiline texts we either need refs to the scaled text and use `react-measure`, or use `ReactDOM.findDOMNode`.
  * Since content often times comes from markdown we don't have access to refs.
  * And `findDOMNode` is deprecated in `StrictMode`, CRA comes with `StrictMode` enabled.
  *
- * The only way left for multiline headings is to skip markdown usage.
+ * The only way left to align multiline texts to grid is to skip markdown usage.
  */
 
 /**
@@ -33,7 +34,7 @@ const defaultProps = {
 };
 
 /**
- * Sets the margins of an element to realign to the grid.
+ * Sets the margins of a sized element in such ways to realign it to the original grid.
  */
 const scaleModularMargin = (props, theme) => {
   const { scale: scaleProp, lineHeight: lineHeightProp } = props;
@@ -41,8 +42,6 @@ const scaleModularMargin = (props, theme) => {
   const { setup, helpers } = typography;
   const { fontSize } = setup;
   const { lem } = helpers;
-
-  console.log("lem:", lem);
 
   /**
    * The size of a single line in the heading.
