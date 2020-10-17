@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
  * On the linear scale every scale value is an integer.
  * This preserves the grid aligmnent for multiline headings.
  * The drawback is `h1` gets very large.
- * This can be fixed with setting all headings to level 1, or 2. Then style them creatively, Bauhaus style, without further enlarging them.
+ * This can be fixed with setting all headings to level 1, 2, or 3.
+ * Then style them creatively, Bauhaus style, without further enlarging them.
  */
 
 /**
