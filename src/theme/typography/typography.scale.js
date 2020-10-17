@@ -20,11 +20,13 @@ import {
   LinearScalePropTypes,
   LinearScaleDefaultProps,
 } from "./typography.scale.linear";
+
 import {
   scaleModular,
   ModularScalePropTypes,
   ModularScaleDefaultProps,
 } from "./typography.scale.modular";
+
 import { findInArrays } from "../../hooks";
 
 /**
@@ -49,6 +51,10 @@ const propTypes = {
    * @type {string}
    */
   preset: PropTypes.oneOf(scalePresets),
+  /**
+   * The settings for the preset.
+   * @type {object}
+   */
   settings: PropTypes.oneOf(scaleSettings),
 };
 
