@@ -42,6 +42,8 @@ const scaleModularMargin = (props, theme) => {
   const { fontSize } = setup;
   const { lem } = helpers;
 
+  console.log("lem:", lem);
+
   /**
    * The size of a single line in the heading.
    * Example: (6, 1) => 5.61
@@ -59,37 +61,27 @@ const scaleModularMargin = (props, theme) => {
    * Example: 1 * 5.61 = 5.61
    */
   const headingSize = headingLines * headingLem;
-  console.log("headingSize:", headingSize);
 
   /**
    * How many cells (vertical grid lines) the heading occupies.
-   * Example: 5.61 / 1.25 = 4.488
+   * Example: 5.61 / 1.25 = Math.ceil(4.488) = 5
    */
-  const nrOfCellsOccupied = headingSize / lem;
+  const nrOfCellsOccupied = Math.ceil(headingSize / lem);
 
   /**
    * How big the margin has to be set.
    * Example: 5 * 1.25 - 5.61 = 0.64
    */
-  const marginToSet = Math.ceil(nrOfCellsOccupied) * lem - headingSize;
+  const marginToSet = nrOfCellsOccupied * lem - headingSize;
 
   /**
-   * Convert em to px.
-   * If margin is set in `em` it doesn't works. If set in `px` it works like a charm.
+   * Convert marginToSet to the headingLem
+   * Example: 0.64 / 5.61 = 0.114em.
    */
-  const marginToSetinPx = marginToSet * ((fontSize * 16) / 100);
-  console.log("marginToSetinPx:", marginToSetinPx);
-
-  /**
-   * This shit is very tricky
-   *
-   * - If both margin top and bottom is set, the first h1 is ok, the immediate next h1 gets distorted.
-   * - If only margin top is set they both work fine.
-   * - Tested in FF, Chrome.
-   */
+  const marginToSetInHeadingLem = marginToSet / headingLem;
 
   return {
-    marginTop: `${marginToSetinPx}px`,
+    marginTop: `${marginToSetInHeadingLem}em`,
     marginBottom: 0,
   };
 };

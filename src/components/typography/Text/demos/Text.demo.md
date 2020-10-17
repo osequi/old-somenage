@@ -1,6 +1,6 @@
 123456789 10 123456789 20 123456789 30 123456789 40 123456789 50 123456789 60
 
-# Classical typography
+# Class. typography
 
 Classical typography sets up a typographic grid and lays text &mdash; foremost &mdash; and other objects &mdash; images, decorations &mdash; upon that grid.
 
