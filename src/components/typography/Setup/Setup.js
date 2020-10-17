@@ -85,7 +85,7 @@ const container = (theme) => {
   return {
     fontSize: `${theme.typography.setup.fontSize}%`,
     lineHeight: theme.typography.setup.lineHeight,
-    //...theme.typography.helpers.responsiveFontSizes,
+    ...theme.typography.helpers.responsiveFontSizes,
     "--lem": `${theme.typography.helpers.lem}em`,
   };
 };
