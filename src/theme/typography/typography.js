@@ -16,7 +16,7 @@ import { headings } from "./headings";
 import "./fonts/fonts.css";
 
 /**
- * Defines the typography prop types.
+ * Defines the prop types.
  * @type {Object}
  */
 const propTypes = {

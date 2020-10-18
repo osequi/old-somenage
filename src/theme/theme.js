@@ -3,6 +3,7 @@
  */
 import { typography } from "./typography";
 import { responsiveness } from "./responsiveness";
+import { color } from "./color";
 
 /**
  * Defines the theme.
@@ -15,6 +16,7 @@ import { responsiveness } from "./responsiveness";
 const theme = {
   typography: typography,
   responsiveness: responsiveness,
+  color: color,
   /**
    * Always leave room for later customization.
    * @type {Object}
