@@ -78,7 +78,6 @@ const bodyText = (props, theme) => {
 
 const longformText = (props, theme) => {
   return {
-    ...theme.colors.normal,
     ...theme.typography.helpers.scale(0),
     ...theme.typography.helpers.font("Nimbus Sans Regular"),
     ...theme.typography.helpers.maxWidth("Nimbus Sans Regular"),
