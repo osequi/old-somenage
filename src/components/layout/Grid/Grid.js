@@ -132,12 +132,13 @@ const Grid = (props) => {
   const { columns, fauxLines, as, children } = props;
 
   /**
-   * Displays the faux lines if requested.
+   * Displays the faux lines.
    */
   const fauxLinesProps = calculateFauxLines(props);
 
-  console.log("fauxLinesProps:", fauxLinesProps);
-
+  /**
+   * Loads the styles.
+   */
   const { containerKlass, fauxLinesStyleKlass } = useStyles(
     [container, fauxLinesStyle],
     {
