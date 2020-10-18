@@ -12,8 +12,8 @@ import { responsiveness } from "../responsiveness";
  * @example {fontSize: 110%, lineHeight: 1.25} => (110 * 1.25) / 100 = 1.375
  */
 const lem = () => {
-  const { setup } = typography;
-  const { fontSize, lineHeight } = setup;
+  const { grid } = typography;
+  const { fontSize, lineHeight } = grid;
   return (fontSize * lineHeight) / 100;
 };
 
@@ -21,8 +21,8 @@ const lem = () => {
  * Creates the media queries for the responsive font sizes.
  */
 const responsiveFontSizes = () => {
-  const { setup } = typography;
-  const { fontSizes } = setup;
+  const { grid } = typography;
+  const { fontSizes } = grid;
   const { helpers } = responsiveness;
   const { breakpoint } = helpers;
 

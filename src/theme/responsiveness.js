@@ -1,6 +1,12 @@
 import PropTypes from "prop-types";
 
 /**
+ * Defines the breakpoint names.
+ * @type {Array}
+ */
+const breakpointNames = ["mobile", "tablet", "laptop", "desktop"];
+
+/**
  * Defines the prop types.
  * @type {Object}
  */
@@ -16,7 +22,7 @@ const propTypes = {
        * The breakpoint name
        * @type {string}
        */
-      name: PropTypes.oneOf(["mobile", "tablet", "laptop", "desktop"]),
+      name: PropTypes.oneOf(breakpointNames),
       /**
        * The breakpoint value, unitless.
        * @type {number}
@@ -93,4 +99,4 @@ const responsiveness = {
   helpers: helpers,
 };
 
-export { responsiveness };
+export { responsiveness, breakpointNames };

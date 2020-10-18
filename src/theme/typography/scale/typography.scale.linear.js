@@ -45,11 +45,11 @@ const scaleLinearMargin = () => {
  * @example scale('linear', 2, 1) => 3.75em (the value of the 0 scale is 1em)
  */
 const scaleLinear = (value, settings, typography) => {
-  const { setup } = typography;
-  const { lineHeight: lineHeightFromSetup } = setup;
+  const { grid } = typography;
+  const { lineHeight: lineHeightFromGrid } = grid;
 
-  const lineHeightFromSettings = settings ? settings : lineHeightFromSetup;
-  const newLineHeight = lineHeightFromSetup / lineHeightFromSettings;
+  const lineHeightFromSettings = settings ? settings : lineHeightFromGrid;
+  const newLineHeight = lineHeightFromGrid / lineHeightFromSettings;
 
   return (value + 1) * newLineHeight;
 };

@@ -39,8 +39,8 @@ const defaultProps = {
 const scaleModularMargin = (props, theme) => {
   const { scale: scaleProp, lineHeight: lineHeightProp } = props;
   const { typography } = theme;
-  const { setup, helpers } = typography;
-  const { fontSize } = setup;
+  const { grid, helpers } = typography;
+  const { fontSize } = grid;
   const { lem } = helpers;
 
   /**

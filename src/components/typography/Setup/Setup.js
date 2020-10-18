@@ -20,71 +20,20 @@ import "./Setup.css";
 /**
  * Defines the prop types.
  */
-const propTypes = {
-  /**
-   * Font size, in percentage.
-   *
-   * @see http://metamn.io/mr-ui/?selectedKind=Basics%2FTypography%20%E2%9C%93%2FClassic&selectedStory=Overview&full=0&addons=1&stories=1&panelRight=0&addonPanel=storybook-addon-background%2Fbackground-panel&background=beige
-   * @type {number}
-   */
-  fontSize: PropTypes.number,
-  /**
-   * Line height, unitless.
-   * @type {number}
-   */
-  lineHeight: PropTypes.number,
-  /**
-   * Responsive font sizes for different breakpoints.
-   * @type {array}
-   */
-  fontSizes: PropTypes.arrayOf(
-    PropTypes.shape({
-      /**
-       * The breakpoint name.
-       * Example: 'tablet'.
-       * @type {string}
-       */
-      breakpoint: PropTypes.string,
-      /**
-       * The font size for the breakpoint, in percentage.
-       * Example: 120
-       * @type {number}
-       */
-      fontSize: PropTypes.number,
-    })
-  ),
-};
+const propTypes = {};
 
 /**
  * Defines the default props.
- * Props will be overwritten by the theme.
  */
-const defaultProps = {
-  fontSize: 100,
-  lineHeight: 1.25,
-  fontSizes: [
-    {
-      breakpoint: "tablet",
-      fontSize: 110,
-    },
-    {
-      breakpoint: "laptop",
-      fontSize: 120,
-    },
-    {
-      breakpoint: "desktop",
-      fontSize: 130,
-    },
-  ],
-};
+const defaultProps = {};
 
 /**
  * Defines the styles.
  */
 const container = (theme) => {
   return {
-    fontSize: `${theme.typography.setup.fontSize}%`,
-    lineHeight: theme.typography.setup.lineHeight,
+    fontSize: `${theme.typography.grid.fontSize}%`,
+    lineHeight: theme.typography.grid.lineHeight,
     ...theme.typography.helpers.responsiveFontSizes,
     "--lem": `${theme.typography.helpers.lem}em`,
   };

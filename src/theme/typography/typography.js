@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 /**
  * Imports other components and hooks.
  */
-import { SetupPropTypes } from "../../components/typography/Setup";
+import { GridPropTypes } from "./typography.grid";
 import { lem, responsiveFontSizes, font, maxWidth } from "./typography.helpers";
 import { scaleValue, scaleTo, scaleMargin, ScalePropTypes } from "./scale";
 import { elements } from "./typography.elements";
@@ -24,7 +24,7 @@ const propTypes = {
    * Sets up the typographic grid in `<body>`.
    * @type {object}
    */
-  setup: PropTypes.shape(SetupPropTypes),
+  grid: PropTypes.shape(GridPropTypes),
   /**
    * Sets up the scale for font and element sizing.
    * @type {object}
@@ -74,7 +74,7 @@ const propTypes = {
  * Sets up typography.
  */
 const typography = {
-  setup: {
+  grid: {
     fontSize: 100,
     lineHeight: 1.25,
     fontSizes: [
