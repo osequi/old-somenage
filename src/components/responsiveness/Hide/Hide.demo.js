@@ -9,7 +9,12 @@ import Hide from ".";
  * Displays the Hide demo.
  */
 const HideDemo = (props) => {
-  return <Hide />;
+  return (
+    <>
+      <p>Switch to mobile view.</p>
+      <Hide above="tablet">This text is not visible above tablet.</Hide>
+    </>
+  );
 };
 
 export default HideDemo;

@@ -60,10 +60,20 @@ const breakpoints = [
 ];
 
 /**
+ * Returns a breakpoint entry.
+ * @param  {string} name The breakpoint name.
+ * @return {object}      The breakpoint object.
+ * @example: getBreakpoint('tablet') => { name: "tablet", value: "768"}
+ */
+const getBreakpoint = (name) => {
+  return breakpoints.find((item) => item.name === name);
+};
+
+/**
  * Returns an Emotion friendly media query value for a breakpoint name.
  * @param  {string} name The breakpoint name.
  * @return {string}      A media query value.
- * @example breakpointQueryValue(tablet) => 'min-wdith: 1024px'
+ * @example breakpointQueryValue(tablet) => 'min-width: 1024px'
  * @see https://github.com/emotion-js/emotion/issues/490
  */
 const breakpointQueryValue = (name) => {
@@ -87,6 +97,7 @@ const breakpoint = (name) => {
  * @type {Object}
  */
 const helpers = {
+  getBreakpoint: (name) => getBreakpoint(name),
   breakpointQueryValue: (name) => breakpointQueryValue(name),
   breakpoint: (name) => breakpoint(name),
 };

@@ -8,6 +8,7 @@ import { useMediaQuery } from "react-responsive";
 const propTypes = {
   /**
    * A list of media queries.
+   * Please mind the parantheses !!!
    * Example: ['(min-device-width: 1824px)', '(max-width: 1224px)']
    * @see https://github.com/contra/react-responsive
    * @type {array}

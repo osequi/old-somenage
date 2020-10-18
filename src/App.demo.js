@@ -9,6 +9,7 @@ import { TextDemo } from "./components/typography/Text";
 import { SemanticElementsDemo } from "./components/semantic-elements/SemanticElements";
 import { GridDemo } from "./components/layout/Grid";
 import { MediaQueriesDemo } from "./components/responsiveness/MediaQueries";
+import { HideDemo } from "./components/responsiveness/Hide";
 
 /**
  * Displays the demo
@@ -17,9 +18,10 @@ const Demo = (props) => {
   return (
     <>
       <Setup />
-      <MediaQueriesDemo />
+      <HideDemo />
       {/*
 	  <GridDemo />
+	  <MediaQueriesDemo />
       <SemanticElementsDemo />
       <TypographicGrid />
       <TextDemo />
