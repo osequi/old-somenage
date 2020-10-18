@@ -12,10 +12,8 @@ import "normalize.css";
 
 /**
  * Adds further normalization on top of `normalize.css`.
- * It resets all styles. No element should be distinctive from another.
- * Put `Setup.testpage.md` contents on the `<Grid/>` to see if everything is uniform and fits perfectly to the grid.
  */
-import "./Setup.css";
+import "../../../theme/typography/typography.reset.css";
 
 /**
  * Defines the prop types.
