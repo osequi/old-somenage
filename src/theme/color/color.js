@@ -24,6 +24,10 @@ const propTypes = {
   ...ColorPairsPropTypes,
 };
 
+/**
+ * Defines the default props.
+ * @type {Object}
+ */
 const defaultProps = {
   ...colors,
   ...colorPairs,

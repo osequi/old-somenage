@@ -16,7 +16,7 @@ import { color } from "./color";
 const theme = {
   typography: typography,
   responsiveness: responsiveness,
-  color: color,
+  colors: color,
   /**
    * Always leave room for later customization.
    * @type {Object}

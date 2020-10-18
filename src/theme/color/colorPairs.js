@@ -6,47 +6,32 @@ import PropTypes from "prop-types";
 import { colors } from "./colors";
 
 /**
- * Defines the prop types
+ * Defines the prop types.
  * @type {Object}
  */
-const colorPairPropTypes = {
-  preset: PropTypes.shape({
-    color: PropTypes.string,
-    backgroundColor: PropTypes.string,
-  }),
-};
-
-const propTypes = PropTypes.arrayOf(PropTypes.shape(colorPairPropTypes));
+const propTypes = {};
 
 /**
- * Defines the presets
- * @type {Array}
+ * Defines the default props.
+ * @type {Object}
  */
-const defaultProps = [
-  {
-    normal: {
-      color: colors.dark,
-      backgroundColor: colors.light,
-    },
+const defaultProps = {
+  normal: {
+    color: colors.dark,
+    backgroundColor: colors.light,
   },
-  {
-    inverted: {
-      color: colors.light,
-      backgroundColor: colors.dark,
-    },
+  inverted: {
+    color: colors.light,
+    backgroundColor: colors.dark,
   },
-  {
-    highlighted: {
-      color: colors.highlight,
-    },
+  highlighted: {
+    color: colors.highlight,
   },
-  {
-    highlightedAsBackground: {
-      backgroundColor: colors.highlight,
-    },
+  highlightedAsBackground: {
+    backgroundColor: colors.highlight,
   },
-  { shaded: { color: colors.shade } },
-  { shadedAsBackground: { backgroundColor: colors.shade } },
-];
+  shaded: { color: colors.shade },
+  shadedAsBackground: { backgroundColor: colors.shade },
+};
 
 export { propTypes as ColorPairsPropTypes, defaultProps as colorPairs };
