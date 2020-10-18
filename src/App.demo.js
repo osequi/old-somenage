@@ -10,6 +10,7 @@ import { SemanticElementsDemo } from "./components/semantic-elements/SemanticEle
 import { GridDemo } from "./components/layout/Grid";
 import { MediaQueriesDemo } from "./components/responsiveness/MediaQueries";
 import { HideDemo } from "./components/responsiveness/Hide";
+import { CssAnimationDemo } from "./components/animations/CssAnimation";
 
 /**
  * Displays the demo
@@ -18,8 +19,9 @@ const Demo = (props) => {
   return (
     <>
       <Setup />
-      <HideDemo />
+      <CssAnimationDemo />
       {/*
+	  <HideDemo />
 	  <GridDemo />
 	  <MediaQueriesDemo />
       <SemanticElementsDemo />
