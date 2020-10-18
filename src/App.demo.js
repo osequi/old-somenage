@@ -6,6 +6,7 @@ import React from "react";
 import Setup from "./components/typography/Setup";
 import TypographicGrid from "./components/typography/TypographicGrid";
 import { TextDemo } from "./components/typography/Text";
+import { SemanticElementsDemo } from "./components/semantic-elements/SemanticElements";
 
 /**
  * Displays the demo
@@ -15,6 +16,7 @@ const Demo = (props) => {
     <>
       <Setup />
       <TypographicGrid />
+      <SemanticElementsDemo />
       <TextDemo />
     </>
   );
