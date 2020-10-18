@@ -8,6 +8,7 @@ import TypographicGrid from "./components/typography/TypographicGrid";
 import { TextDemo } from "./components/typography/Text";
 import { SemanticElementsDemo } from "./components/semantic-elements/SemanticElements";
 import { GridDemo } from "./components/layout/Grid";
+import { MediaQueriesDemo } from "./components/responsiveness/MediaQueries";
 
 /**
  * Displays the demo
@@ -16,8 +17,9 @@ const Demo = (props) => {
   return (
     <>
       <Setup />
-      <GridDemo />
+      <MediaQueriesDemo />
       {/*
+	  <GridDemo />
       <SemanticElementsDemo />
       <TypographicGrid />
       <TextDemo />
