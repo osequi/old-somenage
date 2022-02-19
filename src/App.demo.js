@@ -21,14 +21,12 @@ const Demo = (props) => {
       <Setup />
       <CssAnimationDemo />
       <TextDemo />
-      {/*
-	  <HideDemo />
-	  <GridDemo />
-	  <MediaQueriesDemo />
+      <HideDemo />
+      <GridDemo />
+      <MediaQueriesDemo />
       <SemanticElementsDemo />
       <TypographicGrid />
       <TextDemo />
-	  */}
     </>
   );
 };
